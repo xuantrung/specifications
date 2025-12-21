@@ -18,6 +18,7 @@ content:
     start_path: docs
   - url: ./../ux
     branches: [antora-*]
+    worktrees: true
     start_path: docs
   - url: ./../documentation
     branches: [antora-*]
