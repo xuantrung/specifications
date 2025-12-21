@@ -1,5 +1,5 @@
 * Technical Specifications
-** xref:specs:C2PA_Specification.adoc[Content Credentials]
+** xref:2.3@specs:C2PA_Specification.adoc[Content Credentials]
 ** xref:1.4@attestations:attestation.adoc[Attestations]
 ** xref:2.2@softbinding:Decoupled.adoc[Soft Binding API]
 * Informative Documents
