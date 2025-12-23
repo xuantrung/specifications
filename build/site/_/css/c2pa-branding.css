@@ -1,0 +1,59 @@
+:root {
+  /* C2PA brand color override */
+  --color-brand-primary: #e40046;
+  --header-footer-background: #bababa !important;
+  --navbar-background: #bababa !important;
+  --nav-heading-font-color: var(--color-brand-primary);
+  --important-color: var(--color-brand-primary);
+}
+
+header.header {
+  background-color: #bababa !important;
+}
+
+.navbar {
+  background-color: #bababa !important;
+}
+
+.page-toolbar a[href*="edit"] {
+  display: none;
+}
+.navbar-end .navbar-item.github {
+  margin-left: 0.5rem;
+}
+/* Keep GitHub icon black; disable hover inversion */
+.navbar .navbar-item.github svg {
+  fill: #000 !important;
+}
+.navbar .navbar-item.github:hover,
+.navbar .navbar-item.github:focus {
+  background-color: transparent;
+  color: inherit;
+  filter: none;
+}
+/* Keep footer brand links on one line */
+.footer .footer-brand-links {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+.footer .footer-brand-links li {
+  display: inline;
+}
+/* Footer brand: place logo and text side-by-side and enlarge text */
+.footer .footer-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+.footer .footer-brand .footer-brand-name a {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
