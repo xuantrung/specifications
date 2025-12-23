@@ -206,7 +206,7 @@
     <a class="version" href="../../2.1/specs/C2PA_Specification.html">2.1</a>
     <a class="version" href="../../2.0/specs/C2PA_Specification.html">2.0</a>
     <a class="version" href="../../1.4/specs/C2PA_Specification.html">1.4</a>
-    <a class="version" href="../../1.3/specs/C2PA_Specification.html">1.3</a>
+    <a class="version is-missing" href="../../1.3/index.html">1.3</a>
     <a class="version" href="../../1.2/specs/C2PA_Specification.html">1.2</a>
     <a class="version" href="../../1.1/specs/C2PA_Specification.html">1.1</a>
     <a class="version" href="../../1.0/specs/C2PA_Specification.html">1.0</a>
@@ -1103,6 +1103,9 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <p><a href="https://www.cipa.jp/std/documents/download_e.html?CIPA_DC-008-2024-E">Exif</a></p>
 </li>
 <li>
+<p><a href="https://www.cipa.jp/std/documents/download_e.html?CIPA_DC-010-2024_E">Exif metadata for XMP</a></p>
+</li>
+<li>
 <p><a href="https://tools.ietf.org/html/rfc4122">UUID</a></p>
 </li>
 <li>
@@ -1163,22 +1166,13 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <p>As the Content Credentials specification has evolved, constructs such as box labels, assertions (and their fields), claims and time-stamps have also evolved. New assertions have been added, and some existing assertions and the claim have newer versions with additional fields. In addition, some constructs have been deprecated. In this specification, when a construct is marked as deprecated, that means that a claim generator shall not write that construct (or value), but that a validator should read it.</p>
 </div>
 <div class="paragraph">
-<p>To facilitate interoperability between claim generators and validators, a claim generator  declares which version of the specification it is using to generate the claim. When a claim generator declares that it is using a version of the specification, it is declaring that the active manifest of the asset is produced in accordance with that version of the specification and thus does not contain any deprecated constructs listed under that version of the specification in <a href="#deprecated_constructs_table">Table 19, &#8220;Status of constructs&#8221;</a> of <a href="#versioning_annex">Appendix C, <em>Considerations for Deprecation</em></a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-This specification does not dictate the specific technical manner for this declaration, but it is expected that guidance will be provided through other means.
-</td>
-</tr>
-</table>
+<p>To facilitate interoperability between claim generators and validators, a claim generator may declare which version of the specification it is using to generate the C2PA Manifest by providing a <a href="#claim-specVersion"><code>specVersion</code> key</a> in the claim. When a claim generator declares that it is using a version of the specification, it is declaring that the active manifest of the asset is produced in accordance with that version of the specification and thus, for example, does not contain any constructs that are deprecated in that version of the specification (see <a href="#deprecated_constructs_table">Table 19, &#8220;Status of constructs&#8221;</a> of <a href="#versioning_annex">Appendix C, <em>Considerations for Deprecation</em></a>).</p>
 </div>
 <div class="paragraph">
 <p>A validator shall be compatible with at least one version of the specification, but may be compatible with additional versions. A validator that is compatible with a specific version of the specification shall support all non-deprecated constructs listed for that version. If the validator encounters a C2PA Manifest that uses constructs from a version of the specification that the validator does not support (either because they are deprecated or unknown), it may ignore the unsupported construct and process the rest of C2PA Manifest as if that construct were not present.</p>
+</div>
+<div class="paragraph">
+<p>When a claim generator is performing ingredient validation, it may add a <a href="#validation-results"><code>specVersion</code> key</a> to the <code>validation-results-map</code> to declare what version of the specification was used as the basis for the validation procedure.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2695,8 +2689,8 @@ By putting an assertion into this list, the claim generator is declaring that th
 <div class="paragraph">
 <p>When present, the <code>redacted_assertions</code> field shall contain one or more <a href="#_uri_references">URI references</a> to <a href="#_redaction_of_assertions">redacted assertions</a>.</p>
 </div>
-<div class="paragraph">
-<p>A <code>specVersion</code> field may be present, and if so, shall contain a SemVer formatted <code>specVersion</code> field which represents the version of this specification that was used to create this claim.</p>
+<div id="claim-specVersion" class="paragraph">
+<p>A <code>specVersion</code> field may be present, and if so, shall contain a SemVer formatted <code>specVersion</code> field which represents the version of this specification that was used to create this C2PA Manifest.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4113,7 +4107,7 @@ Any Trusted manifest is also Valid, and any Valid manifest is also Well-Formed.
 <p>Validation of the claim signature validity period receives the success code of <code>claimSignature.insideValidity</code> [<a href="#_validate_the_time_stamp">Section 15.8, &#8220;Validate the Time-Stamp&#8221;</a>].</p>
 </li>
 <li>
-<p>The credential of the signer of the C2PA Manifest is not rejected with a failure code of <code>signingCredential.ocsp.revoked</code>, or <code>signingCredential.ocsp.unknown</code> [<a href="#_validate_the_credential_revocation_information">Section 15.9, &#8220;Validate the Credential Revocation Information&#8221;</a>].</p>
+<p>The credential of the signer of the C2PA Manifest is not rejected with a failure code of <code>signingCredential.ocsp.revoked</code> [<a href="#_validate_the_credential_revocation_information">Section 15.9, &#8220;Validate the Credential Revocation Information&#8221;</a>].</p>
 </li>
 </ul>
 </div>
@@ -4415,10 +4409,10 @@ In compliance with <a href="#_identity_of_signers">Section 14.2, &#8220;Identity
 <div class="ulist">
 <ul>
 <li>
-<p>If the certified public key can be used to verify certificate signatures, the Basic Constraints extension shall be present with the <code>cA</code> boolean asserted.</p>
+<p>If the certified public key is used to sign certificates, the Basic Constraints extension shall be present with the <code>cA</code> boolean asserted.</p>
 </li>
 <li>
-<p>If the certified public key cannot be used to verify certificate signatures, either the Basic Constraints extension shall be absent or the <code>cA</code> boolean in the extension shall not be asserted and the <code>keyCertSign</code> bit in the key usage extension shall not be asserted.</p>
+<p>If the certified public key is used to sign C2PA Claims, time-stamps, or OCSP responses, the <code>cA</code> boolean in the Basic Constraints extension shall not be asserted, and the <code>keyCertSign</code> boolean in the key usage extension shall not be asserted. Only end entity certificates shall be used to sign C2PA Claims, time-stamps, and OCSP responses.</p>
 </li>
 </ul>
 </div>
@@ -4466,25 +4460,16 @@ In compliance with <a href="#_identity_of_signers">Section 14.2, &#8220;Identity
 <p>If the certificate is not present in the private credential store, or the validator does not implement one, the trust chain shall be built and validated according to the procedure in <a href="https://datatracker.ietf.org/doc/html/rfc5280">RFC 5280</a>, section 6 for the particular purpose required (signing, time-stamping, or OCSP signing) and for the appropriate trust anchor store for that purpose. Any failure of that validation algorithm shall mean the chain shall be rejected. The private credential store is never included when building certificate chains; certificates in the private credential store cannot act as CAs.</p>
 </div>
 <div class="paragraph">
-<p>Only end entity certificates shall be used to sign C2PA Claims or time-stamps. A CA certificate shall not be used for these purposes. Any CA certificate (where the <code>cA</code> boolean in the Basic Constraints extension is asserted) being used to validate a signature on a C2PA Claim, time-stamp, or OCSP response shall be rejected with a failure code of <code>signingCredential.untrusted</code>.</p>
-</div>
-<div class="paragraph">
 <p>A validator shall ensure a signing certificate is authorized for the purpose for which it is being used, and reject certificates used for an unauthorized purpose. A certificate is authorized for a particular purpose if the purpose&#8217;s EKU Object Identifier (OID) is present in the Extended Key Usage extension of the certificate (<a href="https://datatracker.ietf.org/doc/html/rfc5280">RFC 5280</a>, section 4.2.1.12).</p>
 </div>
 <div class="paragraph">
 <p>When validating a certificate used to sign a C2PA Claim, the signing certificate shall have at least one of the EKUs for which the validator has an associated list of trust anchors (see <a href="#_c2pa_signers">Section 14.4.1, &#8220;C2PA Signers&#8221;</a>), and the validator shall use only the trust anchors it associates with EKUs present in the certificate.</p>
 </div>
 <div class="paragraph">
-<p>When validating a certificate chain used to sign a time-stamp, the signing certificate shall have the <code>id-kp-timeStamping</code> (1.3.6.1.5.5.7.3.8) EKU.</p>
-</div>
-<div class="paragraph">
-<p>When validating a certificate chain used to sign an OCSP response, the signing certificate shall have the <code>id-kp-OCSPSigning</code> (1.3.6.1.5.5.7.3.9) EKU.</p>
-</div>
-<div class="paragraph">
 <p>Except for certificates accepted through the private credential store for X.509 certificates, a validator shall verify a certificate&#8217;s compliance with the Certificate Profile, and reject certificates that do not comply. This includes requiring the presence of the Extended Key Usage extension, as well as a certificate being authorized for no more than one of the three purposes listed in this section: C2PA signing, time-stamp signing, or OCSP response signing.</p>
 </div>
 <div class="paragraph">
-<p>As described in the Certificate Profile, Certification Authority (CA) certificates which issue certificates are not required to have an EKU extension, and usually will not. If one is present, it shall be ignored. This requirement only applies to end entity certificates signing C2PA manifests, time-stamps, or OCSP responses. CA certificates shall not be used for signing C2PA manifests, time-stamps, or OCSP responses.</p>
+<p>As described in the Certificate Profile, Certification Authority (CA) certificates are not required to have an EKU extension, and usually will not. If one is present, then the validator shall ignore it.</p>
 </div>
 </div>
 </div>
@@ -4662,10 +4647,13 @@ $status-code /= "timeStamp.validated"
 
 ; Informational codes
 $status-code /= "algorithm.deprecated"
+$status-code /= "assertion.bmffHash.additionalExclusionsPresent"
+$status-code /= "assertion.boxesHash.additionalExclusionsPresent"
 $status-code /= "assertion.dataHash.additionalExclusionsPresent"
 $status-code /= "ingredient.unknownProvenance"
 $status-code /= "signingCredential.ocsp.inaccessible"
 $status-code /= "signingCredential.ocsp.skipped"
+$status-code /= "signingCredential.ocsp.unknown"
 $status-code /= "timeOfSigning.insideValidity"
 $status-code /= "timeOfSigning.outsideValidity"
 $status-code /= "timeStamp.credentialInvalid"
@@ -4680,6 +4668,7 @@ $status-code /= "assertion.action.ingredientMismatch"
 $status-code /= "assertion.action.malformed"
 $status-code /= "assertion.action.redacted"
 $status-code /= "assertion.action.redactionMismatch"
+$status-code /= "assertion.action.softBindingMissing"
 $status-code /= "assertion.bmffHash.malformed"
 $status-code /= "assertion.bmffHash.mismatch"
 $status-code /= "assertion.boxesHash.malformed"
@@ -4730,6 +4719,12 @@ $status-code /= "ingredient.claimSignature.missing"
 $status-code /= "ingredient.claimSignature.mismatch"
 $status-code /= "ingredient.manifest.missing"
 $status-code /= "ingredient.manifest.mismatch"
+$status-code /= "livevideo.assertion.invalid"
+$status-code /= "livevideo.continuityMethod.invalid"
+$status-code /= "livevideo.init.invalid"
+$status-code /= "livevideo.manifest.invalid"
+$status-code /= "livevideo.segment.invalid"
+$status-code /= "livevideo.sessionkey.invalid"
 $status-code /= "manifest.compressed.invalid"
 $status-code /= "manifest.inaccessible"
 $status-code /= "manifest.multipleParents"
@@ -4739,7 +4734,6 @@ $status-code /= "manifest.update.invalid"
 $status-code /= "manifest.update.wrongParents"
 $status-code /= "signingCredential.invalid"
 $status-code /= "signingCredential.ocsp.revoked"
-$status-code /= "signingCredential.ocsp.unknown"
 $status-code /= "signingCredential.untrusted"
 
 ; custom status codes
@@ -4902,6 +4896,16 @@ ingredient-delta-validation-result-map = {
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Box or C2PA Assertion</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.bmffHash.additionalExclusionsPresent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A BMFF hash specified exclusion ranges other than the C2PA Manifest Store.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.boxesHash.additionalExclusionsPresent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A box hash specified exclusion ranges other than the C2PA Manifest Store.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.dataHash.additionalExclusionsPresent</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A data hash specified exclusion ranges other than the C2PA Manifest Store.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
@@ -4919,6 +4923,11 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>signingCredential.ocsp.skipped</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The validator chose not to perform an online OCSP check.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signingCredential.ocsp.unknown</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The OCSP response contains an <code>unknown</code> status for the signing credential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
 </tr>
 <tr>
@@ -4999,6 +5008,11 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.action.redactionMismatch</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">An action that requires an associated redaction either does not have one or the one specified cannot be located</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.action.softBindingMissing</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An action that requires an associated soft binding does not have one</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
@@ -5277,6 +5291,36 @@ ingredient-delta-validation-result-map = {
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.assertion.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The assertion is not valid due to <code>sequenceNumber</code>, <code>streamId</code> mismatch.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.continuityMethod.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>continuityMethod</code> is invalid or not recognized.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.init.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The init segment is not valid, improperly contains a <code>mdat</code> box.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.manifest.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The manifest failed validation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.segment.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The segment is not valid, (1) it contains neither a valid <code>emsg</code> box nor C2PA Manifest Box, (2) no valid session keys, (3) the <code>emsg</code> signature fails signature validation, or (4) the <code>previousManifestId</code> didn&#8217;t match the previous manifest.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.sessionkey.invalid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The session key is not valid, (1) does not meet requirements for session keys, (2)  <code>signerBinding</code> doesn&#8217;t validate, or (3) the Claim Generator&#8217;s certificate used to protect delivery of the session key has expired.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifest.compressed.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The compressed manifest was not valid.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Box</p></td>
@@ -5329,11 +5373,6 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>signingCredential.ocsp.revoked</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The OCSP response indicates that the signing credential has been revoked by the issuer.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>signingCredential.ocsp.unknown</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The OCSP response contains an <code>unknown</code> status for the signing credential</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
 </tr>
 <tr>
@@ -5902,7 +5941,7 @@ This document does not require that the revocation status of a Time Stamping Aut
 <div class="ulist">
 <ul>
 <li>
-<p>If the <code>certStatus</code> field of the response is <code>unknown</code>, the claim shall be rejected with a <code>signingCredential.ocsp.unknown</code> failure code.</p>
+<p>If the <code>certStatus</code> field of the response is <code>unknown</code>, a <code>signingCredential.ocsp.unknown</code> informational code shall be recorded.</p>
 </li>
 <li>
 <p>Else, the certificate shall be considered revoked and the claim shall be rejected with a <code>signingCredential.ocsp.revoked</code> failure code.</p>
@@ -6248,6 +6287,16 @@ Ingredient assertions (<code>c2pa.ingredient</code> or <code>c2pa.ingredient.v2<
 <ol class="lowerroman" type="i">
 <li>
 <p>If there is an <code>icon</code> field in the <code>generator-info-map</code>, then it shall be validated as described in <a href="#_validation_of_references">Section 15.10.3.3, &#8220;Validation of References&#8221;</a>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If the <code>action</code> field is either <code>c2pa.watermarked</code> [DEPRECATED] or <code>c2pa.watermarked.bound</code>:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Verify that there is also a <a href="#soft_binding_assertion"><code>c2pa.soft-binding</code> assertion</a> present in the manifest. If there is not, the claim shall be rejected with a failure code of <code>assertion.action.softBindingMissing</code>.</p>
 </li>
 </ol>
 </div>
@@ -6838,6 +6887,9 @@ The combination of exclusion ranges and padding values, especially padding neede
 </table>
 </div>
 <div class="paragraph">
+<p>The validator shall ignore the presence and contents of <code>pad</code> and <code>pad2</code> fields.</p>
+</div>
+<div class="paragraph">
 <p>If no error conditions were encountered, the validator shall add the success code <code>assertion.dataHash.match</code> to the list it eventually returns.</p>
 </div>
 <div class="paragraph">
@@ -6994,6 +7046,12 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <p>If the <code>bmff-hash-map</code> does not contain an <code>exclusions</code> field or that field&#8217;s value is not of type array with at least one entry, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>.</p>
 </div>
 <div class="paragraph">
+<p>If a validator encounters exclusion ranges other than for just the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data), such as for all or part of the asset metadata (as described in <a href="#_asset_metadata_bindings">[_asset_metadata_bindings]</a>), the informational code <code>assertion.bmffHash.additionalExclusionsPresent</code> shall be issued.</p>
+</div>
+<div class="paragraph">
+<p>The validator shall ignore the presence and contents of <code>pad</code> and <code>pad2</code> fields.</p>
+</div>
+<div class="paragraph">
 <p>Determine the hash algorithm identifier (or possible failure code) by following the procedure in <a href="#_determining_the_hashing_algorithm">Section 15.4, &#8220;Determining the hashing algorithm&#8221;</a>.</p>
 </div>
 <div class="paragraph">
@@ -7005,7 +7063,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <div class="sect4">
 <h5 id="_non_fragmented_asset_using_merkle_tree"><a class="anchor" href="#_non_fragmented_asset_using_merkle_tree"></a>15.12.2.1. Non-fragmented asset using Merkle tree</h5>
 <div class="paragraph">
-<p>If the <code>bmff-hash-map.merkle</code> field is present, the validator shall validate the Merkle tree. If the <code>merkle-map.fixedBlockSize</code> and <code>merkle-map.variableBlockSizes</code> fields are not present, the whole payload of the <code>mdat</code> is treated as a single leaf node for hash calculation. If the <code>fixedBlockSize</code> is present and if <code>variableBlockSizes</code> is not present, the payload of the <code>mdat</code> is divided into fixed-length blocks, and each block is treated as a leaf node. If the final block exceeds the end of the mdat payload, the size of the last block should be set to extend only to the end of the mdat payload. If the <code>variableBlockSize</code> is present and if <code>fixedBlockSizes</code> is not present, the payload of the <code>mdat</code> is divided into sizes defined by the array of <code>variableBlockSizes</code>.  If the number of elements is not equal to <code>count</code> or sum of the values is not equal to size of payload of mdat, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>. If the <code>merkle-map.fixedBlockSize</code> and <code>merkle-map.variableBlockSizes</code> fields are present, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>.</p>
+<p>If the <code>bmff-hash-map.merkle</code> field is present, the validator shall <a href="#bmff-validation">validate the Merkle tree</a>. If the <code>merkle-map.fixedBlockSize</code> and <code>merkle-map.variableBlockSizes</code> fields are not present, the whole payload of the <code>mdat</code> is treated as a single leaf node for hash calculation. If the <code>fixedBlockSize</code> is present and if <code>variableBlockSizes</code> is not present, the payload of the <code>mdat</code> is divided into fixed-length blocks, and each block is treated as a leaf node. If the final block exceeds the end of the mdat payload, the size of the last block should be set to extend only to the end of the mdat payload. If the <code>variableBlockSize</code> is present and if <code>fixedBlockSizes</code> is not present, the payload of the <code>mdat</code> is divided into sizes defined by the array of <code>variableBlockSizes</code>.  If the number of elements is not equal to <code>count</code> or sum of the values is not equal to size of payload of mdat, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>. If the <code>merkle-map.fixedBlockSize</code> and <code>merkle-map.variableBlockSizes</code> fields are present, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7024,7 +7082,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <div class="sect4">
 <h5 id="_fragmented_asset_using_merkle_tree"><a class="anchor" href="#_fragmented_asset_using_merkle_tree"></a>15.12.2.2. Fragmented asset using Merkle tree</h5>
 <div class="paragraph">
-<p>If the <code>bmff-hash-map.merkle</code> field is present, the validator shall validate the Merkle tree. If the auxiliary <code>uuid</code> C2PA box doesn&#8217;t exist as described in <a href="#_auxiliary_c2pa_boxes_for_large_and_fragmented_files">Section A.5.4, &#8220;Auxiliary <code>'c2pa'</code> Boxes for Large and Fragmented Files&#8221;</a>, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>. If the hash calculated from the auxiliary <code>uuid</code> C2PA box and leaf node doesn&#8217;t match the corresponding element of <code>merkle-map.hashes</code>, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.mismatch</code></p>
+<p>If the <code>bmff-hash-map.merkle</code> field is present, the validator shall <a href="#bmff-validation">validate the Merkle tree</a>. If the auxiliary <code>uuid</code> C2PA box doesn&#8217;t exist as described in <a href="#_auxiliary_c2pa_boxes_for_large_and_fragmented_files">Section A.5.4, &#8220;Auxiliary <code>'c2pa'</code> Boxes for Large and Fragmented Files&#8221;</a>, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>. If the hash calculated from the auxiliary <code>uuid</code> C2PA box and leaf node doesn&#8217;t match the corresponding element of <code>merkle-map.hashes</code>, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.mismatch</code></p>
 </div>
 </div>
 </div>
@@ -7041,6 +7099,9 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 </div>
 <div class="paragraph">
 <p>Refer to <code>boxIndex</code> to determine which box the exclusion ranges indicated in the <code>exclusions</code> field correspond to. If the box indicated by <code>boxIndex</code> does not exist, the manifest shall be rejected with a failure code of <code>assertion.boxesHash.malformed</code>. The <code>start</code> that indicates the beginning of an exclusion range specifies an offset measured from the start of the box indicated by <code>boxIndex</code>. If the ending byte offset of one exclusion range (<code>start</code> + <code>length</code>) is greater than the starting byte offset of the next exclusion range in the array, or a <code>start</code> or <code>length</code> value is negative, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.malformed</code>.</p>
+</div>
+<div class="paragraph">
+<p>The validator shall ignore the presence and contents of <code>pad</code> and <code>pad2</code> fields.</p>
 </div>
 <div class="paragraph">
 <p>Follow the procedure in <a href="#_determining_the_hashing_algorithm">Section 15.4, &#8220;Determining the hashing algorithm&#8221;</a> to determine the hash algorithm and any possible failure codes. The hash shall be computed over the bytes of the asset, except for the ranges specified in the <code>exclusions</code> field and any boxes where <code>excluded</code> field is <code>true</code>. If the end of an exclusion range falls beyond the end of the box that contains the exclusion range, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>.</p>
@@ -7118,7 +7179,7 @@ Discarding certain parts may prevent a validator from being able to unambiguousl
 <p>If the located parts are overlapping or do not, in aggregate, cover every byte of the asset, then the manifest shall be rejected with a failure code of <code>assertion.multiAssetHash.malformed</code>.</p>
 </div>
 <div class="paragraph">
-<p>For each located part, the validator shall compute the hash of the part using the specified algorithm &amp; methodology (i.e., data hash, general box hash, or BMFF hash) over the bytes of the part. If the part is truncated (shorter than the length in the locator), or the resultant hash does not match the value present in the hard binding assertion referenced from the <code>hashAssertion</code> field, then the manifest shall be rejected with a failure code of <code>assertion.multiAssetHash.mismatch</code>.</p>
+<p>For each located part, the validator shall compute the hash of the part using the specified algorithm &amp; methodology (i.e., data hash, general box hash, or BMFF hash) over the bytes of the part. Any uses of absolute byte offsets in a part&#8217;s hash assertion (e.g., the <code>start</code> value in a data hash exclusion range) shall be interpreted relative to the beginning of that part. If the part is truncated (shorter than the length in the locator), or the resultant hash does not match the value present in the hard binding assertion referenced from the <code>hashAssertion</code> field, then the manifest shall be rejected with a failure code of <code>assertion.multiAssetHash.mismatch</code>.</p>
 </div>
 <div class="paragraph">
 <p>If the hash assertion for each located part validates successfully, then the validator shall record the success code <code>assertion.multiAssetHash.match</code> and shall not record any failure codes associated with the asset&#8217;s hard binding.</p>
@@ -7507,7 +7568,7 @@ The value of <code>streamId</code> can be any string that uniquely identifies th
 <p>This standard only defines a single value at this time - "c2pa.manifestId" - which indicates that the continuity is ensured by matching the <code>previousManifestId</code> field (to the previous segment&#8217;s C2PA Manifest). Implementers may define additional continuity methods and shall use a label as described in <a href="#labels">[labels]</a> to identify them.</p>
 </div>
 <div class="paragraph">
-<p>When using the <code>c2pa.manifestId</code> continuity method, the live video segment assertion shall contain a <code>previousManifestId</code> field that provides the manifest identifier of the previous segment&#8217;s C2PA Manifest. Other continuity methods may add additional fields as needed, provided the fields are also named as described in <a href="#labels">[labels]</a>.</p>
+<p>When using the <code>c2pa.manifestId</code> continuity method, the live video segment assertion shall contain a <code>previousManifestId</code> field that provides the manifest identifier of the previous segment&#8217;s C2PA Manifest (described in the <code>livevideo-segment-map-manifestId</code> rule). Other continuity methods may add additional fields as needed, provided the fields are also named as described in <a href="#labels">[labels]</a>.</p>
 </div>
 <div class="sect4">
 <h5 id="_schema_and_example_2"><a class="anchor" href="#_schema_and_example_2"></a>18.3.2.1. Schema and Example</h5>
@@ -7523,8 +7584,12 @@ livevideo-segment-map = {
     "sequenceNumber" =&gt; uint,  					; monotonically increasing sequence number for each segment
     "streamId" =&gt; tstr,        					; A unique "streamId" identifying the live video stream
     "continuityMethod" =&gt; tstr,         		; method used to ensure continuity between segments 
-    ? "previousManifestId" =&gt; tstr,             ; &lt;&lt;manifest-identifier&gt;&gt; of the previous segment's C2PA Manifest
     * tstr =&gt; any                              ; additional fields as needed
+}
+
+; when continuityMethod == c2pa.manifestId, additional fields include:
+livevideo-segment-map-manifestId = {
+    "previousManifestId" =&gt; tstr,             ; &lt;&lt;manifest-identifier&gt;&gt; of the previous segment's C2PA Manifest
 }</code></pre>
 </div>
 </div>
@@ -7749,7 +7814,7 @@ After retrieving the manifest, the receiver shall ensure that its manifest ident
 </div>
 <div id="live-video-diagram" class="imageblock text-center kroki">
 <div class="content">
-<img src="https://kroki.io/plantuml/svg/eNqdV21v2zYQ_q5fcXUGpB0Wu-26ftCyAEm2rMGaNkCyfmkLg5bOMheK1EgqiVvkv-_4JkuuPbcNEoQ-ks89PD53R1tuBcJrfovwjpeo4FgXC26xsK1G-J2zSrM6e8RlIdoS4VAZNmlYKVRxk_4fZfvwqNGsqhkItlStBVOjZZJlNPPm7fUfOaC03C6BG2ASmODMwFxpKAQzJjs0dinwKPOfokv4nEGY9iP3sw_MWs1nrUUHUwI5WajSpOkzJe2pEgQ7Ey0m6wkrbiqtWlmGuSUKoe6yDjP4kKxOOxbIStSdVwCHe8U_ITx72dl6zm65EmiHq915YKZEGc0Pyd_Y8Epi2UN_zSUGoL1KI8rBxPWCFzcSieDPa0hj1ViuJBOboZRmssIdWMFulw3CXsnMAld0w19DsWMVRhfr3Lcw3-TrIdvMeRvjzRie1UN2OIl6yRbcSfIw8Do6AmNRo3IHSlPJ43AyE1ihDKf9EY6FAI2CuZVmwRsSF0nfcFm1gmlopXAklF2gvuOGZhos-Jxj2n_Z6oauWxBnQ0CNRkNyB6xnWJZYTgpSBOPSxOUnJM4vFtPnGwqtxjmRlAWmxX-6wIbVk5m6H-x5h5posBn5vsKqdqZzOVcxLSLAWx_WLQinzy-P4YJJPkdj4UTdZxSVGBtKXR9DOjadWNn0mcklHa2hZLYLCpEZj8ch2AXXhYiBDwtqFwJtHBS7VbyERitiWxu443ZBSJWgMxda3VE1QMqhfXPDZcNc-oukTKXpNFkWC8i8bl4AFY_Rmas3ZCSAi8sXo6goLrmdmhAMb6ix5KyzPHQ4x8ag9UDXmkQOe5Jixy2n0vTJCyGFNCEXzxvCCTdfTCmQ4M0frBv64zQkA0XyGNUxoKMg-rH_d0oiGFK4cNSGFIJpzXPb8tI56YvZT1Agq40TW12mHQOnzujuftRlpSkWWOOUl9NW82irKQeoFExLZtn7jw4zFYfRNh0-Pn179cf0ipLz2fSaVRWWT0bOteGuuocjBF6vfMldVXrqEFUa3vBUlYAzm_VqYNwcL9e5vGDN8GxDPg1bCsUci1XNNPhv6xLuTeu02pln9Xz-ikpiZ0iXel5-Yfo7BmmNFq8TyJDTycXZGThznwbeU381rgB1pl4MYJGohEI69FNJ5pt1rxB-ToTot9NbpHtlFS12lLrM96Y-nePC0osgzXfmKCz3M5mcS6r6JSf0tM5MJn1hmNp7GRSZ0bAmD2XQ8ekRoTzVbrmnuInIqWC83jpxlaKTAjJUjnEhv8Gl8Uxdjo-j8cBZ-yFxn99_zMGL-i9cdhOFRkZl6NjmsPdy_PSxNVY_6WZvqaKU5OySkkSVObRc2t5NJiZeK_W6fL1USNQj-G6pRAeJdbgR-gD0oX-8xwXTmlN3aNqZ4IU7Lqg5vQA4HWYVBLvc6LSXpG7nVDUUq16EbrvxfTdaIZU9tUa-VKVSNLp8cXxChYyVLfHfh39aUg2DRrACF_Tsovebe1663uXi4W6BXoTu-l0DyfN-n4CDg6PYD_Ya38p_tXhv8zCGHLr-HfYOWorfHEjt2Jx5F3k-TMODAw8wsO0AGizO82GqQh_ua5EIZJBmcCBwbgmonyDfjaV5tfBgncZ3QPW85rn37Q7VKfj_dwPdsb-PPE_dzu1O412nCDtTy_2WYEYPTh-rTukRRtQKRrsP3e9ieU5QUy9dh9DvJbtwVkvzvAOI6bTX0DMz7qRR1l3JVyxd47fqh2tRct-9wj43Imq9N-02EOqg34CSZZ0WfGxS_wvfQsIuP6RtbtbA4Q_xq-pnUzCBvz0d__JwlC47FpOvihMcruTcv5Pw5SXsCGPyfT7vnggQX9w_fZCpphuoXdGaIdCDmYoeEcv-A7kO5Zs=?id=live-video-diagram" alt="Live Video Architecture" width="612">
+<img src="https://kroki.io/plantuml/svg/eNqdV21v2zYQ_q5fcXWGJR1qu2_oB801kGTNGqxpAyTrl7YwaOksEaZIjaSSuEX--46kKEups6w1kFi6I5977pW05VYgvONXCB95jgoOdVZyi5ltNMIfnBWaVckjLjPR5AgzZdi0ZrlQ2Tp-z5N9eFRrVlQMBNuoxoKp0DLJEtK8_3D5JgWUltsNcANMAhOcGVgpDZlgxiQzYzcC54l_a03CtwSC2j-5zz4wazVfNhYdTA5kpFS5ieoTJe2xEgS7FA1G6RHL1oVWjcyDboNCqOukwww2JKvijhJZjrqzCuBwL_hXhGevOlnP2BVXAu1wtfMHlkrkrfg22psYXkjMe-jvuMQAtFdoRDlQXJY8W0skgi-2SPsBSdWWK8kEYe3vAFOayQKHqj7cQGE3NcJezkyJW8rhr6b4sQJbxnf538N-F_fbYHIH73tZ74bxxG6T2bQtm6TkrjJngdp8DsaiRuV8iqpoc6hMBBYog8O_waEQoFEwt9KUvKYaow4wXBaNYBoaKRwJZUvU19yQpsaMrzjG_eeNrinrgjgbAqo1Gqp6wGqJeY75NKPCYFyadvkR1eh3i-l9TdHVuCKSMsO4-E8X27B6ulQ3gz1tRgbUE3KrdY5i6YNAvImysvGdyQ1xq6kpbUk-mslkEqKVcZ2JNnJhQeV80MZBsSvFc6i1WgqsDFxzWxJSIYhAptU1dTVSL-ybNZc1c20sYnUpTc2aJO0gWFX1S6AhMDpxc4OEBHB2_nLUFhaX3C4Meo0XVJhz1kluO5xDY9B6oEtNhQp7Ek5pL6cR89WHAy7CnoicPa8JJ6QuW1AswYs_W_fo3akpj4ryO6qY5Cs0dhQqf-K_jimLQwpnjtqQQhDdsdw0PHdG-tXoFRTIYqfiXpNxx8CoE8KRuhl1zWmyEitc8HzRaN7KKipiaudFziz79MVhxgYffURNQWGU2UidYrlScHD84eLN4oLK7NnikhUF5o9HzrThbkoHFwKvt350bic2TfoiPq55nCzAmU16U7Hd3CbXmTxj9dC3IZ-abYRijsV2jBr8p3Ed875xtdqJl9Vq9ZbGWieIST3NvxP93QbpDi1eRZAhp6OzkxNw4j4NvKFz0rg27ES9GEAZqdz6_y78XRm1LC6sorHjLEUJeFHfymFm6cCO-k7c1ov7TKenkgZyzgk9rjPTaT_fpvJWjp-fH3bGR8NZOcxux6dHhNpPu-We4i4ix4Lx6l6FKyrmbhox8MOCMC6Sa9wYz9S17qQVjp20HxL3_ulLCr5W_8JNp8g0MpouhzaFvVeTpwfWWP24017RoMjJ2DnVvspTaLi0vQRFJr4EqrtV6SuAanUEP10BrYHIOmSEXoBe-u4dZExrTnO_bpaCZ85dUCs6nDk5sw2C3ew02us9t3OhaopVL0JX3fNN97RFymNyXH4SN7nTtD-gYTyet4N4r_aH4O8Wb2waniGF7uQLewez3G8O8_KBzYk3kabDRhmPPcBA9gDQYHGaDpsJ-nD_F4lABo0AY4ErS0D9Ev5pLM2L0oN1VfgAVM9qmnrbzqmuxv57N1COfT7SNB4zbnd8fsiLsDOedT8SzNaCq4_tEeURRjSDRw873T8-0pSgFq7ZPEJ_iP8gzvbAgPHQHfcrI6C4J8LYXts-y4MrqujT_PG9eHTa_DggbaJ2T7pUjj-Fa_cT91vjSygU7-_wLE1htiL_yEm6ZL_2O-bu2mhg9kv7I-6byZjA108nL27ns6lbPd_aSVOaJjDz0O0ZH0SpGzPwqxswdIzarASrgC6ONNVWGz-kkmRbtjOiGy74ga_PbZ9ZUM5PV92ZDO0t98lnCTtWxglsoGpo8RJb4-TLqJ_05F8KU6v4?id=live-video-diagram" alt="Live Video Architecture" width="612">
 </div>
 <div class="title">Figure 15. Live Video Architecture</div>
 </div>
@@ -7801,13 +7866,13 @@ When manifests change during the live video stream, the updated manifest may be 
 <div class="sect3">
 <h4 id="_initialcommon_validation_steps"><a class="anchor" href="#_initialcommon_validation_steps"></a>18.7.1. Initial/Common Validation Steps</h4>
 <div class="paragraph">
-<p>If the segment being validated is an initialization segment, the validator shall look for the presence of an <code>mdat</code> box. If an <code>mdat</code> box is found, the validation shall fail.</p>
+<p>If the segment being validated is an initialization segment, the validator shall look for the presence of an <code>mdat</code> box. If an <code>mdat</code> box is found, the validation shall fail with a failure code of <code>livevideo.init.invalid</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a segment contains neither a C2PA Manifest Box nor an <code>emsg</code> box that meets the requirements <a href="#c2pa_emsg_box">defined above</a>, the validation of that segment shall fail.</p>
+<p>If a segment contains neither a C2PA Manifest Box nor an <code>emsg</code> box that meets the requirements <a href="#c2pa_emsg_box">defined above</a>, the validation of that segment shall fail with a failure code of <code>livevideo.segment.invalid</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a C2PA Manifest Box is found in a given segment, it shall be validated according to the general C2PA validation rules described in <a href="#validation-clause">Chapter 15, <em>Validation</em></a>. If the C2PA Manifest fails validation, the validation of that segment shall fail.</p>
+<p>If a C2PA Manifest Box is found in a given segment, it shall be validated according to the general C2PA validation rules described in <a href="#validation-clause">Chapter 15, <em>Validation</em></a>. If the C2PA Manifest fails validation, the validation of that segment shall fail with a failure code of <code>livevideo.manifest.invalid</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -7818,19 +7883,19 @@ When manifests change during the live video stream, the updated manifest may be 
 <div class="ulist">
 <ul>
 <li>
-<p>Ensure that the <code>sequenceNumber</code> field in the live video segment assertion is greater than the previous segment&#8217;s <code>sequenceNumber</code> (if any). If it is not, the validation of that segment shall fail.</p>
+<p>Ensure that the <code>sequenceNumber</code> field in the live video segment assertion is greater than the previous segment&#8217;s <code>sequenceNumber</code> (if any). If it is not, the validation of that segment shall fail with a failure code of <code>livevideo.assertion.invalid</code>.</p>
 </li>
 <li>
-<p>Ensure that the <code>streamId</code> field in the live video segment assertion matches the <code>streamId</code> from the previous segment (if any). If they do not match, the validation of that segment shall fail.</p>
+<p>Ensure that the <code>streamId</code> field in the live video segment assertion matches the <code>streamId</code> from the previous segment (if any). If they do not match, the validation of that segment shall fail with a failure code of <code>livevideo.assertion.invalid</code>.</p>
 </li>
 <li>
-<p>Ensure that the <code>continuityMethod</code> field is present in the live video segment assertion.  If it is not, the validation of that segment shall fail.</p>
+<p>Ensure that the <code>continuityMethod</code> field is present in the live video segment assertion.  If it is not, the validation of that segment shall fail with a failure code of <code>livevideo.continuityMethod.invalid</code>.</p>
 </li>
 <li>
-<p>If the <code>continuityMethod</code> field in the live video segment assertion has a value of "c2pa.manifestId", then the live video segment assertion shall contain a <code>previousManifestId</code> field.  If it does not, the validation of that segment shall fail. If it does, then ensure that its value matches the <code>manifestId</code> of the previous segment&#8217;s C2PA Manifest. If they do not match, the validation of that segment shall fail.</p>
+<p>If the <code>continuityMethod</code> field in the live video segment assertion has a value of "c2pa.manifestId", then the live video segment assertion shall contain a <code>previousManifestId</code> field.  If it does not, the validation of that segment shall fail with a failure code of <code>livevideo.continuityMethod.invalid</code>. If it does, then ensure that its value matches the <code>manifestId</code> of the previous segment&#8217;s C2PA Manifest. If they do not match, the validation of that segment shall fail with a failure code of <code>livevideo.segment.invalid</code>.</p>
 </li>
 <li>
-<p>If the <code>continuityMethod</code> field in the live video segment assertion has a value other than "c2pa.manifestId", and the validator does not recognize or support that continuity method, the validation of that segment shall fail.</p>
+<p>If the <code>continuityMethod</code> field in the live video segment assertion has a value other than "c2pa.manifestId", and the validator does not recognize or support that continuity method, the validation of that segment shall fail with a failure code of <code>livevideo.continuityMethod.invalid</code>.</p>
 </li>
 </ul>
 </div>
@@ -7838,14 +7903,14 @@ When manifests change during the live video stream, the updated manifest may be 
 <div class="sect3">
 <h4 id="_verifiable_segment_info_validation"><a class="anchor" href="#_verifiable_segment_info_validation"></a>18.7.3. Verifiable Segment Info Validation</h4>
 <div class="paragraph">
-<p>If the C2PA Manifest present in the C2PA Manifest Box contains a session keys assertion, the public session keys shall be extracted and stored for use in validating subsequent segments. If any public session key does not conform to the requirements described in <a href="#session_keys_assertion">Session Keys Assertion</a>, the validation of that segment shall fail.  Similarly, if signature validation (<code>signerBinding</code>) of any public session key structure fails, that session key is invalid and shall not be used to validate any media segment.</p>
+<p>If the C2PA Manifest present in the C2PA Manifest Box contains a session keys assertion, the public session keys shall be extracted and stored for use in validating subsequent segments. If any public session key does not conform to the requirements described in <a href="#session_keys_assertion">Session Keys Assertion</a>, the validation of that segment shall fail with a failure code of <code>livevideo.sessionkey.invalid</code>.  Similarly, if signature validation (<code>signerBinding</code>) of any public session key structure fails, that session key is invalid and shall not be used to validate any media segment, and validation shall fail with a failure code of <code>livevideo.sessionkey.invalid</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a segment contains an <code>emsg</code> box that meets the requirements <a href="#c2pa_emsg_box">defined above</a>, and the segment is not an initialization segment, and the validator does not have any valid session keys, the validation of that segment shall fail.</p>
+<p>If a segment contains an <code>emsg</code> box that meets the requirements <a href="#c2pa_emsg_box">defined above</a>, and the segment is not an initialization segment, and the validator does not have any valid session keys, the validation of that segment shall fail with a failure code of <code>livevideo.segment.invalid</code>.</p>
 </div>
 <div class="paragraph">
 <p>If there is a valid <code>emsg</code> box containing a valid <code>verifiable-segment-info</code>, the validator shall extract the value of <code>kid</code> from its unprotected header and use that to identify the correct public session key.
-If such key is not available, and if the <code>manifestUri</code> field is present, the validator retrieves and verifies the applicable manifest, extracting the public session keys as explained above.</p>
+If such key is not available, and if the <code>manifestUri</code> field is present, the validator retrieves and verifies the applicable manifest, extracting the public session key(s) as explained above.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7860,10 +7925,10 @@ There may not be valid session keys for a variety of reasons including (but not 
 </table>
 </div>
 <div class="paragraph">
-<p>Validation fails if the key cannot be found or if the signature in <code>verifiable-segment-info</code> cannot be verified with it.</p>
+<p>Validation fails if the key cannot be found or if the signature in <code>verifiable-segment-info</code> cannot be verified with it, and shall fail with a failure code of <code>livevideo.segment.invalid</code>.</p>
 </div>
 <div class="paragraph">
-<p>Subsequently, when parsing the <code>segment-info-map</code>, validation of that segment shall fail if any of the following errors occurs:</p>
+<p>Subsequently, when parsing the <code>segment-info-map</code>, validation of that segment shall fail with a failure code of <code>livevideo.segment.invalid</code> if any of the following errors occurs:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7879,7 +7944,7 @@ There may not be valid session keys for a variety of reasons including (but not 
 </ul>
 </div>
 <div class="paragraph">
-<p>To address the risk of the Claim Generator&#8217;s certificate getting revoked during a very long lived session, the validator should check that the certificate used to sign the C2PA Manifest from which the current session key was retrieved is still valid.</p>
+<p>To address the risk of the Claim Generator&#8217;s certificate getting revoked during a very long lived session, the validator should check that the certificate used to sign the C2PA Manifest from which the current session key was retrieved is still valid.  If it is not, the validation of that segment shall fail with a failure code of <code>livevideo.sessionkey.invalid</code>.</p>
 </div>
 </div>
 </div>
@@ -8958,7 +9023,7 @@ data-hash-map = {
   ? "alg":tstr .size (1..max-tstr-length), ; A string identifying the cryptographic hash algorithm used to compute the hash in this assertion, taken from the C2PA hash algorithm identifier list. If this field is absent, the hash algorithm is taken the `alg` value of the enclosing structure. If both are present, the field in this structure is used. If no value is present in any of these places, this structure is invalid; there is no default.
   "hash": bstr, ; byte string of the hash value
   "pad": bstr, ; zero-filled byte string used for filling up space
-  ? "pad2": bstr, ; optional zero-filled byte string used for filling up space
+  ? "pad2": bstr, ; zero-filled byte string used for filling up space
   ? "name": tstr .size (1..max-tstr-length), ; (optional) a human-readable description of what this hash cover
   ? "url": uri, ; Unused and deprecated. 
 }
@@ -8992,7 +9057,7 @@ EXCLUSION_RANGE-map = {
 <p>Normally, the <code>start</code> and <code>length</code> values of an <code>exclusion</code> shall be written in their preferred serialization (i.e., "as short as possible"). However, when a data hash assertion needs to be created but the <code>start</code> and <code>length</code> values are not yet known, they shall be created "as large as possible", which would be as a 32-bit integer.</p>
 </div>
 <div class="paragraph">
-<p>The <code>pad</code> value shall always be present but shall be a zero-filled byte string of length 0 unless used to replace (i.e., "pad") bytes during multiple pass processing. <code>pad2</code> is an optional zero-filled byte string that is used if the desired padding cannot be achieved with <code>pad</code>.</p>
+<p>The <code>pad</code> value shall be present and shall be a zero-filled byte string. The <code>pad2</code> value, if present, shall be a zero-filled byte string.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9780,7 +9845,7 @@ As validators are often used in combination with output of file parsers, it is a
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>pad</code> value shall always be present and shall be a zero-filled byte string unless it was replaced by something else during multiple pass processing, in which case no <code>pad</code> shall be present.</p>
+<p>The optional <code>pad</code> and <code>pad2</code> values, if present, shall be zero-filled byte strings.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10032,7 +10097,8 @@ box-hash-map = {
   "hash": bstr, ; byte string of the hash value
   ? "excluded": bool, ; A boolean value indicating whether a validator can ignore this box ( &amp; associated hash) during validation. If this field is absent, the box is hashed and the values compared.
   ? "exclusions": [1* box-exclusions-map], ; An array of hash exclusion ranges. Ranges have monotonically increasing `start` values, and no two ranges may overlap.
-  "pad": bstr, ; zero-filled byte string used for filling up space
+  ? "pad": bstr, ; zero-filled byte string used for filling up space
+  ? "pad2": bstr, ; zero-filled byte string used for filling up space
 }
 
 box-name /= tstr .size (1..10)
@@ -10499,7 +10565,7 @@ Appearance in the file is defined as their sequential order as they would be loc
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>hashAssertion</code> field shall contain a hashed URI to the hash assertion for the part.  A part&#8217;s hash assertion shall be a standard hard binding assertion (e.g., <code>c2pa.hash.data</code>), but the label shall have the string <code>.part</code> and any <a href="#_multiple_instances">multiple instance identifier</a> appended. For example, <code>c2pa.hash.data.part__2</code>.</p>
+<p>The <code>hashAssertion</code> field shall contain a hashed URI to the hash assertion for the part.  A part&#8217;s hash assertion shall be a standard hard binding assertion (e.g., <code>c2pa.hash.data</code>), but the label shall have the string <code>.part</code> and any <a href="#_multiple_instances">multiple instance identifier</a> appended. For example, <code>c2pa.hash.data.part__2</code>. Any uses of absolute byte offsets in a part&#8217;s hash assertion (e.g., the <code>start</code> value in a data hash exclusion range) shall be computed relative to the beginning of that part.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10676,10 +10742,11 @@ part-hash-map = {
 soft-binding-map = {
   "alg": tstr, ; A string identifying the soft binding algorithm and version of that algorithm used to compute the value, taken from the C2PA soft binding algorithm list. If this field is absent, the algorithm is taken from the `alg_soft` value of the enclosing structure. If both are present, the field in this structure is used.  If no value is present in any of these places, this structure is invalid; there is no default.
   "blocks": [1* soft-binding-block-map],
-  "pad": bytes, ; zero-filled byte string used for filling up space
-  ? "pad2": bytes, ; optional zero-filled byte string used for filling up space
+  ? "pad": bytes, ; zero-filled byte string used for filling up space
+  ? "pad2": bytes, ; zero-filled byte string used for filling up space
   ? "name": tstr .size (1..max-tstr-length), ; (optional) a human-readable description of what this hash covers
   ? "alg-params": bstr, ; (optional) CBOR byte string describing parameters of the soft binding algorithm. 
+  ? "bindingMetadata": soft-binding-metadata-map, ; (optional) Additional metadata of the soft binding. Useful for binding-specific information
   ? "url": uri, ; Unused and deprecated. 
 }
 
@@ -10697,6 +10764,13 @@ soft-binding-scope-map = {
 soft-binding-timespan-map = {
   "start": uint, ; Start of the time range (as milliseconds from media start) over which the soft binding value has been computed.
   "end": uint,   ; End of the time range (as milliseconds from media start) over which the soft binding value has been computed.
+}
+
+soft-binding-metadata-map = {
+  ? "description": tstr .size (1..max-tstr-length) ; Additional description of the implementation or author of the binding or the algorithm
+  ? "contact": tstr .size (1..max-tstr-length) ; Contact information for the implementation or author of the binding or the algorithm,
+  ? "informationalUrl": tstr .size (1..max-tstr-length) ; A web page containing more details about the implementation or author of the binding or the algorithm.
+* tstr =&gt; any
 }</code></pre>
 </div>
 </div>
@@ -10740,6 +10814,30 @@ soft-binding-timespan-map = {
 </div>
 <div class="paragraph">
 <p>The <code>scope</code> field may contain either a <code>region</code> or <code>timespan</code> field to describe the portion of digital content that the soft binding has been computed over.  The <code>region</code> field, when present, contains a <code>region-map</code> object (as defined in <a href="#_regions_of_interest">Section 19.2, &#8220;Regions of Interest&#8221;</a>).  The <code>timespan</code> field, when present, describes the time interval over which the soft binding was computed in milliseconds from the start of the content.</p>
+</div>
+<div class="paragraph">
+<p>The optional <code>pad</code> and <code>pad2</code> values, if present, shall be zero-filled byte strings.</p>
+</div>
+<div class="sect4">
+<h5 id="_bindingmetadata"><a class="anchor" href="#_bindingmetadata"></a>19.10.3.1. bindingMetadata</h5>
+<div class="paragraph">
+<p>A soft binding assertion may include a <code>bindingMetadata</code> key that provides for the specification of some algorithm or workflow-specific information via some pre-defined as well as custom fields (and their associated values). Custom fields shall conform to the same syntax as <a href="#_namespacing">entity-specific namespacing</a>, e.g. <code>com.litware.someFieldName</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is useful for providing extra information that would be useful to a specific workflow or C2PA Manifest Consumer.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A C2PA Validator should not use this information when validating the soft binding, but may use it for logging or informational purposes. The normative information for validating the soft binding is contained in the other fields of the soft binding assertion as well as the entry for the algorithm in the <a href="#_soft_binding_algorithm_list">Soft Binding Algorithm List</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -11462,7 +11560,7 @@ The <code>original-preservation-image-params</code> structure shall use either t
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.watermarked</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">An invisible watermark was inserted into the digital content for the purpose of creating a soft binding.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[DEPRECATED] An invisible watermark was inserted into the digital content for the purpose of creating a soft binding.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.watermarked.bound</p></td>
@@ -11835,7 +11933,19 @@ In previous versions of this specification, <code>c2pa.transcoded</code> and <co
 <div class="sect3">
 <h4 id="_watermarking"><a class="anchor" href="#_watermarking"></a>19.15.5. Watermarking</h4>
 <div class="paragraph">
-<p>When using a <code>c2pa.watermarked</code> or <code>c2pa.watermarked.bound</code> action, a <a href="#soft_binding_assertion">soft binding assertion</a> shall also be included in the C2PA Manifest to describe the inserted watermark.</p>
+<p>When using a`c2pa.watermarked.bound` action, a <a href="#soft_binding_assertion">soft binding assertion</a> shall also be included in the C2PA Manifest to describe the inserted watermark.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>c2pa.watermarked</code> action is deprecated in favour of the more specific <code>c2pa.watermarked.bound</code> and <code>c2pa.watermarked.unbound</code> actions.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -13036,7 +13146,7 @@ While this is an intentionally contrived example, it is designed to elucidate th
 </div>
 </div>
 </div>
-<div class="paragraph">
+<div id="validation-results" class="paragraph">
 <p>Each validation result (as described using a <code>status-codes-map</code>), consists of an array of <code>success</code>, <code>informational</code>, and <code>failure</code> codes. Each code is represented as a <code>status-map</code> object which shall contain a <code>code</code> field with the status code. In addition, it may contain a <code>url</code> field with a JUMBF URI reference to the specific element in the manifest about which the status refers, and an optional <code>explanation</code> field with a human-readable explanation of the status. Status codes are defined in <a href="#_standard_status_codes">Section 15.2.2, &#8220;Standard Status Codes&#8221;</a>.</p>
 </div>
 <div class="paragraph">
@@ -16227,7 +16337,7 @@ Some IPTC Core properties have been superseded by newer versions in the IPTC Ext
 </ul>
 </div>
 <div class="paragraph">
-<p>For more information about these, refer to <a href="https://www.cipa.jp/std/documents/download_e.html?DC-010-2020_E" class="bare">https://www.cipa.jp/std/documents/download_e.html?DC-010-2020_E</a>.</p>
+<p>For more information about these, refer to <a href="https://www.cipa.jp/std/documents/download_e.html?CIPA_DC-010-2024_E" class="bare">https://www.cipa.jp/std/documents/download_e.html?CIPA_DC-010-2024_E</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -17138,6 +17248,26 @@ Some IPTC Core properties have been superseded by newer versions in the IPTC Ext
 <td class="tableblock halign-left valign-top"><p class="tableblock">UNDEFINED</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UNDEFINED</p></td>
 <td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>c2pa.color_adjustments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Action</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>c2pa.watermarked</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Action</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UNDEFINED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UNDEFINED</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>

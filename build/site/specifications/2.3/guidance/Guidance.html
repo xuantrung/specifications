@@ -353,7 +353,7 @@
 <div class="sect3">
 <h4 id="_encryption_of_assertions"><a class="anchor" href="#_encryption_of_assertions"></a>3.1.3. Encryption of Assertions</h4>
 <div class="paragraph">
-<p>A <a href="../../2.1/specs/C2PA_Specification.html#_c2pa_standard_assertions" class="xref page">set of assertions</a>, their associated labels, and its serialization (i.e., CBOR or JSON-LD) are defined in the C2PA specification. In order to change any of these, such as the data/schema or its serialization, it is necessary to use a new label so that the new information can be clearly identified as different from the original.</p>
+<p>The <a href="../specs/C2PA_Specification.html#_c2pa_standard_assertions" class="xref page">set of assertions</a>, their associated labels, and its serialization (i.e., CBOR or JSON-LD) are defined in the C2PA specification. In order to change any of these, such as the data/schema or its serialization, it is necessary to use a new label so that the new information can be clearly identified as different from the original.</p>
 </div>
 <div class="paragraph">
 <p>A use case for creating variants of existing assertions would be to encrypt them to prevent access to those not possessing the necessary decryption key. This might be for privacy protection or the establishment of a more secure end-to-end workflow.</p>
@@ -448,7 +448,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <div class="sect3">
 <h4 id="_c2pa_manifests_for_existing_media"><a class="anchor" href="#_c2pa_manifests_for_existing_media"></a>3.2.9. C2PA Manifests for existing media</h4>
 <div class="paragraph">
-<p>It may not always be possible (or practical) to embed a C2PA Manifest Store in an asset such as in the case of adding provenance information to assets that were created prior to the existence of C2PA. By creating an associated manifest repository for the asset and exposing its location via the methods described <a href="../../2.1/specs/C2PA_Specification.html#_external_manifests" class="xref page">here</a>, all assets can have provenance, no matter their age.</p>
+<p>It may not always be possible (or practical) to embed a C2PA Manifest Store in an asset such as in the case of adding provenance information to assets that were created prior to the existence of C2PA. By creating an associated manifest repository for the asset and exposing its location via the methods described <a href="../specs/C2PA_Specification.html#_external_manifests" class="xref page">here</a>, all assets can have provenance, no matter their age.</p>
 </div>
 </div>
 </div>
@@ -480,7 +480,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <div class="sect3">
 <h4 id="_byte_range_bindings"><a class="anchor" href="#_byte_range_bindings"></a>4.1.2. Byte Range Bindings</h4>
 <div class="paragraph">
-<p>The simplest type of hard binding that can be used to detect tampering is a cryptographic hashing algorithm over some or all of the bytes of an asset as described in <a href="../../2.2/specs/C2PA_Specification.html#_hashing" class="xref page">the core specification</a>. Traditionally, this type of binding is done over an inclusive list of byte ranges of the asset.  However, a number of attacks on an inclusion list-based approach were identified and it was determined that they are prevented by the use of exclusions lists. These vulnerabilities would have allowed content to be added to an asset that altered the digital content without altering the hard bindings.</p>
+<p>The simplest type of hard binding that can be used to detect tampering is a cryptographic hashing algorithm over some or all of the bytes of an asset as described in <a href="../specs/C2PA_Specification.html#_hashing" class="xref page">the core specification</a>. Traditionally, this type of binding is done over an inclusive list of byte ranges of the asset.  However, a number of attacks on an inclusion list-based approach were identified and it was determined that they are prevented by the use of exclusions lists. These vulnerabilities would have allowed content to be added to an asset that altered the digital content without altering the hard bindings.</p>
 </div>
 <div class="admonitionblock important">
 <table>
