@@ -69,6 +69,19 @@ ui:
       .footer .footer-brand-links li {
         display: inline;
       }
+      /* Footer brand: place logo and text side-by-side and enlarge text */
+      .footer .footer-brand {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+      }
+      .footer .footer-brand .footer-brand-name a {
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.2;
+      }
   - path: img/C2PA-logo.svg
     contents: |
       <?xml version="1.0" encoding="utf-8"?>
@@ -138,7 +151,8 @@ ui:
     contents: |
       <link rel="stylesheet" href="{{{uiRootPath}}}/css/site.css">
       <link rel="stylesheet" href="{{{uiRootPath}}}/css/c2pa-branding.css">
-      <link rel="icon" type="image/svg+xml" href="{{{uiRootPath}}}/img/C2PA-logo.svg">
+      <link rel="icon" type="image/svg+xml" sizes="any" href="{{{uiRootPath}}}/img/C2PA-logo.svg">
+      <link rel="mask-icon" href="{{{uiRootPath}}}/img/C2PA-logo.svg" color="#e40046">
   - path: partials/edit-this-page.hbs
     contents: |
       
@@ -147,7 +161,7 @@ ui:
       <header class="header">
         <nav class="navbar">
           <div class="navbar-brand">
-            <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="{{{uiRootPath}}}/img/C2PA-logo.svg" alt="C2PA" width="64"></a>
+            <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="{{{uiRootPath}}}/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
             <a class="navbar-item title" href="{{#with (and site.url site.homeUrl)}}{{{@root.site.url}}}{{{this}}}{{else}}{{{siteRootPath}}}{{/with}}">{{site.title}}</a>
             <button class="navbar-burger" data-target="topbar-nav">
               <span></span>
@@ -186,7 +200,7 @@ ui:
       <footer class="footer">
         <div class="footer-main">
           <figure class="footer-brand">
-            <a class="logo" href="https://c2pa.org"><img src="{{{uiRootPath}}}/img/C2PA-logo.svg" alt="C2PA" width="64"></a>
+            <a class="logo" href="https://c2pa.org"><img src="{{{uiRootPath}}}/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
             <figcaption class="footer-brand-name"><a href="https://c2pa.org">C2PA</a></figcaption>
           </figure>
           <ul class="footer-brand-links">
