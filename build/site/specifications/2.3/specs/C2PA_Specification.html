@@ -1156,6 +1156,9 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="paragraph">
 <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>, and <a href="https://tools.ietf.org/html/rfc8174">RFC 8174</a> when they appear in any casing (upper, lower or mixed).</p>
 </div>
+<div class="paragraph">
+<p>CDDL Rules and Type Definitions in the CDDL schemas for C2PA constructs are normative. <a href="#schema_validation">Schema validation</a> is not necessary, nor it is recommended. Comments within CDDL schemas are non-normative.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1201,7 +1204,134 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="sect2">
 <h3 id="_version_history"><a class="anchor" href="#_version_history"></a>5.3. Version History</h3>
 <div class="sect3">
-<h4 id="_2_2_may_2025"><a class="anchor" href="#_2_2_may_2025"></a>5.3.1. 2.2 - May 2025</h4>
+<h4 id="_2_3_december_2025"><a class="anchor" href="#_2_3_december_2025"></a>5.3.1. 2.3 - December 2025</h4>
+<div class="paragraph">
+<p>This version introduces several new features and enhancements to the C2PA Specification, focusing on expanding support for various asset types, improving validation processes, and refining existing assertions and actions. Key highlights include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Support for Live Video Streaming</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced specifications for live video streaming support.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Embedding Enhancements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added comprehensive support for embedding C2PA manifests in unstructured text files.</p>
+</li>
+<li>
+<p>Added support for OGG Vorbis audio files.</p>
+</li>
+<li>
+<p>Added support for AVI files &gt; 2 Gig (i.e., AVIX)</p>
+</li>
+<li>
+<p>Added support for EXIF&#8217;s Original Preservation Images</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Revised support for cloud-hosted assertion data</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the Cloud Data Assertion to improve its usability.</p>
+</li>
+<li>
+<p>Added a new External Reference Assertion allowing for non-hashed external URIs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enabled declaration of the version of the C2PA specification used to create or validate a given Manifest.</p>
+</li>
+<li>
+<p>Enabled declaration of the trust list and version used to validate ingredient manifests.</p>
+</li>
+<li>
+<p>Enhancements &amp; Clarifications to Actions</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduced fine-grained watermarking actions.</p>
+</li>
+<li>
+<p>Added new actions including proportional resizing and markup addition.</p>
+</li>
+<li>
+<p>Added some new actions to better support audio assets.</p>
+</li>
+<li>
+<p>Allowed actions to be gathered (not only created).</p>
+</li>
+<li>
+<p>Deprecated old versions of actions and ingredient assertions.</p>
+</li>
+<li>
+<p>Clarified descriptions of <code>c2pa.converted</code> and <code>c2pa.redacted</code> actions.</p>
+</li>
+<li>
+<p>Recommend that all actions assertions declare <code>allActionsIncluded</code> state</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Added exclusion ranges to box-based hashing to support more flexible hashing scenarios.</p>
+</li>
+<li>
+<p>Enhanced temporal range handling for live streams, including support for undefined end times.</p>
+</li>
+<li>
+<p>Updated various normative references</p>
+</li>
+<li>
+<p>Clarified various aspects of content bindings</p>
+<div class="ulist">
+<ul>
+<li>
+<p>BMFF Hashing, including Merkle tree requirements and count validation logic.</p>
+</li>
+<li>
+<p>Byte offsets in multi-asset part hashes</p>
+</li>
+<li>
+<p>Use of <code>pad</code> values</p>
+</li>
+<li>
+<p>Added validation procedures for soft-bindings</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Clarified validation processes, including update manifests, claim signature resolution, and OCSP response handling.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Also updated associated diagrams</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Deprecated use of box hash for TIFF assets.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2_2_may_2025"><a class="anchor" href="#_2_2_may_2025"></a>5.3.2. 2.2 - May 2025</h4>
 <div class="paragraph">
 <p>This version focuses on both technical and editorial changes to the specification to clarify some of the new features of 2.1, while addressing requests from implementers. The specification has been updated to reflect the latest best practices in the field.</p>
 </div>
@@ -1281,7 +1411,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_2_1_september_2024"><a class="anchor" href="#_2_1_september_2024"></a>5.3.2. 2.1 - September 2024</h4>
+<h4 id="_2_1_september_2024"><a class="anchor" href="#_2_1_september_2024"></a>5.3.3. 2.1 - September 2024</h4>
 <div class="paragraph">
 <p>This version focuses on both technical and editorial changes to the specification for the purposes of improving the security and reliability of Content Credentials. All publicly disclosed security vulnerabilities have been addressed, and the specification has been updated to reflect the latest best practices in the field.</p>
 </div>
@@ -1491,7 +1621,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_2_0_january_2024"><a class="anchor" href="#_2_0_january_2024"></a>5.3.3. 2.0 - January 2024</h4>
+<h4 id="_2_0_january_2024"><a class="anchor" href="#_2_0_january_2024"></a>5.3.4. 2.0 - January 2024</h4>
 <div class="paragraph">
 <p>This version represents a significant departure from previous versions. It reduces the use of the term "actor", which no longer represents humans and organisations. In addition to validator-configured trust lists, it also introduces a new default trust list, the "C2PA Trust List", which is intended to cover certificates issued to hardware and software.  This philosophical change led to the following functional changes in the specification:</p>
 </div>
@@ -1618,7 +1748,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1_4_november_2023"><a class="anchor" href="#_1_4_november_2023"></a>5.3.4. 1.4 - November 2023</h4>
+<h4 id="_1_4_november_2023"><a class="anchor" href="#_1_4_november_2023"></a>5.3.5. 1.4 - November 2023</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1667,7 +1797,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1_3_april_2023"><a class="anchor" href="#_1_3_april_2023"></a>5.3.5. 1.3 - April 2023</h4>
+<h4 id="_1_3_april_2023"><a class="anchor" href="#_1_3_april_2023"></a>5.3.6. 1.3 - April 2023</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1728,7 +1858,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1_2_october_2022"><a class="anchor" href="#_1_2_october_2022"></a>5.3.6. 1.2 - October 2022</h4>
+<h4 id="_1_2_october_2022"><a class="anchor" href="#_1_2_october_2022"></a>5.3.7. 1.2 - October 2022</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1747,7 +1877,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1_1_september_2022"><a class="anchor" href="#_1_1_september_2022"></a>5.3.7. 1.1 - September 2022</h4>
+<h4 id="_1_1_september_2022"><a class="anchor" href="#_1_1_september_2022"></a>5.3.8. 1.1 - September 2022</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1796,7 +1926,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1_0_december_2021"><a class="anchor" href="#_1_0_december_2021"></a>5.3.8. 1.0 - December 2021</h4>
+<h4 id="_1_0_december_2021"><a class="anchor" href="#_1_0_december_2021"></a>5.3.9. 1.0 - December 2021</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1930,7 +2060,7 @@ For example, <code>c2pa.ingredient</code> could be changed to the fictional <cod
 <div class="sect2">
 <h3 id="_schema_validation"><a class="anchor" href="#_schema_validation"></a>6.5. Schema Validation</h3>
 <div class="paragraph">
-<p>The schemas provided in this document, as well as the machine readable ones that are downloaded-able from the C2PA website, should only be used for aids in understanding the syntax to be read or written. It is not necessary, nor it is recommended, for a validator to perform any form of schema validation.</p>
+<p>The schemas provided in this document, as well as the machine readable ones that are downloaded-able from the C2PA website, should be used by claim generators to ensure that the assertions they create are consist with the expected structures. These schemas can also be used as aids in understanding the syntax to be read or written. Validators should not validate inputs against these schemas.</p>
 </div>
 </div>
 <div class="sect2">
@@ -6540,9 +6670,9 @@ This feature has been deprecated in favour of the <a href="#timestamp_assertion"
 <h4 id="_ingredient_assertion_validation"><a class="anchor" href="#_ingredient_assertion_validation"></a>15.11.3. Ingredient Assertion Validation</h4>
 <div class="sect4">
 <h5 id="_validation_overview"><a class="anchor" href="#_validation_overview"></a>15.11.3.1. Validation Overview</h5>
-<div id="validation_flow" class="imageblock text-center">
+<div id="validation_flow" class="imageblock text-center kroki">
 <div class="content">
-<img src="_images/Ingredient_validation.drawio.png" alt="Ingredient Validation">
+<img src="https://kroki.io/mermaid/svg/eNqdVk1v4zYQPUe_YqA9OAHsIMnuXpw2qTepgQDZReFkCxRGUDDSKGJDk65I2QnW_e8dUpRE2XKQ9iKbX48zb97McDQaRYYbgWO4kU8Fphylgd-Z4CkzXEmYCrVOclYYGME1GsYFplGKOin40m4YwwRSPw9ZszlTBfAWcNUADkGVRnBJi4AsyWlXylc8LZkAbXBJYzA5wrJQCWp9HEV_l1i8jiFhEl5VCQv2jKAk0i5mgGtYqAIbE4aw5ibvRb6MCsywQEm44wjIn80oGpH_rdX3XyJdPj4VbJkTHdxwOtpyQWcAUl5g4pihzXbiztDJeex-gs3xA4xGF3CVY_I8Q-HmdM6Xv_wAnbMl8Z1ytlCSLBbsEcUY4hsNRbBz8NNjcZFxFCmRgZpovIz_cVfugNqrNt_UBqZEwunhPJ7hX2RlxcWAaY2F3XrcRuR4wQTFaIHpIH44egP1D9Sb2i18vyODHU9IAiVWQri0Y-9LH3THnbP_6c5eYOfRVYG0dsu10VF0EIzmcTUAs1aAi6V5hWrXwekRMCECVdPc2RGFLGWJIfE3dun4IUKZRq2WZpiUheYrhN8qWRPIrppCM6ylB1_wiUt_Vsl57MYBWKg2B-c-3VNOhbcqIeArwfiiDVuOL23Iqh0u8xK7zUbIZyIJ-wkN5Z3kGWrj4xZA-nAZmKpSplXUPm5HzaEeL7jzvQnSNopH8FKsiJ00vFJs7IIVV7X0Z8v5AKpU8Ua760JW9kA6eu5QZPXS27Jm8rUn4JYsTRijpsCkdaqG0K36LEOf9utaB4caqnaQbIJM0vRe1bNWOPOYpvo0CYeCluHsKCRl53hbs9puoN-g5Fqhbvkm8hNRpliJpyn-rRGdAhbc0PgzQ1MW0hJjfyEr1AJIyIWFKRpJC1yhID8O_LaRtfobvpgWcv81LgA-DYO1eezn6t6xa37I3C6Ao26GWokVfp_d7MkzvwEGOdM5Cbgs-ABUZjncx5rnrIV2_m6umJSUczXgpo-AzpmLjR_WCTahyrPCrz6v3xPlwLyc0aXUkgesg-LTsA50G4buZU3Ad5rO1B7_L70FLG_wMwy4XJbmXg06Iuu51gnAKb9lq02dwMW64vnUObWpc3CHZqLvXUmc0_-uULZr5UObZd27fNlpoDq42yW7vzs7oqwUapf2JUDfoYr8W_X0XT5LtZYk5xVKRpWLqhJNWzab3lpu7xmQ17bbOlh6IiUqxbpMuU_XFHffhFqnTxorwF9lGjQ2GrXp7dOsizGvs1PSdG92uvfW5is9BjcdZrudeMrlO950oXUuGvVjohZSUBMJ2r5VW4XWe7deC40odN2jrKq2XkENvnPGzZI3ZWJdn8fBs9zPZaXwdPUj3MhVhWE7zufDDsTUPZht3BxFVMG1vsYMMpov6UmdcSHGH6bX1-fVWvW4HLo3mft-dN9P7vu5PnYeIPnkvbNEebrqfF6yNCVuxifDBYWJS_rj75tOh9oU6hnHH05OTvz_0ZqnJh-fLl9qY3akPex78A3Drjnc7gfDnhIx3JMzoS_n_wJyAZDP?id=validation_flow" alt="Ingredient Validation">
 </div>
 <div class="title">Figure 14. Ingredient Validation</div>
 </div>
