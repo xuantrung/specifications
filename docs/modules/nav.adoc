@@ -5,7 +5,7 @@
 * Informative Documents
 ** xref:2.2@explainer:Explainer.adoc[Explainer]
 ** xref:2.2@guidance:Guidance.adoc[Guidance for Implementers]
-** xref:2.0@ux:UX_Recommendations.adoc[User Experience Guidance]
+** xref:2.2@ux:UX_Recommendations.adoc[User Experience Guidance]
 ** xref:2.0@security:Security_Considerations.adoc[]
 ** xref:2.0@security:Harms_Modelling.adoc[]
 ** xref:2.2@ai-ml:ai_ml.adoc[Guidance for Artificial Intelligence and Machine Learning]
