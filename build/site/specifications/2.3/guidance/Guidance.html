@@ -291,7 +291,7 @@
 <div class="sect3">
 <h4 id="_description"><a class="anchor" href="#_description"></a>3.1.1. Description</h4>
 <div class="paragraph">
-<p>Each of the actors in the system that creates or processes an asset will produce one or more assertions about when, where, and how the asset was originated or transformed. An assertion is labelled data which represents a statement made by an actor about an asset. The assertion&#8217;s label is <a href="../../2.1/specs/C2PA_Specification.html#_labels" class="xref page">defined</a> either by the C2PA specification or an external entity.</p>
+<p>Each of the actors in the system that creates or processes an asset will produce one or more assertions about when, where, and how the asset was originated or transformed. An assertion is labelled data which represents a statement made by an actor about an asset. The assertion&#8217;s label is <a href="../specs/C2PA_Specification.html#assertion_labels" class="xref page">defined</a> either by the C2PA specification or an external entity.</p>
 </div>
 </div>
 <div class="sect3">
@@ -462,7 +462,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <p>Some file formats, such as JPEG, PNG, TIFF, or GIF, use a general box structure, that can be used to improve the flexibility of the bindings over that of a byte range binding.  Use of a general box binding is strongly recommended over a byte range binding for any file format that supports it.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="../../2.2/specs/C2PA_Specification.html#_general_boxes_hash" class="xref page">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
+<p>A <a href="../../2.2/specs/C2PA_Specification.html#_general_box_hash" class="xref page">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -842,7 +842,7 @@ As this is only a recommendation and not a requirement, Manifest Consumers shoul
 </table>
 </div>
 <div class="paragraph">
-<p>The listed C2PA actions are those that have been defined to date as common operations for various types of software and hardware actors operating on various asset types. However, because not all possible operations can be anticipated, the C2PA specification also allows for the use of custom actions using the standard <a href="../../2.1/specs/C2PA_Specification.html#_labels" class="xref page">custom labels syntax</a>.</p>
+<p>The listed C2PA actions are those that have been defined to date as common operations for various types of software and hardware actors operating on various asset types. However, because not all possible operations can be anticipated, the C2PA specification also allows for the use of custom actions using the standard <a href="../specs/C2PA_Specification.html#assertion_labels" class="xref page">custom labels syntax</a>.</p>
 </div>
 <div class="paragraph">
 <p>When using one of the C2PA actions, you should choose the one that most closely represents the action being taken.  If there is not something specific, then either use a more general one (e.g., <code>c2pa.edited</code> or <code>c2pa.filtered</code>) or a custom one that specifically describes your case.</p>
@@ -1128,7 +1128,7 @@ C2PA has introduced <a href="../../1.4/attestations/attestation.html" class="xre
 <p>To illustrate this exercise, we now present example applications, and for each one, the answers to the questions above and the resulting trust model configuration.</p>
 </div>
 <div class="sect4">
-<h5 id="_news_and_media_consumption"><a class="anchor" href="#_news_and_media_consumption"></a>6.3.2.1. News and Media Consumption</h5>
+<h5 id="news-media-consumption"><a class="anchor" href="#news-media-consumption"></a>6.3.2.1. News and Media Consumption</h5>
 <div class="paragraph">
 <p>This is the application in which people consume news and other media from outlets which we might expect them to be familiar with, recognize, and potentially trust.</p>
 </div>
@@ -1176,7 +1176,7 @@ C2PA has introduced <a href="../../1.4/attestations/attestation.html" class="xre
 </div>
 </div>
 <div class="sect4">
-<h5 id="_news_and_media_creation"><a class="anchor" href="#_news_and_media_creation"></a>6.3.2.2. News and Media Creation</h5>
+<h5 id="news-media-creation"><a class="anchor" href="#news-media-creation"></a>6.3.2.2. News and Media Creation</h5>
 <div class="paragraph">
 <p>In contrast to news and media consumption, this is the application where a news or media organization internally creates and assembles a finished publication that is consumed in the previous example.</p>
 </div>
@@ -1266,7 +1266,7 @@ C2PA has introduced <a href="../../1.4/attestations/attestation.html" class="xre
 <p>In this case, as the identifiability of the creator is rooted in the existing identity infrastructure of the platform, the platform makes the  choice to issue C2PA-compliant credentials to the owner of the account, through whatever existing authentication infrastructure they already have for owners to access their accounts. Care must be taken to revoke credentials in case of account name changes, and timestamping is highly recommended so that names that are changed cannot have others later claim the same name and impersonate the former owner.</p>
 </div>
 <div class="paragraph">
-<p>The audience will consume the content through the social media&#8217;s web site or apps, which can be configured by the social media to use the above trust list. Media produced by users of the social media site can then be strongly attributed to the owner of that account. Further, social media sites could choose to incorporate each other&#8217;s trust lists in a federated manner, so strongly attribute media to the owner of an account on one platform, even if the content is reposted on another platform. A social media site might also incorporate further trust lists to treat particular content specially, as described <a href="#news">in the News and Media Consumption example above</a>.</p>
+<p>The audience will consume the content through the social media&#8217;s web site or apps, which can be configured by the social media to use the above trust list. Media produced by users of the social media site can then be strongly attributed to the owner of that account. Further, social media sites could choose to incorporate each other&#8217;s trust lists in a federated manner, so strongly attribute media to the owner of an account on one platform, even if the content is reposted on another platform. A social media site might also incorporate further trust lists to treat particular content specially, as described <a href="#news-media-creation">in the News and Media example above</a>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1367,7 +1367,7 @@ C2PA has introduced <a href="../../1.4/attestations/attestation.html" class="xre
 <p>In <a href="#sharing-sites">the social media example above</a>, we have already explored the pseudonymous case. In these cases, similar to legal identities, the trust relationship is built by the pseudonym&#8217;s advertised activity: the content published and subsequent reputation established by the pseudonym&#8217;s owner. The trust is not rooted in an established legal identity, and therefore a credential that establishes a trustworthy ownership of the pseudonym is sufficient.</p>
 </div>
 <div class="paragraph">
-<p>The truly anonymous case, where any information about the human actor publishing the content cannot be shared, provides a greater challenge. Absent any ability to establish a basis for trust with anything about the publisher, we must identify other potential sources of trust. In these cases, a common case is establishing that the asset is a true capturing of real-world events, without any malicious edits intended to create disinformation. The first potential method is through the use of a <em>trusted third party</em> (TTP). The <a href="#_news_and_media_consumption">news and media consumption example above</a> is a special case of a TTP. In this case, media provided by sources that must remain anonymous is done so privately to a journalist or tip line, who then performs their own due diligence to confirm the accuracy and veracity of the asset&#8217;s content, and any additional information provided by the source. It is the trust of the consumer in the news or media organization that then becomes relevant, stemming from trust in that organization both to protect the privacy of its sources and to do its own independent due diligence on material it receives.</p>
+<p>The truly anonymous case, where any information about the human actor publishing the content cannot be shared, provides a greater challenge. Absent any ability to establish a basis for trust with anything about the publisher, we must identify other potential sources of trust. In these cases, a common case is establishing that the asset is a true capturing of real-world events, without any malicious edits intended to create disinformation. The first potential method is through the use of a <em>trusted third party</em> (TTP). The <a href="#news-media-consumption">news and media consumption example above</a> is a special case of a TTP. In this case, media provided by sources that must remain anonymous is done so privately to a journalist or tip line, who then performs their own due diligence to confirm the accuracy and veracity of the asset&#8217;s content, and any additional information provided by the source. It is the trust of the consumer in the news or media organization that then becomes relevant, stemming from trust in that organization both to protect the privacy of its sources and to do its own independent due diligence on material it receives.</p>
 </div>
 <div class="paragraph">
 <p>A more nuanced option is a non-governmental organization or other intermediary that works with people in locations where conditions make them want to remain anonymous even as they provide images or videos of newsworthy events. This may be a lower level of assurance than a consumer may expect from a news organization, but it may be sufficient to be assured that the anonymous publisher is actually in the location where the media purports to originate from, although consumers might still view it with a healthy level of scepticism as a result. As with typical publishers, the consumer&#8217;s relationship with the signer and understanding of what promises that signer makes informs the consumer&#8217;s decision about the content.</p>
@@ -1524,7 +1524,7 @@ In order to adhere to the <a href="https://c2pa.org/principles/">C2PA Guiding Pr
 <p>This information may be used to query either a further smart contract, or the event log of that smart contract, using the soft binding (for example a watermark extracted from the asset).</p>
 </div>
 <div class="paragraph">
-<p>Given a URL obtained by such a key-value look-up, the Soft Binding Resolution API at that URL may be interrogated via the <a href="#Manifest_Discovery_Process">C2PA Manifest Discovery Process</a>.</p>
+<p>Given a URL obtained by such a key-value look-up, the Soft Binding Resolution API at that URL may be interrogated via the <a href="#_manifest_discovery_process">C2PA Manifest Discovery Process</a>.</p>
 </div>
 </li>
 </ol>
