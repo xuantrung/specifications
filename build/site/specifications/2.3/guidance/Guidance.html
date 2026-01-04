@@ -1302,7 +1302,7 @@ C2PA has introduced <a href="../../1.4/attestations/attestation.html" class="xre
 </div>
 </div>
 <div class="sect3">
-<h4 id="_time_stamp_authorities"><a class="anchor" href="#_time_stamp_authorities"></a>6.3.3. Time-Stamp Authorities</h4>
+<h4 id="time-stamp-authorities"><a class="anchor" href="#time-stamp-authorities"></a>6.3.3. Time-Stamp Authorities</h4>
 <div class="paragraph">
 <p>C2PA encourages creators to retrieve a time-stamp for their assets in order to prove that it was published within the validity period of the signing credential, so that it can continue to be considered valid even after the signing credential has expired. Time-stamp authorities (TSAs) receive a special kind of trust where time-stamps they issue remain valid even after the TSA&#8217;s certificate expires, so long as the attested time falls within the TSA&#8217;s certificate&#8217;s validity period. This combination allows an asset to be considered time-valid indefinitely. Without such a trusted time-stamp, consumers cannot trust an asset signed with a now-expired credential was not signed after the credential expired. Each application developer therefore needs to consider the list of trust anchors for TSAs, in addition to the C2PA signer trust list determined through the exercise described in the previous section. In this case, this trust anchor list does not define identity providers for signers of assets, but identity providers for TSAs that provide the time-stamps for assets which allow them to still be considered valid even after the signing credential has expired or been revoked. We recommend considering the following questions:</p>
 </div>

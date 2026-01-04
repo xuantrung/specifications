@@ -220,7 +220,7 @@
 <li><a href="#_labels">6.2. Labels</a></li>
 <li><a href="#_versioning_2">6.3. Versioning</a></li>
 <li><a href="#_multiple_instances">6.4. Multiple Instances</a></li>
-<li><a href="#_schema_validation">6.5. Schema Validation</a></li>
+<li><a href="#schema-validation">6.5. Schema Validation</a></li>
 <li><a href="#_assertion_store">6.6. Assertion Store</a></li>
 <li><a href="#_embedded_vs_externally_stored_data">6.7. Embedded vs Externally-Stored Data</a></li>
 <li><a href="#_redaction_of_assertions">6.8. Redaction of Assertions</a></li>
@@ -596,13 +596,13 @@ An organization or group of <a href="#_actor">actors</a> may also be considered 
 <div class="sect3">
 <h4 id="claim-generator-definition"><a class="anchor" href="#claim-generator-definition"></a>2.1.2. Claim generator</h4>
 <div class="paragraph">
-<p>The non-human (hardware or software) <a href="#_actor">actor</a> that generates the <a href="#_claim">claim</a> about an <a href="#_asset">asset</a> as well as the <a href="#_claim_signature">claim signature</a>, thus leading to the <a href="#_asset">asset</a>'s associated <a href="#_c2pa_manifest">C2PA Manifest</a>.</p>
+<p>The non-human (hardware or software) <a href="#_actor">actor</a> that generates the <a href="#_claim">claim</a> about an <a href="#_asset">asset</a> as well as the <a href="#claim-signature-definition">claim signature</a>, thus leading to the <a href="#_asset">asset</a>'s associated <a href="#_c2pa_manifest">C2PA Manifest</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="signer-definition"><a class="anchor" href="#signer-definition"></a>2.1.3. Signer</h4>
 <div class="paragraph">
-<p>The credential holder of a private key that is used to sign the <a href="#_claim">claim</a>.  The <a href="#_signer">signer</a> is identified by the subject of the credential.</p>
+<p>The credential holder of a private key that is used to sign the <a href="#_claim">claim</a>.  The <a href="#signer-definition">signer</a> is identified by the subject of the credential.</p>
 </div>
 </div>
 <div class="sect3">
@@ -681,7 +681,7 @@ For the purposes of this definition, we will extend the typical definition of "f
 <div class="sect3">
 <h4 id="_composed_asset"><a class="anchor" href="#_composed_asset"></a>2.2.6. Composed asset</h4>
 <div class="paragraph">
-<p>A composed asset is an <a href="#_asset">asset</a> that is created by building up a collection of multiple parts or fragments of <a href="#_digital_content">digital content</a> (referred to as <a href="#_ingredient">ingredients</a>) from one or more other <a href="#_asset">assets</a>. When starting from an existing <a href="#_asset">asset</a>, it is a special case of a <a href="#_derived_asset">derived asset</a> - however a <a href="#_derived_asset">composed asset</a> can also be one that starts from a "blank slate".</p>
+<p>A composed asset is an <a href="#_asset">asset</a> that is created by building up a collection of multiple parts or fragments of <a href="#_digital_content">digital content</a> (referred to as <a href="#ingredient_assertion">ingredients</a>) from one or more other <a href="#_asset">assets</a>. When starting from an existing <a href="#_asset">asset</a>, it is a special case of a <a href="#_derived_asset">derived asset</a> - however a <a href="#_derived_asset">composed asset</a> can also be one that starts from a "blank slate".</p>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -725,13 +725,13 @@ For the purposes of this definition, we will extend the typical definition of "f
 <div class="sect3">
 <h4 id="claim-signature-definition"><a class="anchor" href="#claim-signature-definition"></a>2.3.3. Claim signature</h4>
 <div class="paragraph">
-<p>The digital signature on the <a href="#_claim">claim</a> created using the private key owned by a <a href="#signer-definition">signer</a>. The <a href="#_claim_signature">claim signature</a> is a part of the <a href="#_c2pa_manifest">C2PA Manifest</a>.</p>
+<p>The digital signature on the <a href="#_claim">claim</a> created using the private key owned by a <a href="#signer-definition">signer</a>. The <a href="#claim-signature-definition">claim signature</a> is a part of the <a href="#_c2pa_manifest">C2PA Manifest</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_c2pa_manifest"><a class="anchor" href="#_c2pa_manifest"></a>2.3.4. C2PA Manifest</h4>
 <div class="paragraph">
-<p>The set of information about the <em>provenance</em> of an <a href="#_asset">asset</a> based on the combination of one or more <a href="#_assertion">assertions</a> (including <a href="#_binding_to_content">content bindings</a>), a single <a href="#_claim">claim</a>, and a <a href="#_claim_signature">claim signature</a>. A <a href="#_c2pa_manifest">C2PA Manifest</a> is part of a <a href="#_c2pa_manifest_store">C2PA Manifest Store</a>.</p>
+<p>The set of information about the <em>provenance</em> of an <a href="#_asset">asset</a> based on the combination of one or more <a href="#_assertion">assertions</a> (including <a href="#_binding_to_content">content bindings</a>), a single <a href="#_claim">claim</a>, and a <a href="#claim-signature-definition">claim signature</a>. A <a href="#_c2pa_manifest">C2PA Manifest</a> is part of a <a href="#_c2pa_manifest_store">C2PA Manifest Store</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -764,7 +764,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="sect3">
 <h4 id="_active_manifest"><a class="anchor" href="#_active_manifest"></a>2.3.7. Active Manifest</h4>
 <div class="paragraph">
-<p>The last manifest in the list of <a href="#_c2pa_manifest">C2PA Manifests</a> inside of a <a href="#_c2pa_manifest_store">C2PA Manifest Store</a> which is the one with the set of <a href="#_content_bindings">content bindings</a> that are able to be validated.</p>
+<p>The last manifest in the list of <a href="#_c2pa_manifest">C2PA Manifests</a> inside of a <a href="#_c2pa_manifest_store">C2PA Manifest Store</a> which is the one with the set of <a href="#_content_binding">content bindings</a> that are able to be validated.</p>
 </div>
 </div>
 <div class="sect3">
@@ -776,7 +776,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="sect3">
 <h4 id="_provenance_data"><a class="anchor" href="#_provenance_data"></a>2.3.9. Provenance data</h4>
 <div class="paragraph">
-<p>The set of <a href="#_c2pa_manifest">C2PA Manifests</a> for an <a href="#_asset">asset</a> and, in the case of a <a href="#_composed_asset">composed asset</a>, its <a href="#_ingredient">ingredients</a>.</p>
+<p>The set of <a href="#_c2pa_manifest">C2PA Manifests</a> for an <a href="#_asset">asset</a> and, in the case of a <a href="#_composed_asset">composed asset</a>, its <a href="#ingredient_assertion">ingredients</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -868,7 +868,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="sect3">
 <h4 id="_manifest_repository"><a class="anchor" href="#_manifest_repository"></a>2.4.5. Manifest Repository</h4>
 <div class="paragraph">
-<p>A repository into which <a href="#_c2pa_manifest">C2PA Manifests</a> and <a href="#_c2pa_manifest_stores">C2PA Manifest Stores</a> can be placed, and which can be searched using a <a href="#_content_binding">content binding</a>.</p>
+<p>A repository into which <a href="#_c2pa_manifest">C2PA Manifests</a> and <a href="#_c2pa_manifest_store">C2PA Manifest Stores</a> can be placed, and which can be searched using a <a href="#_content_binding">content binding</a>.</p>
 </div>
 </div>
 </div>
@@ -1116,7 +1116,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>, <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>, and <a href="https://tools.ietf.org/html/rfc8174">RFC 8174</a> when they appear in any casing (upper, lower or mixed).</p>
 </div>
 <div class="paragraph">
-<p>CDDL Rules and Type Definitions in the CDDL schemas for C2PA constructs are normative. <a href="#schema_validation">Schema validation</a> is not necessary, nor it is recommended. Comments within CDDL schemas are non-normative.</p>
+<p>CDDL Rules and Type Definitions in the CDDL schemas for C2PA constructs are normative. <a href="#schema-validation">Schema validation</a> is not necessary, nor it is recommended. Comments within CDDL schemas are non-normative.</p>
 </div>
 </div>
 </div>
@@ -2017,9 +2017,9 @@ For example, <code>c2pa.ingredient</code> could be changed to the fictional <cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_schema_validation"><a class="anchor" href="#_schema_validation"></a>6.5. Schema Validation</h3>
+<h3 id="schema-validation"><a class="anchor" href="#schema-validation"></a>6.5. Schema Validation</h3>
 <div class="paragraph">
-<p>The schemas provided in this document, as well as the machine readable ones that are downloaded-able from the C2PA website, should be used by claim generators to ensure that the assertions they create are consist with the expected structures. These schemas can also be used as aids in understanding the syntax to be read or written. Validators should not validate inputs against these schemas.</p>
+<p>The schemas provided in this document, as well as the machine readable ones that are downloaded-able from the C2PA website, should be used by claim generators to ensure that the assertions they create are consistent with the expected structures. These schemas can also be used as aids in understanding the syntax to be read or written. Validators should not validate inputs against these schemas.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2124,7 +2124,7 @@ CBOR Tag 0 is described in <a href="https://datatracker.ietf.org/doc/html/rfc894
 </td>
 <td class="content">
 <div class="paragraph">
-<p>This section is retained for historical purposes. The concept of a data box has been deprecated in favour of a standard assertion that uses a standard JUMBF Embedded File content type box to contain the data. For more information, see <a href="#_data_box">[_data_box]</a>.</p>
+<p>This section is retained for historical purposes. The concept of a data box has been deprecated in favour of a standard assertion that uses a standard JUMBF Embedded File content type box to contain the data. For more information, see <a href="#_data_boxes">Chapter 7, <em>Data Boxes</em></a>.</p>
 </div>
 </td>
 </tr>
@@ -2548,7 +2548,7 @@ For example, a collection data hash assertion can be used to describe each folde
 </div>
 </div>
 <div class="sect3">
-<h4 id="_binding_non_c2pa_asset_metadata"><a class="anchor" href="#_binding_non_c2pa_asset_metadata"></a>9.2.6. Binding Non-C2PA Asset Metadata</h4>
+<h4 id="asset_metadata_bindings"><a class="anchor" href="#asset_metadata_bindings"></a>9.2.6. Binding Non-C2PA Asset Metadata</h4>
 <div class="paragraph">
 <p>One of the capabilities of a hard binding is that it can exclude parts of an asset, for various reasons. However, a Claim Generator should, where possible, include asset metadata (i.e., metadata outside a C2PA Manifest such as EXIF or XMP) in the hard binding, in order to protect its integrity throughout the asset&#8217;s lifecycle.</p>
 </div>
@@ -3339,7 +3339,7 @@ This implies that given a <code>hashed_uri</code> reference from an ingredient a
 <div class="sect4">
 <h5 id="_jumbf_description_boxes"><a class="anchor" href="#_jumbf_description_boxes"></a>11.1.4.1. JUMBF Description boxes</h5>
 <div class="sect5">
-<h6 id="_labels_2"><a class="anchor" href="#_labels_2"></a>11.1.4.1.1. Labels</h6>
+<h6 id="jumbf_labels"><a class="anchor" href="#jumbf_labels"></a>11.1.4.1.1. Labels</h6>
 <div class="paragraph">
 <p>As described in the JUMBF specification (ISO 19566-5:2023, A.3), a label shall be stored as ISO/IEC 10646 characters in the UTF-8 encoding. Characters in the ranges U+0000 to U+001F inclusive and U+007F to U+009F inclusive, as well as the specific characters '/', ';', '?', and '#', are not permitted in the label. The label shall be null-terminated.</p>
 </div>
@@ -3534,7 +3534,7 @@ A standard C2PA Manifest can be located either as the active manifest or as an i
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This is the replacement approach for the deprecated <a href="#_time_stamp_manifests">time-stamp manifests</a> feature.
+This is the replacement approach for the deprecated <a href="#time_stamp_manifests">time-stamp manifests</a> feature.
 </td>
 </tr>
 </table>
@@ -3575,7 +3575,7 @@ The ingredient&#8217;s C2PA Manifest can be either a standard manifest or an upd
 <div class="sect3">
 <h4 id="_compressed_manifests"><a class="anchor" href="#_compressed_manifests"></a>11.2.4. Compressed Manifests</h4>
 <div class="paragraph">
-<p>Standard and Update Manifests can be compressed, in their entirety, using the <a href="https://datatracker.ietf.org/doc/html/rfc7932">Brotli compression algorithm</a> as described <a href="#_compressed_boxes">above</a>. For either type of manifest, the value of the <code>TYPE</code> field shall be <code>c2cm</code>, the value of the <a href="#_labels">label field</a> shall be the identical to the label of the compressed manifest superbox, and the contents of the <code>brob</code> content box shall be the compressed bytes of the entire manifest superbox.  See <a href="#compressed_manifest_image">Figure 7, &#8220;Example of a compressed manifest&#8221;</a> for an example of a compressed standard manifest.</p>
+<p>Standard and Update Manifests can be compressed, in their entirety, using the <a href="https://datatracker.ietf.org/doc/html/rfc7932">Brotli compression algorithm</a> as described <a href="#_compressed_boxes">above</a>. For either type of manifest, the value of the <code>TYPE</code> field shall be <code>c2cm</code>, the value of the <a href="#jumbf_labels">label field</a> shall be the identical to the label of the compressed manifest superbox, and the contents of the <code>brob</code> content box shall be the compressed bytes of the entire manifest superbox.  See <a href="#compressed_manifest_image">Figure 7, &#8220;Example of a compressed manifest&#8221;</a> for an example of a compressed standard manifest.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -4954,7 +4954,7 @@ ingredient-delta-validation-result-map = {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeStamp.trusted</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The time-stamp credential is listed on the validator&#8217;s <a href="#_time_stamp_authorities">list of trust anchors for time stamping authorities</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time-stamp credential is listed on the validator&#8217;s <a href="#time-stamp-authorities">list of trust anchors for time stamping authorities</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
 </tr>
 <tr>
@@ -5054,7 +5054,7 @@ ingredient-delta-validation-result-map = {
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeStamp.untrusted</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The time-stamp credential is not listed on the validator&#8217;s TSA <a href="#_time_stamp_authorities">trust lists</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time-stamp credential is not listed on the validator&#8217;s TSA <a href="#time-stamp-authorities">trust lists</a>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Signature Box</p></td>
 </tr>
 </tbody>
@@ -5739,7 +5739,7 @@ Well-formed CBOR is defined in <a href="https://datatracker.ietf.org/doc/html/rf
 <p>If the credential is not acceptable per <a href="#x509_certificates">the requirements of the credential&#8217;s type</a>, then the claim shall be rejected with a failure code of <code>signingCredential.invalid</code>. If the signature algorithm is not on the allowed or deprecated list in <a href="#_digital_signatures">Section 13.2, &#8220;Digital Signatures&#8221;</a>, then the claim shall be rejected with a failure code of <code>algorithm.unsupported</code>.</p>
 </div>
 <div class="paragraph">
-<p>Before a chain of trust to a trust anchor is established, the validator shall first determine if a <a href="#validate_the_time-stamp">valid time-stamp</a> is present. Then, a chain of trust should be verified from the credential to a trust anchor configuration in one of the applicable trust anchor lists. If a "notBefore" date/time is present in a trust anchor configuration, that configuration shall not validate claim signatures whose timestamp (or current time, if no timestamp is present) is before that date/time. If a "notAfter" date/time is present, that configuration shall not validate claim signatures whose timestamp (or current time, if no timestamp is present) is after that date/time.</p>
+<p>Before a chain of trust to a trust anchor is established, the validator shall first determine if a <a href="#_validate_the_time_stamp">valid time-stamp</a> is present. Then, a chain of trust should be verified from the credential to a trust anchor configuration in one of the applicable trust anchor lists. If a "notBefore" date/time is present in a trust anchor configuration, that configuration shall not validate claim signatures whose timestamp (or current time, if no timestamp is present) is before that date/time. If a "notAfter" date/time is present, that configuration shall not validate claim signatures whose timestamp (or current time, if no timestamp is present) is after that date/time.</p>
 </div>
 <div class="paragraph">
 <p>If a chain of trust cannot be verified, the claim shall be rejected with a failure code of <code>signingCredential.untrusted</code>; otherwise, the claim signature shall be assigned a success code of <code>signingCredential.trusted</code>.</p>
@@ -6197,7 +6197,7 @@ Well-formed CBOR is defined in <a href="https://datatracker.ietf.org/doc/html/rf
 <p><code>c2pa.metadata</code>, <a href="#_c2pa_metadata_validation">Section 15.10.3.2.4, &#8220;<code>c2pa.metadata</code> validation&#8221;</a></p>
 </li>
 <li>
-<p><code>c2pa.alternative-content-representation</code>, <a href="#_c2pa_alternative_content_representation_validation">Section 15.10.3.2.7, &#8220;<code>c2pa.alternative-content-representation</code> validation&#8221;</a></p>
+<p><code>c2pa.alternative-content-representation</code>, <a href="#alternative_content_representation_validation">Section 15.10.3.2.7, &#8220;<code>c2pa.alternative-content-representation</code> validation&#8221;</a></p>
 </li>
 </ul>
 </div>
@@ -6443,7 +6443,7 @@ This validation requirement will necessitate a validator parsing the JSON-LD dat
 </div>
 </div>
 <div class="sect5">
-<h6 id="_c2pa_alternative_content_representation_validation"><a class="anchor" href="#_c2pa_alternative_content_representation_validation"></a>15.10.3.2.7. <code>c2pa.alternative-content-representation</code> validation</h6>
+<h6 id="alternative_content_representation_validation"><a class="anchor" href="#alternative_content_representation_validation"></a>15.10.3.2.7. <code>c2pa.alternative-content-representation</code> validation</h6>
 <div class="paragraph">
 <p>If the assertion&#8217;s label is <code>c2pa.alternative-content-representation</code>, a validator shall perform the following steps:</p>
 </div>
@@ -6621,7 +6621,7 @@ This feature has been deprecated in favour of the <a href="#timestamp_assertion"
 </table>
 </div>
 <div class="paragraph">
-<p>Any <a href="#_time_stamp_manifests">time-stamp manifests</a> found in an ingredient shall be ignored.</p>
+<p>Any <a href="#time_stamp_manifests">time-stamp manifests</a> found in an ingredient shall be ignored.</p>
 </div>
 </div>
 </div>
@@ -6964,7 +6964,7 @@ The reason for this is that if redactions affect the referenced manifest, it is 
 <p>A validator shall ensure that the data contained within the exclusion range containing the C2PA Manifest Store consists of only the C2PA Manifest Store and any appropriate padding (e.g., zero&#8217;d data) in clearly marked pad fields or free/skip boxes.  If a validator encounters any data other than what is permitted, then the manifest shall be rejected with a failure code of <code>assertion.dataHash.mismatch</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a validator encounters exclusion ranges other than for just the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data), such as for all or part of the asset metadata (as described in <a href="#_asset_metadata_bindings">[_asset_metadata_bindings]</a>), the informational code <code>assertion.dataHash.additionalExclusionsPresent</code> shall be issued.</p>
+<p>If a validator encounters exclusion ranges other than for just the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data), such as for all or part of the asset metadata (as described in <a href="#asset_metadata_bindings">Section 9.2.6, &#8220;Binding Non-C2PA Asset Metadata&#8221;</a>), the informational code <code>assertion.dataHash.additionalExclusionsPresent</code> shall be issued.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6985,7 +6985,7 @@ The combination of exclusion ranges and padding values, especially padding neede
 <p>If no error conditions were encountered, the validator shall add the success code <code>assertion.dataHash.match</code> to the list it eventually returns.</p>
 </div>
 <div class="paragraph">
-<p>If the hash computed over all the asset&#8217;s data (minus any exclusion ranges) does not match the value of the <code>hash</code> field in the <code>c2pa.hash.data</code>, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, it shall be validated as described in <a href="#_validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>, but if one is not present, the manifest shall be rejected with a failure code of <code>assertion.dataHash.mismatch</code>.</p>
+<p>If the hash computed over all the asset&#8217;s data (minus any exclusion ranges) does not match the value of the <code>hash</code> field in the <code>c2pa.hash.data</code>, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, it shall be validated as described in <a href="#validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>, but if one is not present, the manifest shall be rejected with a failure code of <code>assertion.dataHash.mismatch</code>.</p>
 </div>
 </div>
 <div class="sect4">
@@ -7016,7 +7016,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Locate all valid <code>C2PATextManifestWrapper</code> instances as described in <a href="#_locating_the_manifest_in_text">Locating the manifest in unstructured text</a>.</p>
+<p>Locate all valid <code>C2PATextManifestWrapper</code> instances as described in <a href="#_detection_algorithm_">Locating the manifest in unstructured text</a>.</p>
 </li>
 <li>
 <p>Identify the wrapper(s) whose byte range exactly matches the exclusion range(s) specified in the <code>exclusions</code> field of the <code>c2pa.hash.data</code> assertion.</p>
@@ -7120,7 +7120,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <div class="sect3">
 <h4 id="_validating_a_bmff_hash"><a class="anchor" href="#_validating_a_bmff_hash"></a>15.12.2. Validating a BMFF-hash</h4>
 <div class="paragraph">
-<p>For any portions of an asset rendered for presentation to a user, including but not limited to audio, video, or text, the corresponding hard binding corresponding to the rendered content shall be validated in accordance with <a href="#_hard_bindings">Section 9.2, &#8220;Hard Bindings&#8221;</a>. If the standard hard binding does not validate, and a multi-asset hash assertion is present, it shall be validated as described in <a href="#validating_a_multi_asset_hash">[validating_a_multi_asset_hash]</a>. If at any time content fails to be validated, the validator shall clearly signal to the user that some of the content does not match the claim, and if possible, should indicate what part of the content did not validate. If any content is absent for which content bindings exist, discovery of this absence is also a validation failure. The validator shall continue to report validation has failed, even if later portions of the content validate correctly.</p>
+<p>For any portions of an asset rendered for presentation to a user, including but not limited to audio, video, or text, the corresponding hard binding corresponding to the rendered content shall be validated in accordance with <a href="#_hard_bindings">Section 9.2, &#8220;Hard Bindings&#8221;</a>. If the standard hard binding does not validate, and a multi-asset hash assertion is present, it shall be validated as described in <a href="#validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>. If at any time content fails to be validated, the validator shall clearly signal to the user that some of the content does not match the claim, and if possible, should indicate what part of the content did not validate. If any content is absent for which content bindings exist, discovery of this absence is also a validation failure. The validator shall continue to report validation has failed, even if later portions of the content validate correctly.</p>
 </div>
 <div class="paragraph">
 <p>For content that is not wholly available before rendering begins, such as during adaptive bitrate streaming (ABR) and progressive download, absence of not-yet-available portions of content is not considered a validation failure. As the content becomes available, the validator shall validate each portion of the content before it is rendered as previously described. In addition, the validator shall validate that the sequence of said content is the same as when the manifest was produced. Unless the player has explicitly signalled the validator that a discontinuity is expected (e.g., when the consumer performs a manual seek operation via the UI), the validator shall clearly signal to the user that an unexpected discontinuity has occurred whenever the sequence does not match. This includes validating that the <code>location</code> values for a given Merkle tree start at zero and increments by one for each following chunk; equivalently, the <code>location</code> value always indicates which chunk is being rendered.</p>
@@ -7138,7 +7138,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <p>If the <code>bmff-hash-map</code> does not contain an <code>exclusions</code> field or that field&#8217;s value is not of type array with at least one entry, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>.</p>
 </div>
 <div class="paragraph">
-<p>If a validator encounters exclusion ranges other than for just the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data), such as for all or part of the asset metadata (as described in <a href="#_asset_metadata_bindings">[_asset_metadata_bindings]</a>), the informational code <code>assertion.bmffHash.additionalExclusionsPresent</code> shall be issued.</p>
+<p>If a validator encounters exclusion ranges other than for just the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data), such as for all or part of the asset metadata (as described in <a href="#asset_metadata_bindings">Section 9.2.6, &#8220;Binding Non-C2PA Asset Metadata&#8221;</a>), the informational code <code>assertion.bmffHash.additionalExclusionsPresent</code> shall be issued.</p>
 </div>
 <div class="paragraph">
 <p>The validator shall ignore the presence and contents of <code>pad</code> and <code>pad2</code> fields.</p>
@@ -7150,7 +7150,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <p>If the ending byte offset of one <code>subset</code> range (<code>offset</code> + <code>length</code>) is greater than the <code>offset</code> value of the next range in the array, or an <code>offset</code> or <code>length</code> value is negative, then the manifest shall be rejected with a failure code of <code>assertion.bmffHash.malformed</code>. The <code>assertion.bmffHash.mismatch</code> failure code is used for all other failures described in this section. Otherwise, the validator shall add the success code <code>assertion.bmffHash.match</code> to the list it eventually returns.</p>
 </div>
 <div class="paragraph">
-<p>If the BMFF hashing process produces a <code>assertion.bmffHash.mismatch</code> failure code, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, the <code>assertion.bmffHash.mismatch</code> failure code shall not be issued, and instead the multi-asset hash assertion shall be validated as described in <a href="#_validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>; otherwise, the manifest shall be rejected with a failure code of <code>assertion.bmffHash.mismatch</code>.</p>
+<p>If the BMFF hashing process produces a <code>assertion.bmffHash.mismatch</code> failure code, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, the <code>assertion.bmffHash.mismatch</code> failure code shall not be issued, and instead the multi-asset hash assertion shall be validated as described in <a href="#validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>; otherwise, the manifest shall be rejected with a failure code of <code>assertion.bmffHash.mismatch</code>.</p>
 </div>
 <div class="sect4">
 <h5 id="_non_fragmented_asset_using_merkle_tree"><a class="anchor" href="#_non_fragmented_asset_using_merkle_tree"></a>15.12.2.1. Non-fragmented asset using Merkle tree</h5>
@@ -7199,7 +7199,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <p>Follow the procedure in <a href="#_determining_the_hashing_algorithm">Section 15.4, &#8220;Determining the hashing algorithm&#8221;</a> to determine the hash algorithm and any possible failure codes. The hash shall be computed over the bytes of the asset, except for the ranges specified in the <code>exclusions</code> field and any boxes where <code>excluded</code> field is <code>true</code>. If the end of an exclusion range falls beyond the end of the box that contains the exclusion range, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>.</p>
 </div>
 <div class="paragraph">
-<p>The combination of exclusion ranges and padding values, especially padding needed to support multi-pass processing workflows, may enable an attacker to replace parts of that padding with arbitrary data that could impact the consumption of the asset without invalidating the hash.  For this reason a validator shall ensure that the data contained within the exclusion range including a C2PA Manifest Store consists only of the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data) in clearly marked pad fields or free/skip boxes.  Within other exclusion ranges than above C2PA Manifest Store, all or part of the asset metadata may also be included as described in <a href="#_asset_metadata_bindings">[_asset_metadata_bindings]</a>. If a validator encounters any data other than those permitted above, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>. If a validator encounters exclusion ranges other than that for the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data) in clearly marked pad fields or free/skip boxes, an informational code <code>assertion.boxesHash.additionalExclusionsPresent</code> shall be set.</p>
+<p>The combination of exclusion ranges and padding values, especially padding needed to support multi-pass processing workflows, may enable an attacker to replace parts of that padding with arbitrary data that could impact the consumption of the asset without invalidating the hash.  For this reason a validator shall ensure that the data contained within the exclusion range including a C2PA Manifest Store consists only of the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data) in clearly marked pad fields or free/skip boxes.  Within other exclusion ranges than above C2PA Manifest Store, all or part of the asset metadata may also be included as described in <a href="#asset_metadata_bindings">Section 9.2.6, &#8220;Binding Non-C2PA Asset Metadata&#8221;</a>. If a validator encounters any data other than those permitted above, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>. If a validator encounters exclusion ranges other than that for the C2PA Manifest Store and appropriate padding (e.g., zero&#8217;d data) in clearly marked pad fields or free/skip boxes, an informational code <code>assertion.boxesHash.additionalExclusionsPresent</code> shall be set.</p>
 </div>
 <div class="paragraph">
 <p>If the hash value for any box does not match, and that box does not have an <code>excluded</code> field with a value of <code>true</code>, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>.</p>
@@ -7211,7 +7211,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 <p>For each box listed in the <code>names</code> and <code>boxes</code> array, the specified hash algorithm shall be computed over the bytes of the box (along with any associated header). If there are multiple entries in a <code>names</code> array, the hash value for that range of boxes shall be computed from the start of the first box (in the range) until the end of the last box (in the range).  This would include any arbitrary bytes that may be present between boxes.</p>
 </div>
 <div class="paragraph">
-<p>If the <code>hash</code> field is not present, or any resultant hash does not match the value of the <code>hash</code> field for those boxes, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>. If the box hashing process produces a <code>assertion.boxesHash.mismatch</code> failure code, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, it shall be validated as described in <a href="#_validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>, but if one is not present, the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>.</p>
+<p>If the <code>hash</code> field is not present, or any resultant hash does not match the value of the <code>hash</code> field for those boxes, then the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>. If the box hashing process produces a <code>assertion.boxesHash.mismatch</code> failure code, then the validator shall look for presence of a <a href="#_multi_asset_hash">multi-asset hash assertion</a>.  If one is present, it shall be validated as described in <a href="#validating_a_multi_asset_hash">Section 15.12.4, &#8220;Validating a multi-asset hash&#8221;</a>, but if one is not present, the manifest shall be rejected with a failure code of <code>assertion.boxesHash.mismatch</code>.</p>
 </div>
 <div class="paragraph">
 <p>Otherwise, the validator shall add the success code <code>assertion.boxesHash.match</code> to the list it eventually returns.</p>
@@ -7236,7 +7236,7 @@ A JPEG 1 file can contain <code>APP11</code> segments for reasons other than C2P
 </div>
 </div>
 <div class="sect3">
-<h4 id="_validating_a_multi_asset_hash"><a class="anchor" href="#_validating_a_multi_asset_hash"></a>15.12.4. Validating a multi-asset hash</h4>
+<h4 id="validating_a_multi_asset_hash"><a class="anchor" href="#validating_a_multi_asset_hash"></a>15.12.4. Validating a multi-asset hash</h4>
 <div class="paragraph">
 <p>If the standard validation of the asset&#8217;s hard binding fails, and the asset contains a multi-asset hash assertion, then the validator shall proceed to validate the multi-asset hash assertion. If more than one multi-asset hash assertion is present, then the manifest shall be rejected with a failure code of <code>assertion.multiAssetHash.malformed</code>.</p>
 </div>
@@ -14154,7 +14154,7 @@ livevideo-segment-map-manifestId = {
 <p>A <code>verifiable-segment-info</code> is a <code>COSE_Sign1_Tagged</code> structure
 where the payload field is the CBOR serialized <code>segment-info-map</code>.
 The payload shall be present and not be detached.
-The signature is created by a private <a href="#session_key">session key</a>.
+The signature is created by a private <a href="#session_keys">session key</a>.
 The protected header shall carry the identifier of the algorithm used for the signature (<code>alg</code> field)
 and optionally, a timestamp representing "claimed time of signing" for the segment (<code>iat</code> field, <a href="https://datatracker.ietf.org/doc/html/rfc8392">RFC 8392</a>).
 The unprotected header shall carry the identifier of the session key (<code>kid</code> field).</p>
@@ -14617,7 +14617,7 @@ There may not be valid session keys for a variety of reasons including (but not 
 </dd>
 <dt class="hdlist1">OGG VORBIS</dt>
 <dd>
-<p>Refer to <a href="#_embedding_manifests_into_ogg_based_format">[_embedding_manifests_into_ogg_based_format]</a> for more information.</p>
+<p>Refer to <a href="#_embedding_manifests_into_ogg_vorbis">Section A.3.5, &#8220;Embedding manifests into OGG Vorbis&#8221;</a> for more information.</p>
 </dd>
 <dt class="hdlist1">Other BMFF-based formats</dt>
 <dd>
