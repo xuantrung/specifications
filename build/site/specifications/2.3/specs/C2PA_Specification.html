@@ -5350,7 +5350,7 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>general.error</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A value to be used when there was an error not specifically listed here.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Claim Box or C2PA Assertion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(multiple)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hashedURI.missing</code></p></td>
@@ -5385,32 +5385,32 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.assertion.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The assertion is not valid due to <code>sequenceNumber</code>, <code>streamId</code> mismatch.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.continuityMethod.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The <code>continuityMethod</code> is invalid or not recognized.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.init.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The init segment is not valid, improperly contains a <code>mdat</code> box.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(not applicable)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.manifest.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The manifest failed validation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(not applicable)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.segment.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The segment is not valid, (1) it contains neither a valid <code>emsg</code> box nor C2PA Manifest Box, (2) no valid session keys, (3) the <code>emsg</code> signature fails signature validation, or (4) the <code>previousManifestId</code> didn&#8217;t match the previous manifest.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(not applicable)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>livevideo.sessionkey.invalid</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The session key is not valid, (1) does not meet requirements for session keys, (2)  <code>signerBinding</code> doesn&#8217;t validate, or (3) the Claim Generator&#8217;s certificate used to protect delivery of the session key has expired.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Live Video</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifest.compressed.invalid</code></p></td>
@@ -8706,7 +8706,7 @@ All the APP11 segments containing the C2PA Manifest JUMBF are contiguous so that
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Earlier versions of this standard also documented <code>c2pa.hash.bmff</code> and <code>c2pa.hash.bmff.v2</code> assertions.
+Earlier versions of this specification also documented <code>c2pa.hash.bmff</code> and <code>c2pa.hash.bmff.v2</code> assertions.
 </td>
 </tr>
 </table>
@@ -13153,7 +13153,7 @@ ara-reference-uri-map = {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Earlier versions of this standard documented a <code>c2pa.asset-type</code> assertion, which is now deprecated.
+Earlier versions of this specification documented a <code>c2pa.asset-type</code> assertion, which is now deprecated.
 </td>
 </tr>
 </table>
@@ -13846,13 +13846,13 @@ external-reference-map = {
 <div class="sect3">
 <h4 id="session_keys_assertion"><a class="anchor" href="#session_keys_assertion"></a>18.25.1. Description</h4>
 <div class="paragraph">
-<p>This assertion provides the session keys that are used, as part of a live video workflow based on the "<a href="#verifiable_segment_info">Section 19.4, &#8220;Verifiable Segment Info method&#8221;</a>" to sign the <code>verifiable-segment-info-map</code>.  Live video workflows that rely solely on the "<a href="#using_c2pa_manifest_box">Section 19.3, &#8220;Per-segment C2PA Manifest Box method&#8221;</a>" are not required to use this assertion.</p>
+<p>This assertion provides the session keys that are used, as part of a live video workflow based on the "<a href="#verifiable_segment_info">Section 19.4, &#8220;Verifiable Segment Info method&#8221;</a>", to sign the <code>verifiable-segment-info-map</code>.  Live video workflows that rely solely on the "<a href="#using_c2pa_manifest_box">Section 19.3, &#8220;Per-segment C2PA Manifest Box method&#8221;</a>" are not required to use this assertion.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_requirements_4"><a class="anchor" href="#_requirements_4"></a>18.25.2. Requirements</h4>
 <div class="paragraph">
-<p>A session keys assertion shall have a label of <code>c2pa.session-keys</code> and a C2PA Manifest may contain at most one session keys assertion.</p>
+<p>A session keys assertion shall have a label of <code>c2pa.session-keys</code>, and a C2PA Manifest may contain at most one session keys assertion.</p>
 </div>
 <div class="paragraph">
 <p>The session keys assertion consists of a CBOR map (defined as a <code>session-keys-data</code>) and shall contain the following fields:</p>
@@ -14005,7 +14005,7 @@ It does not support <a href="https://www.iso.org/standard/91403.html">MPEG Trans
 <div class="sect3">
 <h4 id="c2pa_manifest_box"><a class="anchor" href="#c2pa_manifest_box"></a>19.2.1. C2PA Manifest transport</h4>
 <div class="paragraph">
-<p>The live video architecture builds upon this specification&#8217;s support for BMFF-based asset embedding, adding mechanisms to support real-time content validation. The two key parts of that are (1) any hashing of content shall be done using a standard <code>bmff-hash-map</code> (where the target of the hash is a segment) and (2) anytime that a C2PA Manifest is included in a live video stream, it shall be incorporated into a <code>uuid</code> box as described in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a> (as that is the standard location for a C2PA Manifest in BMFF content).</p>
+<p>The live video architecture builds upon this specification&#8217;s support for BMFF-based asset embedding, adding mechanisms to support real-time content validation. The two key parts of that are (1) any hashing of content shall be done using a standard <code>bmff-hash-map</code> (where the target of the hash is a segment) and (2) anytime that a C2PA Manifest Store is included in a live video stream, it shall be incorporated into a <code>uuid</code> box as described in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a> (as that is the standard location for a C2PA Manifest Store in BMFF content).</p>
 </div>
 <div class="paragraph">
 <p>For live video content, the <code>uuid</code> box containing a C2PA Manifest Store may also be present in any segment. This box will be referred to as the "C2PA Manifest Box" in the context of live video.</p>
@@ -14014,7 +14014,7 @@ It does not support <a href="https://www.iso.org/standard/91403.html">MPEG Trans
 <div class="sect3">
 <h4 id="_segment_based_validation"><a class="anchor" href="#_segment_based_validation"></a>19.2.2. Segment-based validation</h4>
 <div class="paragraph">
-<p>Due to the necessity to validate each segment of the live video stream independently from each other, the hash of each segment&#8217;s content needs to be provided as part of that segment. Two different methods for signing that information are described enabling a given implementation to choose the most appropriate one for its needs. Either method can be used independently and implementations are not required to support both.</p>
+<p>Due to the necessity to validate each segment of the live video stream independently from each other, the hash of each segment&#8217;s content needs to be provided as part of that segment. Two different methods for signing that information are described, enabling a given claim generator to choose the most appropriate one for its needs. Either method can be used, and validators are not required to support both.</p>
 </div>
 <div class="paragraph">
 <p>These methods are:</p>
@@ -14030,11 +14030,11 @@ It does not support <a href="https://www.iso.org/standard/91403.html">MPEG Trans
 </ul>
 </div>
 <div class="paragraph">
-<p>Other C2PA-defined live video binding schemes (for example, anchor-point-based schemes that derive per-segment validation values by chaining across segments) may also be used, provided that they (a) compute segment hashes using a standard <code>bmff-hash-map</code> as defined by this specification and (b) embed or reference a C2PA Manifest using a <code>uuid</code> box as described in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a>.</p>
+<p>Other C2PA-defined live video binding schemes (for example, anchor-point-based schemes that derive per-segment validation values by chaining across segments) may also be used, provided that they (a) compute segment hashes using a standard <code>bmff-hash-map</code> as defined by this specification and (b) embed or reference a C2PA Manifest Store using a <code>uuid</code> box as described in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_manifest_binding_in_an_initialization_segment"><a class="anchor" href="#_manifest_binding_in_an_initialization_segment"></a>19.2.3. Manifest Binding in an initialization segment</h4>
+<h4 id="_c2pa_manifest_binding_in_an_initialization_segment"><a class="anchor" href="#_c2pa_manifest_binding_in_an_initialization_segment"></a>19.2.3. C2PA Manifest binding in an initialization segment</h4>
 <div class="paragraph">
 <p>For those use cases that require (or desire) the presence of an initialization segment, it shall contain a <code>uuid</code> box, whose <code>bmff-hash-map</code> includes the <code>moov</code> box to establish a cryptographic relationship between the initialization segment and the media segments.</p>
 </div>
@@ -14045,7 +14045,7 @@ It does not support <a href="https://www.iso.org/standard/91403.html">MPEG Trans
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The reason for this binding is to ensure that the C2PA Manifest corresponds to the specific media content, which prevents replay attacks or content substitution.
+The reason for this binding is to ensure that the C2PA Manifest corresponds to the specific media content, which prevents replay attacks and content substitution.
 </td>
 </tr>
 </table>
@@ -14057,10 +14057,10 @@ The reason for this binding is to ensure that the C2PA Manifest corresponds to t
 <div class="sect3">
 <h4 id="_description_25"><a class="anchor" href="#_description_25"></a>19.3.1. Description</h4>
 <div class="paragraph">
-<p>A live video stream may use per-segment C2PA Manifest Boxes to provide per-segment validation. When using this approach, each media segment shall contain a C2PA Manifest Box carried in a <code>uuid</code> box as defined in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a>. The active C2PA Manifest for each segment shall contain a bmff-hash assertion (<code>c2pa.hash.bmff.v3</code>) that covers the bytes of that segment, a <a href="#livevideo_segment">Section 19.3.2, &#8220;Live Video Segment Assertion&#8221;</a> and may also contain any other assertions relevant to that segment.</p>
+<p>A live video stream may use per-segment C2PA Manifest Boxes to provide per-segment validation. When using this approach, each media segment shall contain a C2PA Manifest Box carried in a <code>uuid</code> box as defined in <a href="#uuid_box">Section A.5.1, &#8220;The <code>'uuid'</code> Box for C2PA&#8221;</a>. The active C2PA Manifest for each segment shall contain a BMFF hash assertion (<code>c2pa.hash.bmff.v3</code>) that covers the bytes of that segment, a <a href="#livevideo_segment">Section 19.3.2, &#8220;Live Video Segment Assertion&#8221;</a> and may also contain any other assertions relevant to that segment.</p>
 </div>
 <div class="paragraph">
-<p>Implementations may derive additional per-segment validation values (e.g., anchor-point-based chaining values) from segment hashes and embed them in the Manifest.</p>
+<p>Claim generators may derive additional per-segment validation values (e.g., anchor-point-based chaining values) from segment hashes and embed them in the Manifest.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -14069,7 +14069,7 @@ The reason for this binding is to ensure that the C2PA Manifest corresponds to t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This method does not require session keys, <code>verifiable-segment-info-map</code>, or <code>emsg</code> boxes and can be used independently of the <a href="#verifiable_segment_info">Section 19.4, &#8220;Verifiable Segment Info method&#8221;</a>.
+This method does not require session keys, <code>verifiable-segment-info-map</code>, or <code>emsg</code> boxes, and can be used independently of the <a href="#verifiable_segment_info">Section 19.4, &#8220;Verifiable Segment Info method&#8221;</a>.
 </td>
 </tr>
 </table>
@@ -14099,7 +14099,7 @@ The value of <code>streamId</code> can be any string that uniquely identifies th
 <p>While each segment is validated independently, it is important to maintain the continuity of the live video stream. To facilitate this, the live video segment assertion shall contain a <code>continuityMethod</code> field that indicates the method used to ensure continuity between segments, through the use of cryptographic links between adjacent segments.</p>
 </div>
 <div class="paragraph">
-<p>This standard only defines a single value at this time - "c2pa.manifestId" - which indicates that the continuity is ensured by matching the <code>previousManifestId</code> field (to the previous segment&#8217;s C2PA Manifest). Implementers may define additional continuity methods and shall use a label as described in <a href="#assertion_labels">Section 6.2, &#8220;Labels&#8221;</a> to identify them.</p>
+<p>This specification only defines a single value at this time - <code>c2pa.manifestId</code> - which indicates that the continuity is ensured by matching the <code>previousManifestId</code> field (to the previous segment&#8217;s C2PA Manifest). Implementers may define additional continuity methods and shall use a label as described in <a href="#assertion_labels">Section 6.2, &#8220;Labels&#8221;</a> to identify them.</p>
 </div>
 <div class="paragraph">
 <p>When using the <code>c2pa.manifestId</code> continuity method, the live video segment assertion shall contain a <code>previousManifestId</code> field that provides the manifest identifier of the previous segment&#8217;s C2PA Manifest (described in the <code>livevideo-segment-map-manifestId</code> rule). Other continuity methods may add additional fields as needed, provided the fields are also named as described in <a href="#assertion_labels">Section 6.2, &#8220;Labels&#8221;</a>.</p>
@@ -14153,7 +14153,7 @@ livevideo-segment-map-manifestId = {
 <div class="paragraph">
 <p>A <code>verifiable-segment-info</code> is a <code>COSE_Sign1_Tagged</code> structure
 where the payload field is the CBOR serialized <code>segment-info-map</code>.
-The payload shall be present and not be detached.
+The payload shall be present and shall not be detached.
 The signature is created by a private <a href="#session_keys">session key</a>.
 The protected header shall carry the identifier of the algorithm used for the signature (<code>alg</code> field)
 and optionally, a timestamp representing "claimed time of signing" for the segment (<code>iat</code> field, <a href="https://datatracker.ietf.org/doc/html/rfc8392">RFC 8392</a>).
@@ -14308,15 +14308,15 @@ This allows for dynamic updates to the C2PA Manifest information while maintaini
 <p>Session keys are asymmetric key pairs. Any of the cryptographic algorithms allowed for <a href="#certificate-requirements">claim generator X.509 certificates</a> may be used.</p>
 </div>
 <div class="paragraph">
-<p>When using session-specific keys, they shall be generated at the start of a live video session, but may also be generated and delivered via updated manifests in later segments (either initialization or other segments).  Session keys are valid for a limited period which enables key rotation. Session-specific keys should be updated when the provenance changes.</p>
+<p>When using session-specific keys, they shall be generated at the start of a live video session, but may also be generated and delivered via updated manifests in later segments (either initialization or other segments).  Each session key is used for a limited period, which enables key rotation. Session-specific keys should be updated when the provenance changes.</p>
 </div>
 <div class="paragraph">
 <p>The public halves of the session keys are delivered inside a C2PA Manifest. The initial set of keys shall be part of the C2PA Manifest included in the initialization segment.
-Session keys may also be retrieved from additional initialization segments, a C2PA Manifest included in a <a href="#c2pa_manifest_box">C2PA Manifest Box</a>, or from the <code>manifestUri</code> included in a <code>verifiable-segment-info</code>.
+Session keys may also be retrieved from additional initialization segments, from the active C2PA Manifest included in a <a href="#c2pa_manifest_box">C2PA Manifest Box</a>, or from the <code>manifestUri</code> included in a <code>verifiable-segment-info</code>.
 If a receiver finds a <code>verifiable-segment-info</code> signed with a session key not yet known to the receiver, the receiver should extract updated session keys from the manifest carried in the <a href="#c2pa_manifest_box">C2PA Manifest Box</a>, if present.
-If no <a href="#c2pa_manifest_box">C2PA Manifest Box</a> is present in the segment, then the receiver should attempt to retrieve a manifest from the URL specified in the <code>manifestUri</code> field of the <code>verifiable-segment-info</code>, if present.
-If no Manifest is present in the current segment, the receiver shall look in the Manifest that accompanied the initialization segment.
-After retrieving the manifest, the receiver shall ensure that its manifest identifier matches the one provided in the <code>manifestId</code> field of the <code>verifiable-segment-info</code>.</p>
+If no <a href="#c2pa_manifest_box">C2PA Manifest Box</a> is present in the segment, then the receiver should attempt to retrieve a C2PA Manifest Store from the URL specified in the <code>manifestUri</code> field of the <code>verifiable-segment-info</code>, if present (see <a href="#_external_manifests">Section 11.4, &#8220;External Manifests&#8221;</a>).
+If no C2PA Manifest is present in the current segment, the receiver shall look in the C2PA Manifest that accompanied the initialization segment.
+After retrieving the C2PA Manifest, the receiver shall ensure that its manifest identifier matches the one provided in the <code>manifestId</code> field of the <code>verifiable-segment-info</code>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
