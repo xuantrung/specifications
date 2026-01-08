@@ -4,18 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>C2PA User Experience Guidance for Implementers :: C2PA Specifications</title>
-    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.0/ux/UX_Recommendations.html">
-    <meta name="page-spec" content="1.0@specifications:ux:UX_Recommendations.adoc">
-    <meta name="generator" content="Antora 3.1.7">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-<link rel="stylesheet" href="../../../_/css/search.css">
-    <link rel="icon" href="../../../_/img/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.2/ux/UX_Recommendations.html">
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
+<link rel="icon" type="image/svg+xml" sizes="any" href="../../../_/img/C2PA-favicon.svg">
+<link rel="mask-icon" href="../../../_/img/C2PA-logo.svg" color="#e40046">
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
-    <div class="navbar-brand">
-      <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="64"></a>
+   <div class="navbar-brand">
+    <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
       <a class="navbar-item title" href="../../..">C2PA Specifications</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
@@ -28,44 +28,34 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">Download</div>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="../specs/_attachments/C2PA_Specification.pdf">Technical Specifications</a> 
-            <a class="navbar-item" href="../explainer/_attachments/Explainer.pdf">Explainer</a> 
-            <a class="navbar-item" href="../guidance/_attachments/Guidance.pdf">Guidance for Implementers</a> 
-            <a class="navbar-item" href="_attachments/UX_Recommendations.pdf">User Experience Guidance</a> 
-            <a class="navbar-item" href="../security/_attachments/Security_Considerations.pdf">Security Considerations</a> 
-            <a class="navbar-item" href="../security/_attachments/Harms_Modelling.pdf">Harms Modelling</a> 
-            <a class="navbar-item" href="../specs/_attachments/C2PA_Schemas.zip">CDDL and JSON Schemas</a> 
+            <a class="navbar-item" href="../../2.3/specs/_attachments/C2PA_Specification.pdf" target="_blank">Technical Specifications (2.3)</a>
+            <a class="navbar-item" href="../../2.3/explainer/_attachments/Explainer.pdf" target="_blank">Explainer (2.3)</a>
+            <a class="navbar-item" href="../../2.3/guidance/_attachments/Guidance.pdf" target="_blank">Guidance for Implementers (2.3)</a>
+            <a class="navbar-item" href="../../2.3/specs/_attachments/C2PA_Schemas.zip" target="_blank">CDDL and JSON Schemas (2.3)</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="../../2.2/specs/_attachments/C2PA_Specification.pdf" target="_blank">Technical Specifications (2.2)</a>
+            <a class="navbar-item" href="../../2.2/explainer/_attachments/Explainer.pdf" target="_blank">Explainer (2.2)</a>
+            <a class="navbar-item" href="../../1.3/ux/_attachments/UX_Recommendations.pdf" target="_blank">UX Recommendations</a>
+            <a class="navbar-item" href="../security/_attachments/Security_Considerations.pdf" target="_blank">Security Considerations</a>
+            <a class="navbar-item" href="../security/_attachments/Harms_Modelling.pdf" target="_blank">Harms Modelling</a>
           </div>
         </div>
-          <div class="navbar-item">
-            <input id="search-input" type="text" placeholder="Search docs">
-          </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-item" href="https://asciidoctor.zulipchat.com" target="_blank" rel="noopener" data-title="Communication">
-            <span class="icon"><img src="../../../_/img/octicons-24.svg#view-comment-discussion"></span>
-          </a>
-          <div class="navbar-dropdown is-right">
-            <a class="navbar-item has-icon" href="https://github.com/c2pa-org" target="_blank" rel="noopener">
-              <span class="icon"><img src="../../../_/img/octicons-16.svg#view-mark-github"></span>
-              <span>Repository</span>
-            </a>
-            <a class="navbar-item has-icon" href="https://twitter.com/c2pa" target="_blank" rel="noopener">
-              <span class="icon"><img src="../../../_/img/octicons-16.svg#view-hash"></span>
-              <span>Tweets</span>
-            </a>
-          </div>
-        </div>
+        <a class="navbar-item github" href="https://github.com/c2pa-org" target="_blank" rel="noopener" aria-label="C2PA on GitHub" title="C2PA on GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="#000" role="img" aria-hidden="true" style="display:block">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </nav>
 </header>
 <div class="body">
-<div class="nav-container">
+<div class="nav-container" data-component="specifications" data-version="1.0">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-menu is-active is-loading" data-panel="menu">
+<div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
-    <button class="nav-menu-toggle" title="Toggle expand/collapse all"></button>
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
     <h3 class="title"><a href="../index.html">C2PA Specifications</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -79,7 +69,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../guidance/Guidance.html">Guidance for Implementors</a>
   </li>
-  <li class="nav-item is-current-url" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="UX_Recommendations.html">User Experience Guidance</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -92,37 +82,6 @@
   </li>
 </ul>
   </nav>
-  <script>
-;(function () {
-  var panel = document.querySelector('.nav-panel-menu')
-  var page
-  var hash = window.location.hash
-  if (hash) {
-    if (~hash.indexOf('%')) hash = decodeURIComponent(hash)
-    if (~hash.indexOf('"')) hash = hash.replace(/(?=")/g, '\\')
-    var link = panel.querySelector('.nav-link[href="' + hash + '"]')
-    if (link) page = link.parentNode
-    else if ((page = panel.querySelector('.is-current-url'))) page.classList.add('is-provisional')
-  } else {
-    page = panel.querySelector('.is-current-url')
-  }
-  if (page) {
-    var ancestor = page
-    while ((ancestor = ancestor.parentNode) && ancestor !== panel) {
-      if (ancestor.className === 'nav-item') ancestor.classList.add('is-current-path', 'is-active')
-    }
-    page.classList.add('is-current-page', 'is-active')
-    if (panel.scrollHeight > panel.clientHeight) {
-      var panelRect = panel.getBoundingClientRect()
-      var linkRect = page.querySelector('.nav-link').getBoundingClientRect()
-      panel.scrollTop += Math.round(linkRect.top - panelRect.top - (panelRect.height - linkRect.height) * 0.5)
-    }
-  } else {
-    panel.scrollTop = 0
-  }
-  panel.classList.remove('is-loading')
-})()
-  </script>
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
@@ -131,9 +90,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../../2.2/index.html">C2PA Specifications</a>
+      <div class="title"><a href="../../2.3/index.html">C2PA Specifications</a></div>
       <ul class="versions">
         <li class="version is-latest">
+          <a href="../../2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
           <a href="../../2.2/index.html">2.2</a>
         </li>
         <li class="version">
@@ -176,7 +138,8 @@
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">1.0</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../2.2/index.html">2.2</a>
+    <a class="version is-missing" href="../../2.3/index.html">2.3</a>
+    <a class="version" href="../../2.2/ux/UX_Recommendations.html">2.2</a>
     <a class="version is-missing" href="../../2.1/index.html">2.1</a>
     <a class="version" href="../../2.0/ux/UX_Recommendations.html">2.0</a>
     <a class="version" href="../../1.4/ux/UX_Recommendations.html">1.4</a>
@@ -260,7 +223,7 @@
 <div class="content">
 <div class="imageblock text-center">
 <div class="content">
-<a class="image" href="http://creativecommons.org/licenses/by/4.0/"><img src="_images/CCby4.png" alt="Creative Commons License"></a>
+<a class="image" href="http://creativecommons.org/licenses/by/4.0/"><img src="../../1.1/ux/_images/CCby4.png" alt="Creative Commons License"></a>
 </div>
 </div>
 <div class="paragraph text-center">
@@ -275,7 +238,7 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The C2PA intends to provide clear guidance for implementers of provenance-enabled user experiences (UX). Developing these recommendations is an ongoing process that involves diverse stakeholders. The results will balance uniformity and familiarity with utility and flexibility for users across contexts, platforms, and devices. Our intent is to present a comprehensive range of conventions for the user experience and evolve them based on feedback. Please reference the Glossary in the <a href="../specs/C2PA_Specification.html#glossary" class="xref page">C2PA Specifications</a> for clarifications on terminology used within this document. For general guidance on other areas of the specification, please see <a href="#security:Guidance.adoc" class="xref unresolved">Guidance for Implementors</a>.</p>
+<p>The C2PA intends to provide clear guidance for implementers of provenance-enabled user experiences (UX). Developing these recommendations is an ongoing process that involves diverse stakeholders. The results will balance uniformity and familiarity with utility and flexibility for users across contexts, platforms, and devices. Our intent is to present a comprehensive range of conventions for the user experience and evolve them based on feedback. Please reference the Glossary in the <a href="../specs/C2PA_Specification.html#glossary" class="xref page">C2PA Specifications</a> for clarifications on terminology used within this document. For general guidance on other areas of the specification, please see <a href="../guidance/Guidance.html" class="xref page">Guidance for Implementors</a>.</p>
 </div>
 </div>
 </div>
@@ -342,9 +305,9 @@
 <div class="paragraph">
 <p>Because the complete set of C2PA data for a given asset can be overwhelming to a user, C2PA describes four levels of progressive disclosure which guide the designs:</p>
 </div>
-<div id="figure-0" class="imageblock unresolved">
+<div id="figure-0" class="imageblock">
 <div class="content">
-<img src="_images/disclosure_summary@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/disclosure_summary_2x.png" alt="image$disclosure summary 2x">
 </div>
 <div class="title">Figure 1. Disclosure levels</div>
 </div>
@@ -374,9 +337,9 @@ In addition to these standard levels, there will be common tools available for t
 <div class="sect1">
 <h2 id="_l1_indicator_of_c2pa_data"><a class="anchor" href="#_l1_indicator_of_c2pa_data"></a>4. L1 – indicator of C2PA data</h2>
 <div class="sectionbody">
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/L1-display-options@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/L1-display-options_2x.png" alt="image$L1 display options 2x">
 </div>
 <div class="title">Figure 2. The L1 indicator</div>
 </div>
@@ -397,14 +360,14 @@ In addition to these standard levels, there will be common tools available for t
 </div>
 <div class="sect2">
 <h3 id="_validation_states"><a class="anchor" href="#_validation_states"></a>4.3. Validation states</h3>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/L1-states@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/L1-states_2x.png" alt="image$L1 states 2x">
 </div>
 <div class="title">Figure 3. L1 validation states</div>
 </div>
 <div class="paragraph">
-<p>In the event that the active manifest is incomplete or invalid, a stateful indicator of data validation can be displayed. There are several scenarios when displaying a data validation state may be necessary. See Chapter 14. Validation in the <a href="#security:C2PA_Specification.adoc" class="xref unresolved">C2PA Technical Specifications</a> for further information.</p>
+<p>In the event that the active manifest is incomplete or invalid, a stateful indicator of data validation can be displayed. There are several scenarios when displaying a data validation state may be necessary. See Chapter 14. Validation in the <a href="../specs/C2PA_Specification.html" class="xref page">C2PA Technical Specifications</a> for further information.</p>
 </div>
 </div>
 <div class="sect2">
@@ -467,9 +430,9 @@ In addition to these standard levels, there will be common tools available for t
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_minimum_viable_provenance"><a class="anchor" href="#_minimum_viable_provenance"></a>5.1. Minimum viable provenance</h3>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/discrete-1@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/discrete-1_2x.png" alt="image$discrete 1 2x">
 </div>
 <div class="title">Figure 4. Minimum viable provenance display</div>
 </div>
@@ -485,9 +448,9 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>L2 UI options are displayed along a spectrum from depth of information to breadth of provenance representation. In the figure below, the left side represents a single manifest summary and the right side represents the complete provenance summary depicting multiple manifests. However, the middle example shows a customized provenance summary wherein certain manifest assertions are highlighted. This flexibility allows implementers to show more depth for a given subset of manifests.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/L2_spectrum@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/L2_spectrum_2x.png" alt="image$L2 spectrum 2x">
 </div>
 <div class="title">Figure 5. Provenance summary depth versus breadth</div>
 </div>
@@ -497,9 +460,9 @@ In addition to these standard levels, there will be common tools available for t
 </div>
 <div class="sect2">
 <h3 id="_manifest_summaries_depth"><a class="anchor" href="#_manifest_summaries_depth"></a>5.3. Manifest summaries (depth)</h3>
-<div id="manifest-summary" class="imageblock unresolved">
+<div id="manifest-summary" class="imageblock">
 <div class="content">
-<img src="_images/L2_depth@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/L2_depth_2x.png" alt="image$L2 depth 2x">
 </div>
 <div class="title">Figure 6. A single manifest summary</div>
 </div>
@@ -512,45 +475,45 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>A provenance summary represents the collection of manifests related to the C2PA-enabled content. Manifests should be presented in the order that they are referenced via ingredient assertions, starting with the active manifest at the top and ending with the origin ingredients below. Origin ingredients represent the beginning of their respective history branches.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/summary-1@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/summary-1_2x.png" alt="image$summary 1 2x">
 </div>
 <div class="title">Figure 7. Provenance summary, two manifests</div>
 </div>
 <div class="paragraph">
 <p>Summary displays should show at minimum the origin ingredients and active manifests, or if screen real estate allows, with at least one manifest in between.</p>
 </div>
-<div id="provenance-summary" class="imageblock unresolved">
+<div id="provenance-summary" class="imageblock">
 <div class="content">
-<img src="_images/summary-2@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/summary-2_2x.png" alt="image$summary 2 2x">
 </div>
 <div class="title">Figure 8. Provenance summary, three manifests</div>
 </div>
 <div class="paragraph">
 <p>In order to provide users with a succinct summary and to allow for limited screen real estate, the manifests in between origin and active can be collapsed and represented as a numerical count. C2PA recommends a baseline rule for collapsing manifests if the total number exceeds four. However, this threshold can be altered according to context. In keeping with the core recommendations, a link to the full set of data in L3 should always follow the summary list of manifests.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/summary-3@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/summary-3_2x.png" alt="image$summary 3 2x">
 </div>
 <div class="title">Figure 9. Provenance summary, four manifests</div>
 </div>
 <div class="paragraph">
 <p>When multiple origins are present, either as multiple ingredients in a single manifest or across multiple manifests, they can be summarized in the origin section of the UI. The L1 indicator can be used as a badge on ingredient thumbnails to distinguish C2PA-enabled assets.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/summary-4@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/summary-4_2x.png" alt="image$summary 4 2x">
 </div>
 <div class="title">Figure 10. Provenance summary, two origins</div>
 </div>
 <div class="paragraph">
 <p>L2 UI is flexible enough to allow for various combinations of manifest counts and origin assets.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/summary-5@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/summary-5_2x.png" alt="image$summary 5 2x">
 </div>
 <div class="title">Figure 11. Provenance summary, multiple origins and manifests</div>
 </div>
@@ -560,9 +523,9 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>Implementers should consider audience needs when weighing the balance of depth and breadth in combinatory summaries in order to concisely display the most complete and relevant representation of content provenance. For example, travel companies may opt to display location assertions from the origin manifest in a provenance summary so as to provide their users with key information. Similarly, a news publisher may choose to show action assertions from an ingredient manifest to disclose edits that occurred to published content.</p>
 </div>
-<div id="provenance-combinations" class="imageblock unresolved">
+<div id="provenance-combinations" class="imageblock">
 <div class="content">
-<img src="_images/L2_middle@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/L2_middle_2x.png" alt="image$L2 middle 2x">
 </div>
 <div class="title">Figure 12. Customized summary combinations</div>
 </div>
@@ -574,24 +537,24 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>There will be instances when C2PA-enabled content is incomplete data. Most commonly, this will happen if the content is edited without capturing C2PA data. In this event, the L1, L2 and L3 UI should reflect when data is incomplete, as well as the manifest data that came before or after. A dotted line can be drawn between manifests to suggest the connection is not the same as between valid, intact manifests. Incomplete data should not automatically signal that one should discount the content as untrustworthy. For this reason, C2PA discourages the use of an indicator designed to trigger alarm, which should be reserved for more apparent tamper-evident use cases, in favour of a more descriptive and neutral indicator.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/error-1@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/error-1_2x.png" alt="image$error 1 2x">
 </div>
 <div class="title">Figure 13. Incomplete data in the active manifest position</div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/error-4@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/error-4_2x.png" alt="image$error 4 2x">
 </div>
 <div class="title">Figure 14. Incomplete data in an ingredient position</div>
 </div>
 <div class="paragraph">
 <p>Following the established pattern of collapsing additional manifests, incomplete data can be called out via the text string to bring awareness to the questionable validity of ingredients.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/error-2@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/error-2_2x.png" alt="image$error 2 2x">
 </div>
 <div class="title">Figure 15. Incomplete data collapsed</div>
 </div>
@@ -601,15 +564,15 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>There may be instances when C2PA-enabled content has been maliciously edited to tamper with C2PA data, or is signed by an untrusted entity. In this case, no additional prior data can be displayed.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/error-5@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/error-5_2x.png" alt="image$error 5 2x">
 </div>
 <div class="title">Figure 16. Invalid data in the active manifest position</div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/error-3@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/error-3_2x.png" alt="image$error 3 2x">
 </div>
 <div class="title">Figure 17. Invalid data in an ingredient position</div>
 </div>
@@ -728,9 +691,9 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>A notable difference with video content is the necessity for a player for viewing. This limits the ways in which an L1 indicator of C2PA data can be placed on the content and interacted with, and may likely require an integration into the player itself. However, the L1 indicator may still be placed next to the video outside of the content.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/video-1@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/video-1_2x.png" alt="image$video 1 2x">
 </div>
 <div class="title">Figure 18. Video L1</div>
 </div>
@@ -740,15 +703,15 @@ In addition to these standard levels, there will be common tools available for t
 <div class="paragraph">
 <p>Video L2 displays should largely follow the same patterns as described in <a href="#L2 – progressive disclosures">L2 – progressive disclosures</a>. However, for now we stop short of recommending the inclusion of ingredients or non-C2PA origin content due to the potential complexity of volume. Instead, we suggest showing a minimal manifest summary or provenance summary.</p>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/video-2@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/video-2_2x.png" alt="image$video 2 2x">
 </div>
 <div class="title">Figure 19. Video L2 minimum viable provenance</div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="_images/video-3@2x.png" alt="2x">
+<img src="../../1.1/ux/_images/video-3_2x.png" alt="image$video 3 2x">
 </div>
 <div class="title">Figure 20. Video L2 provenance summary</div>
 </div>
@@ -904,7 +867,7 @@ In addition to these standard levels, there will be common tools available for t
 <footer class="footer">
   <div class="footer-main">
     <figure class="footer-brand">
-      <a class="logo" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="64"></a>
+      <a class="logo" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
       <figcaption class="footer-brand-name"><a href="https://c2pa.org">C2PA</a></figcaption>
     </figure>
     <ul class="footer-brand-links">
@@ -913,12 +876,12 @@ In addition to these standard levels, there will be common tools available for t
       <li><a href="https://github.com/c2pa-org" target="_blank" rel="noopener">Project</a></li>
     </ul>
     <p class="footer-brand-follow">
-      <a href="https://twitter.com/c2pa_org" title="Follow us on Twitter" target="_blank" rel="noopener"><img src="../../../_/img/twitter-logo.svg" alt="Twitter logo" class="logo" width="28"><span class="handle">@C2PA_org</span></a>
+      <a href="https://twitter.com/c2pa_org" title="Follow us on Twitter" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231d9bf0'%3E%3Cpath d='M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9 0 11-4s1-8.2 0-11c-.5-.55-.5-1-1-1.2z'/%3E%3C/svg%3E" alt="Twitter logo" class="logo" width="24" style="display:inline; margin-right:0.25em;"><span class="handle">@C2PA_org</span></a>
     </p>
   </div>
   <div class="footer-legal">
-    <p>Copyright © 2025 Coalition for Content Provenance and Authenticity (C2PA). Except where noted, the content is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.</p>
-    <p>The <a href="https://github.com/asciidoctor/asciidoctor-docs-ui" target="_blank" rel="noopener">UI for this site</a> is derived from the Antora default UI and is licensed under the MPL-2.0 license. Several icons are imported from <a href="https://primer.style/octicons/" target="_blank" rel="noopener">Octicons</a> and are licensed under the MIT license.</p>
+    <p>Copyright © 2026 Coalition for Content Provenance and Authenticity (C2PA). Except where noted, the content is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.</p>
+    <p>The <a href="https://gitlab.com/antora/antora-ui-default" target="_blank" rel="noopener">UI for this site</a> is the Antora default UI, licensed under the MPL-2.0 license.</p>
   </div>
   <div class="footer-thanks">
     <p>Thanks to our <a href="https://c2pa.org/membership/" target="_blank" rel="noopener">membership</a> for helping to make this project possible.</p>
@@ -927,9 +890,5 @@ In addition to these standard levels, there will be common tools available for t
 </footer>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
-<script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/specifications/1.0/ux/UX_Recommendations.html"></script>
-<script async src="../../../_/../search-index.js"></script>
-
   </body>
 </html>

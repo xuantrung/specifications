@@ -4,7 +4,7 @@
 
 == Status
 
-All existing repos have been reorganized & we have a https://c2pa.org/specifications/specifications/1.0/index.html[site]!
+All existing repos have been reorganized & we have a https://c2pa.org/specifications/specifications/x.y/index.html[site]!
 
 NOTE: I will probably fix the URL...
 
