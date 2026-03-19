@@ -19,7 +19,7 @@ jobs:
       - name: Download JSON file
         run: |
           mkdir -p softbinding-alg-list 
-          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o target-folder/softbinding-algorithm-list.json
+          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o softbinding-alg-list/softbinding-algorithm-list.json
 
       - name: Commit and push if changed
         run: |
