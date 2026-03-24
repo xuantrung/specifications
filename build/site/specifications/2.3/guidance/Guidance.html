@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>C2PA Implementation Guidance :: C2PA Specifications</title>
-    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.3/guidance/Guidance.html">
+    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.4/guidance/Guidance.html">
     <meta name="generator" content="Antora 3.1.14">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
@@ -162,7 +162,7 @@
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.3</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../2.4/index.html">2.4</a>
+    <a class="version" href="../../2.4/guidance/Guidance.html">2.4</a>
     <a class="version is-current" href="Guidance.html">2.3</a>
     <a class="version" href="../../2.2/guidance/Guidance.html">2.2</a>
     <a class="version is-missing" href="../../2.1/index.html">2.1</a>
@@ -1519,7 +1519,7 @@ In order to adhere to the <a href="https://c2pa.org/principles/">C2PA Guiding Pr
 <p>A DLT may be used to store directly a key-value index that maps soft bindings (keys) to the URLs of manifest repositories and/or a unique identifier that may be used to recover the relevant C2PA Manifest.</p>
 </div>
 <div class="paragraph">
-<p>The decentralized resolution process begins with a known smart contract address residing on a known instance of a distributed ledger. This may be expressed, for example, via the <a href="https://chainagnostic.org/CAIPs/caip-2">CAIP-2 Specification</a> as a URI within the softBindingAlgorithmApis field of an entry in the Soft Binding Algorithm List. A specification for decentralized manifest recovery process is provided by the <a href="../../2.4/softbinding/Decoupled.html#SBR-API" class="xref page">C2PA Decentralized Soft Binding Resolution Process</a>.</p>
+<p>The decentralized resolution process begins with a known smart contract address residing on a known instance of a distributed ledger. This may be expressed, for example, via the <a href="https://chainagnostic.org/CAIPs/caip-2">CAIP-2 Specification</a> as a URI within the softBindingAlgorithmApis field of an entry in the Soft Binding Algorithm List. A specification for decentralized manifest recovery process is provided by the <a href="#2.2@softbinding:Decoupled.adoc#SBR-API" class="xref unresolved">C2PA Decentralized Soft Binding Resolution Process</a>.</p>
 </div>
 <div class="paragraph">
 <p>The first step is to identify the protocol for interacting with the key-value store, by calling a specific method on that smart contract (e.g. <code>describe</code> for Ethereum Virtual Machine based ledgers) that returns configuration information in a JSON schema.</p>
