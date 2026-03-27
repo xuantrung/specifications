@@ -68,7 +68,7 @@
     <a class="nav-link" href="../specs/C2PA_Specification.html">Content Credentials</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../crJSON/crjson-format.html">Content Credential JSON (crJSON)</a>
+    <a class="nav-link" href="../crJSON/crjson-format.html">Content Credentials JSON (crJSON)</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
@@ -362,7 +362,7 @@
 </div>
 </div>
 <div class="sect4">
-<h5 id="_fingerprinting_algorithms_2"><a class="anchor" href="#_fingerprinting_algorithms_2"></a>1.2.2.2. Fingerprinting Algorithms</h5>
+<h5 id="_fingerprinting_algorithms_2"><a class="anchor" href="#_fingerprinting_algorithms_2"></a>1.2.2.2. Fingerprinting algorithms</h5>
 <div class="paragraph">
 <p><a href="#fingerprint-golden">[fingerprint-golden]</a> provides an example flow leveraging the soft binding algorithm list and resolution API to retrieve a C2PA Manifest using an asset&#8217;s fingerprint and cross-check it with the local C2PA active manifest.</p>
 </div>
@@ -391,17 +391,121 @@
 <div class="sect2">
 <h3 id="soft-binding-algorithm-list"><a class="anchor" href="#soft-binding-algorithm-list"></a>1.3. Soft Binding Algorithm List</h3>
 <div class="paragraph">
-<p>The <a href="https://github.com/c2pa-org/softbinding-algorithm-list">soft binding algorithm list</a> is an authoritative list of C2PA supported soft binding algorithms. It lists the fingerprinting and watermarking technologies that C2PA clients may use to recover manifests. Entries in the list also contain additional information on the algorithms to facilitate interoperability.</p>
+<p>The <a href="https://spec.c2pa.org/softbinding-alg-list">soft binding algorithm list</a> is an authoritative list of C2PA supported soft binding algorithms. It lists the fingerprinting and watermarking technologies that C2PA clients may use to recover manifests. Entries in the list also contain additional information on the algorithms to facilitate interoperability.</p>
 </div>
 <div class="paragraph">
-<p>Developers wanting their soft binding algorithms to be referenced in soft binding assertions or in soft binding resolution API transactions shall request they be added as a new entries in the <a href="https://github.com/c2pa-org/softbinding-algorithm-list">soft binding algorithm list</a>.</p>
+<p>Developers wanting their soft binding algorithms to be referenced in soft binding assertions or in soft binding resolution API transactions shall request they be added as a new entries in the <a href="https://spec.c2pa.org/softbinding-alg-list">soft binding algorithm list</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="soft-binding-resolution-api"><a class="anchor" href="#soft-binding-resolution-api"></a>1.4. Soft Binding Resolution API specification</h3>
 <div class="paragraph">
-<p>The soft binding resolution API is a Web API providing a standard way of retrieving C2PA Manifest stores from a soft binding resolution API endpoint given a soft binding value, a manifest identifier, or an asset.</p>
+<p>The soft binding resolution API is a Web API providing a standard way of retrieving C2PA Manifest stores from a soft binding resolution API endpoint given a soft binding value, a manifest identifier, or an asset. It also offers a standard API for manifest repositories with API endpoints to store C2PA Manifests and link them to soft binding identifiers.</p>
 </div>
+<div class="sect3">
+<h4 id="_route_overview"><a class="anchor" href="#_route_overview"></a>1.4.1. Route overview</h4>
+<div class="paragraph">
+<p>The soft binding resolution API is organized into four route groups:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>query</code></dt>
+<dd>
+<p>searches for matching manifests using a soft binding. The soft binding value is either provided by the caller, or is computed from an asset.</p>
+</dd>
+<dt class="hdlist1"><code>fetch</code></dt>
+<dd>
+<p>retrieves C2PA Manifest Stores using provided identifiers, or verify a supplied receipt.</p>
+</dd>
+<dt class="hdlist1"><code>store</code></dt>
+<dd>
+<p>ingests C2PA Manifest Stores and create, update, or delete their associations with soft bindings.</p>
+</dd>
+<dt class="hdlist1"><code>service</code></dt>
+<dd>
+<p>exposes repository capabilities, such as the list of supported soft binding algorithms.</p>
+</dd>
+</dl>
+</div>
+<div class="sect4">
+<h5 id="_query_routes"><a class="anchor" href="#_query_routes"></a>1.4.1.1. Query routes</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>GET /matches/byBinding</code></dt>
+<dd>
+<p>Given a soft binding value and algorithm identifier, returns zero or more matching manifest identifiers. This is the preferred route when the query fits comfortably in a URL.</p>
+</dd>
+<dt class="hdlist1"><code>POST /matches/byBinding</code></dt>
+<dd>
+<p>Performs the same logical query as <code>GET /matches/byBinding</code>, but accepts the soft binding in a JSON request body. This route is intended for large soft binding values that may not fit within a URL.</p>
+</dd>
+<dt class="hdlist1"><code>POST /matches/byContent</code></dt>
+<dd>
+<p>Accepts an uploaded asset and returns zero or more matching manifest identifiers. This route is useful when the client can provide the asset directly and wants the repository to extract or compute the relevant soft binding.</p>
+</dd>
+<dt class="hdlist1"><code>POST /matches/byReference</code></dt>
+<dd>
+<p>An optional route that accepts a reference HTTPS URL instead of uploading the asset itself. It is intended primarily for large assets, such as large video files, where upload is inefficient or impractical.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_store_routes"><a class="anchor" href="#_store_routes"></a>1.4.1.2. Store routes</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>POST /manifests</code></dt>
+<dd>
+<p>Adds a C2PA Manifest Store to the repository and returns the active manifest identifier. Optionally, the service may also return a receipt proving repository ingestion of the C2PA Manifest Store.</p>
+</dd>
+<dt class="hdlist1"><code>POST /bindings</code></dt>
+<dd>
+<p>Creates an association between a soft binding value and the active manifest of a stored C2PA Manifest Store. This is the route used to register a binding after a manifest has been ingested.</p>
+</dd>
+<dt class="hdlist1"><code>PUT /bindings</code></dt>
+<dd>
+<p>Updates the manifest associated with an existing soft binding value. This route is used when a binding already exists and the repository should point that soft binding to an updated C2PA Manifest Store.</p>
+</dd>
+<dt class="hdlist1"><code>DELETE /manifests/{manifestId}</code></dt>
+<dd>
+<p>Removes the C2PA Manifest Store identified by the supplied active manifest identifier.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_fetch_routes"><a class="anchor" href="#_fetch_routes"></a>1.4.1.3. Fetch routes</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>GET /manifests/{manifestId}</code></dt>
+<dd>
+<p>Retrieves a stored manifest by identifier. By default this returns the full C2PA Manifest Store, but the client may request a C2PA Manifes Store containing only the active manifest.</p>
+</dd>
+<dt class="hdlist1"><code>GET /manifests/{manifestId}/receipts</code></dt>
+<dd>
+<p>Returns the repository receipt for a stored manifest together with its verification status. This allows clients to retrieve proof that the manifest was ingested by the repository.</p>
+</dd>
+<dt class="hdlist1"><code>POST /manifests/{manifestId}/receipts</code></dt>
+<dd>
+<p>Accepts a receipt from the client, verifies it against the specified manifest identifier, and returns the verification result.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_service_routes"><a class="anchor" href="#_service_routes"></a>1.4.1.4. Service routes</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>GET /services/supportedAlgorithms</code></dt>
+<dd>
+<p>Returns the watermarking and fingerprinting algorithms supported by the service for query operations. This helps clients determine which soft binding algorithms may be used with the repository.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_openapi_specification_of_the_soft_binding_resolution_api"><a class="anchor" href="#_openapi_specification_of_the_soft_binding_resolution_api"></a>1.4.2. OpenAPI Specification of the Soft Binding Resolution API</h4>
 <div class="paragraph">
 <p>The API specification and documentation is available below in the OpenAPI format as a <a href="#soft-binding-resolution-api-json">JSON</a> or <a href="#soft-binding-resolution-api-yaml">YAML</a> document.</p>
 </div>
@@ -2288,6 +2392,7 @@ components:
           tokenUrl: https://auth.example.com/oauth/token
           scopes:
             fetch:manifests: Search and read manifests within the manifest store.</code></pre>
+</div>
 </div>
 </div>
 </div>

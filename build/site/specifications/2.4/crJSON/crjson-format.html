@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Content Credential JSON (CrJSON) File Format Specification :: C2PA Specifications</title>
+    <title>Content Credentials JSON (crJSON) File Format Specification :: C2PA Specifications</title>
     <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.4/crJSON/crjson-format.html">
     <meta name="generator" content="Antora 3.1.14">
 <link rel="stylesheet" href="../../../_/css/site.css">
@@ -68,7 +68,7 @@
     <a class="nav-link" href="../specs/C2PA_Specification.html">Content Credentials</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="crjson-format.html">Content Credential JSON (crJSON)</a>
+    <a class="nav-link" href="crjson-format.html">Content Credentials JSON (crJSON)</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
@@ -163,7 +163,7 @@
   <ul>
     <li><a href="../index.html">C2PA Specifications</a></li>
     <li>Technical Specifications</li>
-    <li><a href="crjson-format.html">Content Credential JSON (crJSON)</a></li>
+    <li><a href="crjson-format.html">Content Credentials JSON (crJSON)</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -187,7 +187,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Content Credential JSON (CrJSON) File Format Specification</h1>
+<h1 class="page">Content Credentials JSON (crJSON) File Format Specification</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -200,10 +200,9 @@
 <li><a href="#_jsongenerator">3.3. <code>jsonGenerator</code></a></li>
 <li><a href="#_manifests">3.4. Manifests</a></li>
 <li><a href="#_claims">3.5. Claims</a></li>
-<li><a href="#_claim_v1_claim">3.6. <code>claim</code> (v1 claim)</a></li>
-<li><a href="#_assertions">3.7. Assertions</a></li>
-<li><a href="#_signature">3.8. Signature</a></li>
-<li><a href="#_manifest_validation_results">3.9. Manifest Validation Results</a></li>
+<li><a href="#_assertions">3.6. Assertions</a></li>
+<li><a href="#_signature">3.7. Signature</a></li>
+<li><a href="#_manifest_validation_results">3.8. Manifest Validation Results</a></li>
 </ul>
 </li>
 <li><a href="#_minimal_example">4. Minimal Example</a></li>
@@ -214,9 +213,9 @@
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
-<div class="imageblock text-center unresolved">
+<div class="imageblock text-center">
 <div class="content">
-<a class="image" href="http://creativecommons.org/licenses/by/4.0/"><img src="CCby4.png" alt="Creative Commons License"></a>
+<a class="image" href="http://creativecommons.org/licenses/by/4.0/"><img src="_images/CCby4.png" alt="Creative Commons License"></a>
 </div>
 </div>
 <div class="paragraph text-center">
@@ -231,7 +230,7 @@
 <h2 id="_scope"><a class="anchor" href="#_scope"></a>1. Scope</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describes a JSON serialization for Content Credentials (aka a C2PA manifest store) known as the <strong>Content Credential JSON</strong> format (abbreviated <strong>CrJSON</strong>). Its purpose is to provide a JSON-based representation of a C2PA manifest store with associated validation results for profile evaluation, interoperability testing, and validation reporting. This JSON representation is not intended to be a canonical source of cryptographic truth, or a general purpose machine readable Content Credentials format, but rather a derived view over C2PA data that is useful for export and interoperability purposes. It is not intended to be used as an input format for C2PA data, and it is not intended to be a lossless representation of all C2PA data. It is simply a specific JSON-LD serialization of information contained in a C2PA manifest store and its associated validation results.</p>
+<p>This document describes a JSON serialization for Content Credentials (aka a C2PA manifest store) known as the <strong>Content Credentials JSON</strong> format (abbreviated <strong>crJSON</strong>). Its purpose is to provide a JSON-based representation of a C2PA manifest store with associated validation results for profile evaluation, interoperability testing, and validation reporting. This JSON representation is not intended to be a canonical source of cryptographic truth, or a general purpose machine readable Content Credentials format, but rather a derived view over C2PA data that is useful for export and interoperability purposes. It is not intended to be used as an input format for C2PA data, and it is not intended to be a lossless representation of all C2PA data. It is simply a specific JSON-LD serialization of information contained in a C2PA manifest store and its associated validation results.</p>
 </div>
 </div>
 </div>
@@ -239,14 +238,14 @@
 <h2 id="_relationship_to_the_content_credentials_technical_specification"><a class="anchor" href="#_relationship_to_the_content_credentials_technical_specification"></a>2. Relationship to the Content Credentials Technical Specification</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>CrJSON does not replace C2PA claims, JUMBF, or COSE structures. Instead, it is a <strong>derived JSON view</strong> over C2PA data, and not independently verifiable.</p>
+<p>crJSON does not replace C2PA claims, JUMBF, or COSE structures. Instead, it is a <strong>derived JSON view</strong> over C2PA data, and not independently verifiable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">C2PA Asset/Manifest Store
   -&gt; Manifest extraction
   -&gt; Validation
-  -&gt; CrJSON transformation
+  -&gt; crJSON transformation
        |- @context
        |- manifests[]
        |    |- label
@@ -266,7 +265,7 @@
 <div class="sect2">
 <h3 id="_root_object"><a class="anchor" href="#_root_object"></a>3.1. Root Object</h3>
 <div class="paragraph">
-<p>A CrJSON document shall be a JSON-LD object.</p>
+<p>A crJSON document shall be a JSON-LD object.</p>
 </div>
 <div class="paragraph">
 <p>The following top-level properties are used:</p>
@@ -298,7 +297,7 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>jsonGenerator</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REQUIRED</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Information about the creation of the CrJSON object itself, including the creator and time of creation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information about the creation of the crJSON object itself, including the creator and time of creation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -306,7 +305,7 @@
 <div class="sect2">
 <h3 id="_context"><a class="anchor" href="#_context"></a>3.2. <code>@context</code></h3>
 <div class="paragraph">
-<p>CrJSON uses a standard <a href="https://www.w3.org/TR/json-ld11/">JSON-LD serialisation</a>, and therefore shall contain a JSON-LD standard <code>@context</code> field whose value shall be either an object or an array listing terms (also known as namespaces) that are used in the CrJSON. In the case of an object, the terms shall be listed as key-value pairs, where the key is the term name and the value is the URI of the term. As described in clause 4.1.2 of JSON-LD, the <code>@vocab</code> key can be used for the default vocabulary, as shown in <a href="#json-ld-context-obj-example">Example of an object-based JSON-LD <code>@context</code> field</a>. In the case of an array, only the URI is required since it shall apply to all terms not otherwise identified by a specific term, as shown in <a href="#json-ld-context-array-example">Example of an array-based JSON-LD <code>@context</code> field</a>.</p>
+<p>crJSON uses a standard <a href="https://www.w3.org/TR/json-ld11/">JSON-LD serialisation</a>, and therefore shall contain a JSON-LD standard <code>@context</code> field whose value shall be either an object or an array listing terms (also known as namespaces) that are used in the crJSON. In the case of an object, the terms shall be listed as key-value pairs, where the key is the term name and the value is the URI of the term. As described in clause 4.1.2 of JSON-LD, the <code>@vocab</code> key can be used for the default vocabulary, as shown in <a href="#json-ld-context-obj-example">Example of an object-based JSON-LD <code>@context</code> field</a>. In the case of an array, only the URI is required since it shall apply to all terms not otherwise identified by a specific term, as shown in <a href="#json-ld-context-array-example">Example of an array-based JSON-LD <code>@context</code> field</a>.</p>
 </div>
 <div id="json-ld-context-obj-example" class="listingblock">
 <div class="title">Example of an object-based JSON-LD <code>@context</code> field</div>
@@ -330,7 +329,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Since CrJSON may contain values that are specific to a given workflow, it is important that each one of these terms shall be defined in the <code>@context</code> field. This allows the CrJSON document to be self-describing and non-conflicting ensuring that any consumer of the CrJSON can understand the meaning of each term.</p>
+<p>Since crJSON may contain values that are specific to a given workflow, it is important that each one of these terms shall be defined in the <code>@context</code> field. This allows the crJSON document to be self-describing and non-conflicting ensuring that any consumer of the crJSON can understand the meaning of each term.</p>
 </div>
 <div class="paragraph">
 <p>Since a <code>@context</code> element can appear inside of any object in JSON-LD, it is possible to have custom values, and their associated <code>@context</code> elements in multiple places throughout a single JSON-LD document, where the terms are localized to that specific object.</p>
@@ -339,15 +338,15 @@
 <div class="sect2">
 <h3 id="_jsongenerator"><a class="anchor" href="#_jsongenerator"></a>3.3. <code>jsonGenerator</code></h3>
 <div class="paragraph">
-<p>The <code>jsonGenerator</code> field is an object that contains information about the tool that generated the CrJSON document. It shall contain the following fields:</p>
+<p>The <code>jsonGenerator</code> field is an object that contains information about the tool that generated the crJSON document. It shall contain the following fields:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>name</code> (required): the name of the tool that generated the CrJSON document</p>
+<p><code>name</code> (required): the name of the tool that generated the crJSON document</p>
 </li>
 <li>
-<p><code>version</code> (required): the version of the tool that generated the CrJSON document, in SemVer 2.0 format</p>
+<p><code>version</code> (required): the version of the tool that generated the crJSON document, in SemVer 2.0 format</p>
 </li>
 </ul>
 </div>
@@ -477,9 +476,8 @@
 <p>All <code>hash</code> values in hashed URI maps shall be Base64 strings with <code>b64'</code> prefix.</p>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_claim_v1_claim"><a class="anchor" href="#_claim_v1_claim"></a>3.6. <code>claim</code> (v1 claim)</h3>
+<div class="sect3">
+<h4 id="_claim_v1_claim"><a class="anchor" href="#_claim_v1_claim"></a>3.5.3. <code>claim</code> (v1 claim)</h4>
 <div class="paragraph">
 <p>When a manifest uses <code>claim</code> instead of <code>claim.v2</code>, it conforms to the C2PA CDDL claim-map (claimV1). Required properties:</p>
 </div>
@@ -512,16 +510,17 @@
 <p>All <code>hash</code> values in hashed URI maps shall be Base64 strings with b64' prefix.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_assertions"><a class="anchor" href="#_assertions"></a>3.7. Assertions</h3>
+<h3 id="_assertions"><a class="anchor" href="#_assertions"></a>3.6. Assertions</h3>
 <div class="sect3">
-<h4 id="assertions-fields"><a class="anchor" href="#assertions-fields"></a>3.7.1. General</h4>
+<h4 id="assertions-fields"><a class="anchor" href="#assertions-fields"></a>3.6.1. General</h4>
 <div class="paragraph">
 <p>Each manifest object shall contain an <code>assertions</code> field whose value is an object keyed by assertion label. Each individual assertion shall be represented as an object, where the key is the label of the Assertion, and the value is an object containing the JSON-LD serialization derived from that Assertion.  If it is not possible to derive information from an assertion, then the key shall be present in the assertions object, but its value shall be an empty object.  Additionally, a generator may choose not to decode <a href="#custom_assertions">custom assertions</a>, in which case it shall represent them as empty objects.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_json_ld_serialised_assertions"><a class="anchor" href="#_json_ld_serialised_assertions"></a>3.7.2. JSON-LD serialised assertions</h4>
+<h4 id="_json_ld_serialised_assertions"><a class="anchor" href="#_json_ld_serialised_assertions"></a>3.6.2. JSON-LD serialised assertions</h4>
 <div class="paragraph">
 <p>For any Assertion which is serialised in the C2PA Manifest as JSON-LD, that exact same JSON-LD shall be used as the value for the assertion. For example, the <code>c2pa.metadata</code> assertion is expressed in XMP, that XMP data is serialised as JSON-LD.</p>
 </div>
@@ -557,7 +556,7 @@ The various terms and context namespaces in <a href="#json-ld-assertion">A JSON-
 </div>
 </div>
 <div class="sect3">
-<h4 id="cbor_serialised_assertions"><a class="anchor" href="#cbor_serialised_assertions"></a>3.7.3. CBOR serialised assertions</h4>
+<h4 id="cbor_serialised_assertions"><a class="anchor" href="#cbor_serialised_assertions"></a>3.6.3. CBOR serialised assertions</h4>
 <div class="paragraph">
 <p>For each Assertion that is serialised in the C2PA Manifest as CBOR, the JSON-LD representation shall be described as the same key name in the CBOR map and its value type shall be determined by <a href="#table_cbor_json_mapping">Table 1, &#8220;Mapping from CBOR to JSON-LD&#8221;</a>:</p>
 </div>
@@ -657,9 +656,9 @@ The various terms and context namespaces in <a href="#json-ld-assertion">A JSON-
 </div>
 </div>
 <div class="sect4">
-<h5 id="_byte_string_encoding"><a class="anchor" href="#_byte_string_encoding"></a>3.7.3.1. Byte string encoding</h5>
+<h5 id="_byte_string_encoding"><a class="anchor" href="#_byte_string_encoding"></a>3.6.3.1. Byte string encoding</h5>
 <div class="paragraph">
-<p>CrJSON normalizes CBOR byte-strings (<code>bstr</code>) into Base64 (<a href="#RFC4648">[RFC4648]</a>) string encodings, starting with the <code>b64'</code> prefix. For example, the following fields would be serialized as such:</p>
+<p>crJSON normalizes CBOR byte-strings (<code>bstr</code>) into Base64 (<a href="#RFC4648">[RFC4648]</a>) string encodings, starting with the <code>b64'</code> prefix. For example, the following fields would be serialized as such:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -677,7 +676,7 @@ The various terms and context namespaces in <a href="#json-ld-assertion">A JSON-
 </div>
 </div>
 <div class="sect3">
-<h4 id="_custom_assertions"><a class="anchor" href="#_custom_assertions"></a>3.7.4. Custom Assertions</h4>
+<h4 id="_custom_assertions"><a class="anchor" href="#_custom_assertions"></a>3.6.4. Custom Assertions</h4>
 <div class="paragraph">
 <p>If a crJSON generator chooses to decode a custom assertion that is serialized in either JSON-LD or CBOR, it shall be decoded according to the rules for standard assertions. However, if it has any other serialization, then the output into crJSON is implementation dependent.</p>
 </div>
@@ -696,7 +695,7 @@ The various terms and context namespaces in <a href="#json-ld-assertion">A JSON-
 </div>
 </div>
 <div class="sect2">
-<h3 id="_signature"><a class="anchor" href="#_signature"></a>3.8. Signature</h3>
+<h3 id="_signature"><a class="anchor" href="#_signature"></a>3.7. Signature</h3>
 <div class="paragraph">
 <p>The signature object consists of two mandatory fields - <code>algorithm</code> (which is the signature algorithm) and <code>certificateInfo</code>.  In addition, it may also contain a <code>timestampInfo</code> field if the signing certificate contains a timestamp.  When signature information is unavailable, <code>signature</code> shall be present as an empty object <code>{}</code>.</p>
 </div>
@@ -792,7 +791,7 @@ An X.509 certificate can contain all sorts of information, and implementations m
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manifest_validation_results"><a class="anchor" href="#_manifest_validation_results"></a>3.9. Manifest Validation Results</h3>
+<h3 id="_manifest_validation_results"><a class="anchor" href="#_manifest_validation_results"></a>3.8. Manifest Validation Results</h3>
 <div class="paragraph">
 <p>Each <code>manifest</code> object shall contain a <code>validationResults</code> field whose value is a <code>statusCodes</code> object along with a <code>validationTime</code> field. The <code>statusCodes</code> object groups validation status entries into <code>success</code>, <code>informational</code>, and <code>failure</code> arrays. These grouped results are the per-manifest assessments produced by the validator.</p>
 </div>
@@ -862,7 +861,7 @@ An X.509 certificate can contain all sorts of information, and implementations m
 <h2 id="_minimal_example"><a class="anchor" href="#_minimal_example"></a>4. Minimal Example</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following example conforms to the CrJSON schema. In many of the example values, a <code>&#8230;&#8203;</code> placeholder is used for a value that is not relevant to the example.  Also, any values which would be Base64-encoded are represented as <code>b64'&lt;base64&gt;</code>.</p>
+<p>The following example conforms to the crJSON schema. In many of the example values, a <code>&#8230;&#8203;</code> placeholder is used for a value that is not relevant to the example.  Also, any values which would be Base64-encoded are represented as <code>b64'&lt;base64&gt;</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
