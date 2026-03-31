@@ -1214,6 +1214,9 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <li>
 <p>Added a new Environmental Sustainability Assertion (<code>c2pa.environmental-sustainability</code>) to convey machine-generated sustainability metrics (energy, greenhouse gas emissions, and water consumption).</p>
 </li>
+<li>
+<p>Added a new AI Disclosure Assertion (<code>c2pa.ai-disclosure</code>) for machine-readable AI transparency info.</p>
+</li>
 </ul>
 </div>
 </li>
@@ -1263,6 +1266,22 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </li>
 <li>
+<p>External Reference Assertion Improvements</p>
+</li>
+<li>
+<p>Metadata assertion changes</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>dc:created</code> and <code>dc:modified</code> added to supported Dublin Core properties in <code>c2pa.metadata</code>.</p>
+</li>
+<li>
+<p>Relaxed metadata assertion validation (changed from error to advisory for some cases)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Live Video &amp; Dynamic Packaging</p>
 <div class="ulist">
 <ul>
@@ -1271,6 +1290,16 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </li>
 <li>
 <p>Added a recommendation to use deterministic signature algorithms in video streaming implementations (e.g., those using ISO/IEC 23009-9 REaP) to avoid negatively impacting segment caching.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>TIFF embedding</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow using IFD 0 for TIFF assets that contain only one IFD</p>
 </li>
 </ul>
 </div>
@@ -1289,7 +1318,33 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 </div>
 </li>
 <li>
-<p>External Reference Assertion Clarifications</p>
+<p>External Reference Assertion Improvements</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Clarified the distinction between Cloud Data assertions and External Reference assertions.</p>
+</li>
+<li>
+<p>Extended External Reference Assertion validation to cover hashed external reference assertions.</p>
+</li>
+<li>
+<p>Added <code>assertion.external-reference.labelMismatch</code> validation status code.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Asset Type</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Completed the asset type values table to include all types defined in the CDDL schema.</p>
+</li>
+<li>
+<p>Corrected type names to match the CDDL (<code>c2pa.types.format.numpy</code>, <code>c2pa.types.format.pickle</code>, <code>c2pa.types.format.protobuf</code>, <code>c2pa.types.tensorflow.savedmodel</code>).</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Soft Binding Updates</p>
@@ -2182,7 +2237,7 @@ For example, <code>c2pa.ingredient</code> could be changed to the fictional <cod
 <div class="sect2">
 <h3 id="_embedded_vs_externally_stored_data"><a class="anchor" href="#_embedded_vs_externally_stored_data"></a>6.7. Embedded vs Externally-Stored Data</h3>
 <div class="paragraph">
-<p>Some assertion data, due to its size or an infrequent need for it, may be externally hosted. Such data are not embedded in the assertion store, but instead are referenced by URI. This is accomplished through a cloud data or external reference assertion (see <a href="#_cloud_data">Section 18.11, &#8220;Cloud Data&#8221;</a>). Unlike embedded assertion data, this external assertion data is not retrieved nor validated as part of manifest validation, and is only retrieved and validated when specifically needed by an application according to a different set of validation rules as described in <a href="#_validate_the_assertions">Section 15.10, &#8220;Validate the Assertions&#8221;</a>.</p>
+<p>Some assertion data, due to its size or an infrequent need for it, may be externally hosted. Such data are not embedded in the assertion store, but instead are referenced by URI. This is accomplished through either a <a href="#_cloud_data">cloud data</a> assertion for remotely-stored C2PA assertions (JUMBF) or an <a href="#external_reference_assertion">external reference</a> assertion for either remotely stored assertion or non-assertion data. In both cases, the externally hosted data is not retrieved nor validated as part of manifest validation, and is only retrieved and validated when specifically needed by an application according to a different set of validation rules as described in <a href="#_validate_the_assertions">Section 15.10, &#8220;Validate the Assertions&#8221;</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4922,6 +4977,7 @@ $status-code /= "assertion.dataHash.mismatch"
 $status-code /= "assertion.dataHash.redacted"
 $status-code /= "assertion.external-reference.created"
 $status-code /= "assertion.external-reference.hashMismatch"
+$status-code /= "assertion.external-reference.labelMismatch"
 $status-code /= "assertion.external-reference.malformed"
 $status-code /= "assertion.hardBinding.redacted"
 $status-code /= "assertion.hashedURI.mismatch"
@@ -5356,6 +5412,11 @@ ingredient-delta-validation-result-map = {
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.external-reference.hashMismatch</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The hash of retrieved data does not match the hash declared in the <code>location</code> field of a hashed external reference</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>assertion.external-reference.labelMismatch</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The label of the JUMBF box retrieved from the external reference assertion does not match the expected label.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C2PA Assertion</p></td>
 </tr>
 <tr>
@@ -6575,7 +6636,7 @@ Ingredient assertions (<code>c2pa.ingredient</code> or <code>c2pa.ingredient.v2<
 </div>
 </li>
 <li>
-<p>If the assertion is present within the list of created assertions then the claim shall be rejected with a failure code of <code>assertion.external-reference.created</code>.</p>
+<p>If the <code>label</code> field is present and the data is retrieved from the URI in the <code>location</code> field, the label of the retrieved JUMBF box shall match the value of the <code>label</code> field. If it does not, the validator shall report a failure code of <code>assertion.external-reference.labelMismatch</code>.</p>
 </li>
 </ol>
 </div>
@@ -6834,16 +6895,16 @@ Ingredient assertions (<code>c2pa.ingredient</code> or <code>c2pa.ingredient.v2<
 <div class="sect4">
 <h5 id="_general_12"><a class="anchor" href="#_general_12"></a>15.10.4.1. General</h5>
 <div class="paragraph">
-<p>A <a href="#_cloud_data">cloud data assertion</a> contains the URI references to (and hashes of) externally hosted assertion data. Those references are not retrieved and validated as part of standard validation. A validator shall first successfully validate a claim before attempting to retrieve the external data referenced. A validator shall not attempt to retrieve external data from a rejected claim. As the retrieval of external data is optional, the inability to retrieve or validate external data shall not cause a claim to be rejected.</p>
+<p>A <a href="#_cloud_data">cloud data</a> assertion or a hashed <a href="#external_reference_assertion">external reference</a> assertion contains URI references to (and hashes of) externally hosted data. Those references are not retrieved and validated as part of standard validation. A validator shall first successfully validate a claim before attempting to retrieve the external data referenced. A validator shall not attempt to retrieve external data from a rejected claim. As the retrieval of external data is optional, the inability to retrieve or validate external data shall not cause a claim to be rejected.</p>
 </div>
 <div class="paragraph">
-<p>If a validator chooses to retrieve any of the external data in a cloud data assertion, the validator shall performs the steps described in <a href="#_validation_of_external_references">Section 15.10.4.2, &#8220;Validation of External References&#8221;</a>. If successful, the retrieved externally hosted assertions shall be validated as if the same assertion were embedded.</p>
+<p>If a validator chooses to retrieve any of the external data in a cloud data or hashed external reference assertion, the validator shall perform the steps described in <a href="#_validation_of_external_references">Section 15.10.4.2, &#8220;Validation of External References&#8221;</a>. If successful, retrieved externally hosted assertions (identified by a <code>label</code> field) shall be validated as if the same assertion were embedded.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_validation_of_external_references"><a class="anchor" href="#_validation_of_external_references"></a>15.10.4.2. Validation of External References</h5>
 <div class="paragraph">
-<p>The following procedure shall be used to validate the external data referenced in a cloud data assertion:</p>
+<p>The following procedure shall be used to validate the external data referenced in a cloud data or hashed external reference assertion:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -11059,7 +11120,22 @@ This is useful for providing extra information that would be useful to a specifi
 <div class="sect3">
 <h4 id="_description_10"><a class="anchor" href="#_description_10"></a>18.11.1. Description</h4>
 <div class="paragraph">
-<p>There are use cases where storing the data for the assertion remotely, such as in the cloud, is better than embedded inside the asset, especially when the data is large. For any such cases, it is possible to use a special type of assertion that serves as a reference to that information. For privacy and reliability reasons, data referenced through a cloud data assertion shall be considered optional: their contents should not be retrieved as part of manifest validation. A validator may retrieve the contents later to serve an application-dependent need, such as further exploration of the provenance history.  The remote data described by a Cloud Data assertion must be static, as its location is specified via a hashed URI.  To reference unhashed data that may change over time, an <a href="#_external_reference">External Reference</a> assertion may be used.</p>
+<p>A cloud data assertion references a remotely-stored C2PA assertion packaged as JUMBF.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For other externally stored data, whether assertion or non-assertion, see the <a href="#external_reference_assertion">external reference</a> assertion.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For privacy and reliability reasons, data referenced through a cloud data assertion shall be considered optional: their contents should not be retrieved as part of manifest validation. A validator may retrieve the contents later to serve an application-dependent need, such as further exploration of the provenance history.  The remote data described by a Cloud Data assertion must be static, as its location is specified via a hashed URI.  To reference unhashed data that may change over time, an <a href="#external_reference_assertion">external reference</a> assertion may be used.</p>
 </div>
 <div class="paragraph">
 <p>The original cloud data assertion allowed for pointing to arbitrary data in the cloud, in a variety of formats. However, this doesn&#8217;t align with that actual data model used in C2PA, where assertions have a defined structure as a JUMBF box. Therefore, the cloud data assertion has been updated to clarify that it specifically points to an actual JUMBF box that is stored remotely. As such, the IANA media type for the data referenced by a cloud data assertion is always <code>application/jumbf</code>.</p>
@@ -13695,6 +13771,18 @@ Earlier versions of this specification documented a <code>c2pa.asset-type</code>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.audit-log</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A structured log of creation-phase events collected during a creation process</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.classifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI/ML classifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.cluster</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI/ML clustering model</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.dataset</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AI/ML dataset which can be processed by multiple AI/ML frameworks or is not described by any other value</p></td>
 </tr>
@@ -13731,20 +13819,44 @@ Earlier versions of this specification documented a <code>c2pa.asset-type</code>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TensorFlow dataset</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.numpy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.format.numpy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stored using the serialized NumPy format</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.protobuf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stored using the Protocol Buffer format</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.pickle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.format.pickle</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stored using the Python pickle format</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.savedmodel</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stored using the TensorFlow SavedModel format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.format.protobuf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stored using the Protocol Buffer format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.generator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI/ML content generator</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.generator.prompt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prompt used to drive an AI/ML content generator</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.generator.seed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seed value used to initialize an AI/ML content generator</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.regressor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI/ML regression model</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.tensorflow.hubmodule</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TensorFlow Hub module</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.tensorflow.savedmodel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TensorFlow SavedModel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c2pa.types.version-history</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A record of revisions to the asset over time</p></td>
 </tr>
 </tbody>
 </table>
@@ -14395,7 +14507,7 @@ font-designer-map = {
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Unlike a <a href="#_cloud_data">cloud data</a> assertion, a hashed external reference does not require the referenced data to be packaged as JUMBF.
+Both a hashed and an unhashed external reference assertion can be used for either arbitrary data (in any format) or a complete assertion, packaged as JUMBF.
 </td>
 </tr>
 </table>
@@ -14416,7 +14528,7 @@ By including an external reference assertion in <code>created_assertions</code> 
 </table>
 </div>
 <div class="paragraph">
-<p>When used to reference an assertion, the <code>location</code> field shall use an <code>unhashed-ext-uri-map</code>. The <code>label</code> field shall indicate the label of the referenced assertion. An external reference assertion shall not reference an assertion with any of the following labels:</p>
+<p>When used to reference an assertion, the <code>label</code> field shall be present and shall indicate the label of the complete assertion (packaged as JUMBF). An external reference assertion shall not reference an assertion with any of the following labels:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -14459,7 +14571,22 @@ By including an external reference assertion in <code>created_assertions</code> 
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>location</code> field shall contain a valid URI (<code>url</code>). It may also contain one or more optional values, including a valid IANA media type (<code>dc:format</code>) and the size of the externally referenced data (<code>size</code>). The <code>size</code> field should not be included if the size of the externally referenced data is subject to change. When present, the <code>data_types</code> field on the <code>location</code> map may be used to describe the kind of data referenced.</p>
+<p>If the <code>label</code> field is not present, the referenced data may be of any type.</p>
+</div>
+<div class="paragraph">
+<p>The <code>location</code> field shall be present and its value shall be either a <code>hashed-ext-uri-map</code> or an <code>unhashed-ext-uri-map</code> containing a valid URI (<code>url</code>). Those maps may also contain one or more optional values, including a valid IANA media type (<code>dc:format</code>) and the size of the externally referenced data (<code>size</code>). The <code>size</code> field should not be included if the size of the externally referenced data is subject to change.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>data_types</code> field of the <code>location</code> map can also be used to describe the kind of data referenced.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>For privacy and reliability reasons, data referenced through an external reference assertion shall be considered optional: its contents should not be retrieved as part of manifest validation. A validator may retrieve the contents to serve an application-dependent need. For unhashed references, retrieved data shall be treated as advisory unless independently verified by other means. Validation of hashed references is described in <a href="#_c2pa_external_reference_validation">Section 15.10.3.2.2, &#8220;<code>c2pa.external-reference</code> validation&#8221;</a>.</p>
@@ -14525,14 +14652,16 @@ All aspects of the version history record are implementation dependent.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cddl hljs" data-lang="cddl">; Assertion that references assertion data stored externally by URI (no hash)
 external-reference-map = {
-  "location": unhashed-ext-uri-map,   ; specifies the location and type of the remote data
-  ? "label": tstr, ; label for the cloud-based assertion, if relevant (e.g., c2pa.metadata)
+  "location": $unhashed-ext-uri-map,   ; specifies the location and type of the remote data
+  ? "label": tstr, ; label for the referenced assertion, if relevant (e.g., c2pa.metadata)
+  ? "description": tstr .size (1..max-tstr-length), ; human-readable description of the referenced data
   ? "metadata": $assertion-metadata-map,  ; additional information about the assertion
 }
 
 ; Assertion that references externally-stored data by hashed URI
 hashed-external-reference-map = {
   "location": $hashed-ext-uri-map,   ; specifies the location, type and hash of the remote data
+  ? "label": tstr, ; label for the referenced assertion, if relevant (e.g., c2pa.metadata)
   ? "description": tstr .size (1..max-tstr-length), ; human-readable description of the referenced data
   ? "metadata": $assertion-metadata-map,  ; additional information about the assertion
 }</code></pre>
@@ -14546,7 +14675,7 @@ hashed-external-reference-map = {
 <pre class="highlightjs highlight"><code class="language-cddl hljs" data-lang="cddl">; The data structure used to store a reference to an external URI WITHOUT a hash. 
 ; This might include, for example, http/https reference or URI reference to a smart 
 ; contract under CAIP-10 convention  
-$unhashed-ext-uri-map /= {
+unhashed-ext-uri-map = {
   "url": tstr, ; URI reference
   ? "dc:format": format-string, ; IANA media type of the data
   ? "size": size-type, ; Number of bytes of data
