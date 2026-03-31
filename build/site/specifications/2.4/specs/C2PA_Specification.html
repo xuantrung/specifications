@@ -10748,7 +10748,6 @@ soft-binding-metadata-map = {
 <pre class="highlightjs highlight"><code class="language-none hljs">{
   "alg": "phash",
   "pad": h'00',
-  "url": 32("http://example.c2pa.org/media.mp4"),
   "blocks": [
     {
       "scope": {
@@ -12378,7 +12377,7 @@ parameters-map = {
 
 $action-reason /= "c2pa.PII.present"
 $action-reason /= "c2pa.invalid.data"
-$action-reason /= "c2pa.tradesecret.present"
+$action-reason /= "c2pa.trade-secret.present"
 $action-reason /= "c2pa.government.confidential"
 $action-reason /= tstr .regexp "([\\da-zA-Z_-]+\\.)+[\\da-zA-Z_-]+"
 

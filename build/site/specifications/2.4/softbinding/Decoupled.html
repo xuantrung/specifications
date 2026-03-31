@@ -249,9 +249,9 @@
 <p>The following use cases illustrate common situations in which C2PA Manifest recovery is performed. In these use cases: Alice is a content producer;  Bob is content consumer;  Mallory is a malicious `man in the middle' actor.</p>
 </div>
 <div class="sect3">
-<h4 id="_uc1_recovery_from_stripping_of_c2pa_metadata"><a class="anchor" href="#_uc1_recovery_from_stripping_of_c2pa_metadata"></a>1.1.1. UC1: Recovery from stripping of C2PA metadata</h4>
+<h4 id="_uc1_recovery_from_stripping_of_c2pa_manifests"><a class="anchor" href="#_uc1_recovery_from_stripping_of_c2pa_manifests"></a>1.1.1. UC1: Recovery from stripping of C2PA Manifests</h4>
 <div class="paragraph">
-<p>Alice is a photojournalist and captures a photo of an event, editing it to enhance visibility of some content. The camera and editing tool implement C2PA and each embed a manifest within the image. Alice knows that some distribution platforms will strip C2PA metadata and so decides to add an imperceptible watermark to the photo prior to submitting it for publication. The watermark may be added via Alice&#8217;s image editing tool, modifying the image pixels prior to signing the manifest.  Or, Alice may utilize a watermark vendor&#8217;s tool to retroactively embed the watermark in the image pixels, signing the asset with a further manifest.</p>
+<p>Alice is a photojournalist and captures a photo of an event, editing it to enhance visibility of some content. The camera and editing tool implement C2PA and each embed a manifest within the image. Alice knows that some distribution platforms will strip C2PA Manifests and so decides to add an imperceptible watermark to the photo prior to submitting it for publication. The watermark may be added via Alice&#8217;s image editing tool, modifying the image pixels prior to signing the manifest.  Or, Alice may utilize a watermark vendor&#8217;s tool to retroactively embed the watermark in the image pixels, signing the asset with a further manifest.</p>
 </div>
 <div class="paragraph">
 <p>Bob later encounters Alice’s photo on social media but the C2PA Manifest has been stripped. Bob’s software (web browser or news client) detects that a watermark is present within the photo. Bob has configured his software to automatically interrogate well-known manifest repositories (e.g., from major news organizations, vendors of watermarking/tools) to obtain the manifest using the watermark. Bob recovers and views the manifest of the photo.</p>
@@ -263,7 +263,7 @@
 <div class="sect3">
 <h4 id="_uc2_recovery_from_malicious_substitution_of_provenance_manifest_replaced_watermark_unchanged"><a class="anchor" href="#_uc2_recovery_from_malicious_substitution_of_provenance_manifest_replaced_watermark_unchanged"></a>1.1.2. UC2: Recovery from malicious substitution of provenance (manifest replaced, watermark unchanged)</h4>
 <div class="paragraph">
-<p>Alice is a photojournalist who embeds C2PA metadata within her assets to protect their integrity and gain attribution. Mallory wishes to manipulate the provenance of Alice’s photo to fake its creation story or to steal attribution. Mallory substitutes the manifest in the asset creating a new provenance chain signed by himself. Fortunately, Alice has included a watermark in her digital content.</p>
+<p>Alice is a photojournalist who embeds Content Credentials within her assets to protect their integrity and gain attribution. Mallory wishes to manipulate the provenance of Alice’s photo to fake its creation story or to steal attribution. Mallory substitutes the manifest in the asset creating a new provenance chain signed by himself. Fortunately, Alice has included a watermark in her digital content.</p>
 </div>
 <div class="paragraph">
 <p>When Bob encounters Alice’s photo online, he performs a lookup from a manifest store to obtain the manifest associated with the watermark. Bob can then compare the recovered manifest to the manifest embedded within the asset to see if the story matches up and make an appropriate trust decision e.g., potentially deciding to believe the manifest recovered from the trusted manifest store.</p>
@@ -272,7 +272,7 @@
 <div class="sect3">
 <h4 id="_uc3_recovery_from_malicious_substitution_of_provenance_manifest_stripped_watermark_substituted"><a class="anchor" href="#_uc3_recovery_from_malicious_substitution_of_provenance_manifest_stripped_watermark_substituted"></a>1.1.3. UC3: Recovery from malicious substitution of provenance (manifest stripped, watermark substituted)</h4>
 <div class="paragraph">
-<p>Alice is a journalist who embeds C2PA metadata within her assets to protect their integrity and gain attribution. Mallory wishes to manipulate the provenance of Alice’s audio recording to fake its creation story or to steal attribution. Mallory strips the metadata from Alice’s audio recording and modifies the recording to render the watermark unreadable. She then embeds a new watermark. Mallory registers a new manifest within a watermarking vendor’s manifest store, using his new soft binding. Mallory publishes this modified audio recording on social media.</p>
+<p>Alice is a journalist who embeds Content Credentials within her assets to protect their integrity and gain attribution. Mallory wishes to manipulate the provenance of Alice’s audio recording to fake its creation story or to steal attribution. Mallory strips the metadata from Alice’s audio recording and modifies the recording to render the watermark unreadable. She then embeds a new watermark. Mallory registers a new manifest within a watermarking vendor’s manifest store, using his new soft binding. Mallory publishes this modified audio recording on social media.</p>
 </div>
 <div class="paragraph">
 <p>Bob encounters Mallory’s audio recording on social media and detects the presence of a watermark. Bob resolves the watermark via lookup and obtains a false attribution / back story to the audio recording. However, Bob notices that the manifest was signed by Mallory not Alice so can make an appropriate trust decision.</p>
@@ -281,7 +281,7 @@
 <div class="sect3">
 <h4 id="_uc4_watermark_lookup_in_federated_manifest_store"><a class="anchor" href="#_uc4_watermark_lookup_in_federated_manifest_store"></a>1.1.4. UC4:  Watermark lookup in federated manifest store</h4>
 <div class="paragraph">
-<p>Alice is a photojournalist who embeds C2PA metadata within her assets to protect their integrity and gain attribution. She also embeds a watermark e.g., per UC1 and chooses any of several manifest repositories to store her manifest.</p>
+<p>Alice is a photojournalist who embeds Content Credentials within her assets to protect their integrity and gain attribution. She also embeds a watermark e.g., per UC1 and chooses any of several manifest repositories to store her manifest.</p>
 </div>
 <div class="paragraph">
 <p>In addition to storing her manifest, she registers her watermark within a service that maps her watermark (soft binding) to the location of her manifest in one or many manifest stores.</p>
