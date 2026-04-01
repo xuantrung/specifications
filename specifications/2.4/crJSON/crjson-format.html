@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Content Credentials JSON (crJSON) File Format Specification :: C2PA Specifications</title>
+    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.4/crJSON/crjson-format.html">
+    <meta name="generator" content="Antora 3.1.14">
+<link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
+<link rel="icon" type="image/svg+xml" sizes="any" href="../../../_/img/C2PA-favicon.svg">
+<link rel="mask-icon" href="../../../_/img/C2PA-logo.svg" color="#e40046">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+   <div class="navbar-brand">
+    <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
+      <a class="navbar-item title" href="../../..">C2PA Specifications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Download</div>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../2.3/specs/_attachments/C2PA_Specification.pdf" target="_blank">Technical Specifications (2.3)</a>
+            <a class="navbar-item" href="../../2.3/explainer/_attachments/Explainer.pdf" target="_blank">Explainer (2.3)</a>
+            <a class="navbar-item" href="../../2.3/guidance/_attachments/Guidance.pdf" target="_blank">Guidance for Implementers (2.3)</a>
+            <a class="navbar-item" href="../../2.3/specs/_attachments/C2PA_Schemas.zip" target="_blank">CDDL and JSON Schemas (2.3)</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="../../2.2/specs/_attachments/C2PA_Specification.pdf" target="_blank">Technical Specifications (2.2)</a>
+            <a class="navbar-item" href="../../2.2/explainer/_attachments/Explainer.pdf" target="_blank">Explainer (2.2)</a>
+            <a class="navbar-item" href="../../1.3/ux/_attachments/UX_Recommendations.pdf" target="_blank">UX Recommendations</a>
+            <a class="navbar-item" href="../../1.0/security/_attachments/Security_Considerations.pdf" target="_blank">Security Considerations</a>
+            <a class="navbar-item" href="../../1.0/security/_attachments/Harms_Modelling.pdf" target="_blank">Harms Modelling</a>
+          </div>
+        </div>
+        <a class="navbar-item github" href="https://github.com/c2pa-org" target="_blank" rel="noopener" aria-label="C2PA on GitHub" title="C2PA on GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="#000" role="img" aria-hidden="true" style="display:block">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="specifications" data-version="2.4">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="../index.html">C2PA Specifications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Technical Specifications</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../specs/C2PA_Specification.html">Content Credentials</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="crjson-format.html">Content Credentials JSON (crJSON)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../softbinding/Decoupled.html">Soft Binding API</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Informative Documents</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../2.2/explainer/Explainer.html">Explainer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../2.2/guidance/Guidance.html">Guidance for Implementers</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../2.2/ux/UX_Recommendations.html">User Experience Guidance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/Security_Considerations.html">C2PA Security Considerations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../security/Harms_Modelling.html">C2PA Harms Modelling</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../2.3/ai-ml/ai_ml.html">Guidance for Artificial Intelligence and Machine Learning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../identity/identity.html">Human and Organizational Identity Recommendation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">C2PA Specifications</span>
+    <span class="version">2.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <div class="title"><a href="../index.html">C2PA Specifications</a></div>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">2.4</a>
+        </li>
+        <li class="version">
+          <a href="../../2.3/index.html">2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../2.2/index.html">2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../2.1/index.html">2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../2.0/index.html">2.0</a>
+        </li>
+        <li class="version">
+          <a href="../../1.4/index.html">1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../1.3/index.html">1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../1.0/index.html">1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">C2PA Specifications</a></li>
+    <li>Technical Specifications</li>
+    <li><a href="crjson-format.html">Content Credentials JSON (crJSON)</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">2.4</button>
+  <div class="version-menu">
+    <a class="version is-current" href="crjson-format.html">2.4</a>
+    <a class="version is-missing" href="../../2.3/index.html">2.3</a>
+    <a class="version is-missing" href="../../2.2/index.html">2.2</a>
+    <a class="version is-missing" href="../../2.1/index.html">2.1</a>
+    <a class="version is-missing" href="../../2.0/index.html">2.0</a>
+    <a class="version is-missing" href="../../1.4/index.html">1.4</a>
+    <a class="version is-missing" href="../../1.3/index.html">1.3</a>
+    <a class="version is-missing" href="../../1.2/index.html">1.2</a>
+    <a class="version is-missing" href="../../1.1/index.html">1.1</a>
+    <a class="version is-missing" href="../../1.0/index.html">1.0</a>
+  </div>
+</div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Content Credentials JSON (crJSON) File Format Specification</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_scope">1. Scope</a></li>
+<li><a href="#_relationship_to_the_content_credentials_technical_specification">2. Relationship to the Content Credentials Technical Specification</a></li>
+<li><a href="#_serialization_requirements">3. Serialization Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_root_object">3.1. Root Object</a></li>
+<li><a href="#_context">3.2. <code>@context</code></a></li>
+<li><a href="#_jsongenerator">3.3. <code>jsonGenerator</code></a></li>
+<li><a href="#_manifests">3.4. Manifests</a></li>
+<li><a href="#_claims">3.5. Claims</a></li>
+<li><a href="#_assertions">3.6. Assertions</a></li>
+<li><a href="#_signature">3.7. Signature</a></li>
+<li><a href="#_manifest_validation_results">3.8. Manifest Validation Results</a></li>
+</ul>
+</li>
+<li><a href="#_minimal_example">4. Minimal Example</a></li>
+<li><a href="#_full_schema">5. Full Schema</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="imageblock text-center">
+<div class="content">
+<a class="image" href="http://creativecommons.org/licenses/by/4.0/"><img src="_images/CCby4.png" alt="Creative Commons License"></a>
+</div>
+</div>
+<div class="paragraph text-center">
+<p>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</div>
+</div>
+</div>
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="_scope"><a class="anchor" href="#_scope"></a>1. Scope</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes a JSON serialization for Content Credentials (aka a C2PA manifest store) known as the <strong>Content Credentials JSON</strong> format (abbreviated <strong>crJSON</strong>). Its purpose is to provide a JSON-based representation of a C2PA manifest store with associated validation results for profile evaluation, interoperability testing, and validation reporting. This JSON representation is not intended to be a canonical source of cryptographic truth, or a general purpose machine readable Content Credentials format, but rather a derived view over C2PA data that is useful for export and interoperability purposes. It is not intended to be used as an input format for C2PA data, and it is not intended to be a lossless representation of all C2PA data. It is simply a specific JSON-LD serialization of information contained in a C2PA manifest store and its associated validation results.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_relationship_to_the_content_credentials_technical_specification"><a class="anchor" href="#_relationship_to_the_content_credentials_technical_specification"></a>2. Relationship to the Content Credentials Technical Specification</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>crJSON does not replace C2PA claims, JUMBF, or COSE structures. Instead, it is a <strong>derived JSON view</strong> over C2PA data, and not independently verifiable.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">C2PA Asset/Manifest Store
+  -&gt; Manifest extraction
+  -&gt; Validation
+  -&gt; crJSON transformation
+       |- @context
+       |- manifests[]
+       |    |- label
+       |    |- assertions{...}
+       |    |- claim or claim.v2 (one required)
+       |    |- signature (required)
+       |    |- validationResults (required)
+       |    |- ingredientDeltas (optional)
+       |- jsonGenerator</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_serialization_requirements"><a class="anchor" href="#_serialization_requirements"></a>3. Serialization Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_root_object"><a class="anchor" href="#_root_object"></a>3.1. Root Object</h3>
+<div class="paragraph">
+<p>A crJSON document shall be a JSON-LD object.</p>
+</div>
+<div class="paragraph">
+<p>The following top-level properties are used:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Presence</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@context</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REQUIRED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON-LD context. Schema allows object or array of URI strings.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>manifests</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REQUIRED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array of manifest objects. Each item conforms to the manifest definition (required: label, assertions, signature, validationResults; one of claim or claim.v2).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jsonGenerator</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REQUIRED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information about the creation of the crJSON object itself, including the creator and time of creation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_context"><a class="anchor" href="#_context"></a>3.2. <code>@context</code></h3>
+<div class="paragraph">
+<p>crJSON uses a standard <a href="https://www.w3.org/TR/json-ld11/">JSON-LD serialisation</a>, and therefore shall contain a JSON-LD standard <code>@context</code> field whose value shall be either an object or an array listing terms (also known as namespaces) that are used in the crJSON. In the case of an object, the terms shall be listed as key-value pairs, where the key is the term name and the value is the URI of the term. As described in clause 4.1.2 of JSON-LD, the <code>@vocab</code> key can be used for the default vocabulary, as shown in <a href="#json-ld-context-obj-example">Example of an object-based JSON-LD <code>@context</code> field</a>. In the case of an array, only the URI is required since it shall apply to all terms not otherwise identified by a specific term, as shown in <a href="#json-ld-context-array-example">Example of an array-based JSON-LD <code>@context</code> field</a>.</p>
+</div>
+<div id="json-ld-context-obj-example" class="listingblock">
+<div class="title">Example of an object-based JSON-LD <code>@context</code> field</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "@context": {
+    "@vocab": "https://c2pa.org/crjson/",
+    "extras": "https://c2pa.org/crjson/extras/",
+  }
+}</code></pre>
+</div>
+</div>
+<div id="json-ld-context-array-example" class="listingblock">
+<div class="title">Example of an array-based JSON-LD <code>@context</code> field</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "@context": [
+    "https://c2pa.org/crjson/"
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since crJSON may contain values that are specific to a given workflow, it is important that each one of these terms shall be defined in the <code>@context</code> field. This allows the crJSON document to be self-describing and non-conflicting ensuring that any consumer of the crJSON can understand the meaning of each term.</p>
+</div>
+<div class="paragraph">
+<p>Since a <code>@context</code> element can appear inside of any object in JSON-LD, it is possible to have custom values, and their associated <code>@context</code> elements in multiple places throughout a single JSON-LD document, where the terms are localized to that specific object.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jsongenerator"><a class="anchor" href="#_jsongenerator"></a>3.3. <code>jsonGenerator</code></h3>
+<div class="paragraph">
+<p>The <code>jsonGenerator</code> field is an object that contains information about the tool that generated the crJSON document. It shall contain the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code> (required): the name of the tool that generated the crJSON document</p>
+</li>
+<li>
+<p><code>version</code> (required): the version of the tool that generated the crJSON document, in SemVer 2.0 format</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manifests"><a class="anchor" href="#_manifests"></a>3.4. Manifests</h3>
+<div class="paragraph">
+<p>A C2PA Manifest consists of, at least, a set of Assertions, Claims, and Claim Signatures that are bound together into a single entity. For all C2PA Manifests present in the C2PA Manifest Store, they shall be present in the <code>manifests</code> array. The order of the Manifests in the array shall match the reverse order that they are found in the Manifest Store, so that the active manifest is always first (i.e., <code>manifests[0]</code>).</p>
+</div>
+<div class="paragraph">
+<p>Each manifest object shall include the following properties (per schema: required <code>label</code>, <code>assertions</code>, <code>signature</code>; exactly one of <code>claim</code> or <code>claim.v2</code>):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>label</code> (manifest label/URN)</p>
+</li>
+<li>
+<p><code>assertions</code> (object keyed by assertion label)</p>
+</li>
+<li>
+<p><code>claim</code> (v1, per C2PA <code>claim-map</code>) or <code>claim.v2</code> (v2, per C2PA <code>claim-map-v2</code>)</p>
+</li>
+<li>
+<p><code>signature</code> (signature and credential details object)</p>
+</li>
+<li>
+<p><code>validationResults</code> (optional per-manifest validation status code groups)</p>
+</li>
+<li>
+<p><code>ingredientDeltas</code> (optional per-manifest ingredient validation deltas)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>label</code> field&#8217;s value is a string that identifies the C2PA Manifest using the label of its JUMBF box, such as <code>urn:c2pa:2702fc84-a1ae-44d1-9825-dd86311e980b</code>.</p>
+</div>
+<div class="paragraph">
+<p>The manifest object does not allow additional properties (schema <code>additionalProperties: false</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_claims"><a class="anchor" href="#_claims"></a>3.5. Claims</h3>
+<div class="sect3">
+<h4 id="_general"><a class="anchor" href="#_general"></a>3.5.1. General</h4>
+<div class="paragraph">
+<p>A Claim shall be serialised in the same manner as a <a href="#cbor_serialised_assertions">CBOR serialised assertion</a>. It shall be named based on the label of the claim box (e.g., <code>claim</code> or <code>claim.v2</code>).  An example is found in <a href="#json-ld-claim">A JSON-LD serialised claim</a>.</p>
+</div>
+<div class="paragraph">
+<p>If either of the <code>gathered_assertions</code> or <code>redacted_assertions</code> fields are not present, then the corresponding JSON field shall be present, and their respective values shall be an empty array.</p>
+</div>
+<div id="json-ld-claim" class="listingblock">
+<div class="title">A JSON-LD serialised claim</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"claim.v2": {
+  "dc:title": "MIPAMS test image",
+  "instanceID": "uuid:7b57930e-2f23-47fc-affe-0400d70b738d",
+  "claim_generator": "MIPAMS GENERATOR 0.1",
+  "alg": "SHA-256",
+  "signature": "self#jumbf=c2pa.signature",
+  "created_assertions": [
+    {
+      "url": "self#jumbf=c2pa.assertions/c2pa.actions.v2",
+      "hash": "APqpWkPm91k98DD03sIQ+uYGspG+bxdy0c7+FMu8puU="
+    },
+    {
+      "url": "self#jumbf=c2pa.assertions/c2pa.hash.data",
+      "hash": "A8wNdhjiIyOOkGg8+GkJRSYJALG6orPQJRQKMFtq/rc="
+    }
+  ],
+  "gathered_assertions": [],
+  "redacted_assertions": []
+},</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_claim_v2_v2_claim"><a class="anchor" href="#_claim_v2_v2_claim"></a>3.5.2. <code>claim.v2</code> (v2 claim)</h4>
+<div class="paragraph">
+<p><code>claim.v2</code> conforms to the C2PA CDDL claim-map-v2. Required properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>instanceID</code> — uniquely identifies a specific version of an asset</p>
+</li>
+<li>
+<p><code>claim_generator_info</code> — single generator-info map (object with e.g. <code>name</code>, <code>version</code>, optional <code>icon</code>, <code>operating_system</code>)</p>
+</li>
+<li>
+<p><code>signature</code> — JUMBF URI reference to the signature of this claim (e.g. <code>self#jumbf=/c2pa/{label}/c2pa.signature</code>)</p>
+</li>
+<li>
+<p><code>created_assertions</code> — array of one or more hashed URI maps; each entry has <code>url</code>, <code>hash</code>, and optionally <code>alg</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gathered_assertions</code> — array of hashed URI maps (same structure as created_assertions)</p>
+</li>
+<li>
+<p><code>dc:title</code> — name of the asset</p>
+</li>
+<li>
+<p><code>redacted_assertions</code> — array of JUMBF URI strings (references to redacted ingredient manifest assertions)</p>
+</li>
+<li>
+<p><code>alg</code> — cryptographic hash algorithm for data hash assertions (e.g. <code>SHA-256</code>)</p>
+</li>
+<li>
+<p><code>alg_soft</code> — algorithm for soft binding assertions</p>
+</li>
+<li>
+<p><code>specVersion</code> — specification version (SemVer)</p>
+</li>
+<li>
+<p><code>metadata</code> — (DEPRECATED) additional information</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All <code>hash</code> values in hashed URI maps shall be Base64 strings with <code>b64'</code> prefix.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_claim_v1_claim"><a class="anchor" href="#_claim_v1_claim"></a>3.5.3. <code>claim</code> (v1 claim)</h4>
+<div class="paragraph">
+<p>When a manifest uses <code>claim</code> instead of <code>claim.v2</code>, it conforms to the C2PA CDDL claim-map (claimV1). Required properties:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>claim_generator</code> — User-Agent string for the claim generator</p>
+</li>
+<li>
+<p><code>claim_generator_info</code> — array of one or more generator-info maps</p>
+</li>
+<li>
+<p><code>signature</code> — JUMBF URI reference to the signature</p>
+</li>
+<li>
+<p><code>assertions</code> — array of one or more hashed URI maps (<code>url</code>, <code>hash</code>, optional <code>alg</code>)</p>
+</li>
+<li>
+<p><code>dc:format</code> — media type of the asset</p>
+</li>
+<li>
+<p><code>instanceID</code> — uniquely identifies a specific version of an asset</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Optional: <code>dc:title</code>, <code>redacted_assertions</code> (JUMBF URI strings), <code>alg</code>, <code>alg_soft</code>, <code>metadata</code>.</p>
+</div>
+<div class="paragraph">
+<p>All <code>hash</code> values in hashed URI maps shall be Base64 strings with b64' prefix.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_assertions"><a class="anchor" href="#_assertions"></a>3.6. Assertions</h3>
+<div class="sect3">
+<h4 id="assertions-fields"><a class="anchor" href="#assertions-fields"></a>3.6.1. General</h4>
+<div class="paragraph">
+<p>Each manifest object shall contain an <code>assertions</code> field whose value is an object keyed by assertion label. Each individual assertion shall be represented as an object, where the key is the label of the Assertion, and the value is an object containing the JSON-LD serialization derived from that Assertion.  If it is not possible to derive information from an assertion, then the key shall be present in the assertions object, but its value shall be an empty object.  Additionally, a generator may choose not to decode <a href="#custom_assertions">custom assertions</a>, in which case it shall represent them as empty objects.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_json_ld_serialised_assertions"><a class="anchor" href="#_json_ld_serialised_assertions"></a>3.6.2. JSON-LD serialised assertions</h4>
+<div class="paragraph">
+<p>For any Assertion which is serialised in the C2PA Manifest as JSON-LD, that exact same JSON-LD shall be used as the value for the assertion. For example, the <code>c2pa.metadata</code> assertion is expressed in XMP, that XMP data is serialised as JSON-LD.</p>
+</div>
+<div class="paragraph">
+<p>An example <code>c2pa.metadata</code> assertion is shown in <a href="#json-ld-assertion">A JSON-LD serialised assertion</a>.</p>
+</div>
+<div id="json-ld-assertion" class="listingblock">
+<div class="title">A JSON-LD serialised assertion</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"c2pa.metadata": {
+  "@context" : {
+    "Iptc4xmpExt": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/",
+    "photoshop" : "http://ns.adobe.com/photoshop/1.0/"
+  },
+  "photoshop:DateCreated": "Aug 31, 2022",
+  "Iptc4xmpExt:LocationCreated": {
+    "Iptc4xmpExt:City": "Beijing, China"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The various terms and context namespaces in <a href="#json-ld-assertion">A JSON-LD serialised assertion</a> are defined as part of <a href="#IPTC">[IPTC]</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cbor_serialised_assertions"><a class="anchor" href="#cbor_serialised_assertions"></a>3.6.3. CBOR serialised assertions</h4>
+<div class="paragraph">
+<p>For each Assertion that is serialised in the C2PA Manifest as CBOR, the JSON-LD representation shall be described as the same key name in the CBOR map and its value type shall be determined by <a href="#table_cbor_json_mapping">Table 1, &#8220;Mapping from CBOR to JSON-LD&#8221;</a>:</p>
+</div>
+<table id="table_cbor_json_mapping" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Mapping from CBOR to JSON-LD</caption>
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">CBOR Type(s)</th>
+<th class="tableblock halign-left valign-top">JSON-LD Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer, unsigned integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unsigned number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">negative integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">byte string (<code>bstr</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string (Base64 encoded, <a href="#RFC4648">[RFC4648]</a>, prefixed by <code>b64'</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text string (<code>tstr</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">map</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">False, True</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">null</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">half-precision float, single-precision float, double-precision float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">float</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date-time (CBOR tag 0)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string (direct copy from the text item inside the CBOR tag, should already be <a href="#ISO8601">[ISO8601]</a>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Since CBOR allows map keys of any type, whereas JSON-LD only allows strings as keys in object values, CBOR maps with keys other than UTF-8 strings shall have those keys converted to UTF-8 strings, as defined by the implementation.</p>
+</div>
+<div class="paragraph">
+<p>An example of a CBOR serialised assertion is shown in <a href="#actions-cbordiag">CBOR Diagnostics for an actions.v2 assertion</a>, and its equivalent JSON-LD representation is shown in <a href="#actions-json">JSON-LD representation of CBOR Diagnostics for an actions.v2 assertion</a>.</p>
+</div>
+<div id="actions-cbordiag" class="listingblock">
+<div class="title">CBOR Diagnostics for an actions.v2 assertion</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">"c2pa.actions.v2": {
+  "actions": [
+    {
+      "action": "c2pa.cropped",
+      "when": 0("2020-02-11T09:30:00Z")
+    },
+    {
+      "action": "c2pa.filtered",
+      "when": 0("2020-02-11T09:00:00Z")
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div id="actions-json" class="listingblock">
+<div class="title">JSON-LD representation of <a href="#actions-cbordiag">CBOR Diagnostics for an actions.v2 assertion</a></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"c2pa.actions.v2": {
+  "actions": [
+    {
+      "action": "c2pa.cropped",
+      "when": "2020-02-11T09:30:00Z"
+    },
+    {
+      "action": "c2pa.filtered",
+      "when": "2020-02-11T09:00:00Z"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_byte_string_encoding"><a class="anchor" href="#_byte_string_encoding"></a>3.6.3.1. Byte string encoding</h5>
+<div class="paragraph">
+<p>crJSON normalizes CBOR byte-strings (<code>bstr</code>) into Base64 (<a href="#RFC4648">[RFC4648]</a>) string encodings, starting with the <code>b64'</code> prefix. For example, the following fields would be serialized as such:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>hash</code></p>
+</li>
+<li>
+<p><code>pad</code></p>
+</li>
+<li>
+<p><code>pad2</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_custom_assertions"><a class="anchor" href="#_custom_assertions"></a>3.6.4. Custom Assertions</h4>
+<div class="paragraph">
+<p>If a crJSON generator chooses to decode a custom assertion that is serialized in either JSON-LD or CBOR, it shall be decoded according to the rules for standard assertions. However, if it has any other serialization, then the output into crJSON is implementation dependent.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+"Implementation dependent" could include producing an empty object for the assertion value.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_signature"><a class="anchor" href="#_signature"></a>3.7. Signature</h3>
+<div class="paragraph">
+<p>The signature object consists of two mandatory fields - <code>algorithm</code> (which is the signature algorithm) and <code>certificateInfo</code>.  In addition, it may also contain a <code>timestampInfo</code> field if the signing certificate contains a timestamp.  When signature information is unavailable, <code>signature</code> shall be present as an empty object <code>{}</code>.</p>
+</div>
+<div class="paragraph">
+<p>The value of the <code>algorithm</code> field shall be one of the strings defined in <a href="#C2PA">clause=13.2.1</a>, such as "ES256" or "Ed25519", or "Unknown" if it is not one of the defined values.</p>
+</div>
+<div class="paragraph">
+<p>The <code>certificateInfo</code> field contains information about the signing certificate, such as the issuer, subject, validity period, and serial number. The JSON-LD representation of the X.509 leaf certificate (as defined in <a href="#RFC5280">[RFC5280]</a>) from the claim signature is based on a logical mapping of its ASN.1 serialisation as defined in RFC 5280 into a JSON-LD serialized object whose key is <code>certificateInfo</code>. An example certificate is in <a href="#json-ld-x509">An example signature field with X.509 certificate information, with no time-stamp</a>. Additional mappings, such as the mapping of the distinguished name to JSON-LD should also be done in the most logical fashion possible.</p>
+</div>
+<div class="paragraph">
+<p>The signature information shall include (if available):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>serialNumber</code> (from X.509 certificate)</p>
+</li>
+<li>
+<p><code>issuer</code> (from X.509 certificate, a DN map, e.g., <code>C</code>, <code>ST</code>, <code>L</code>, <code>O</code>, <code>OU</code>, <code>CN</code>)</p>
+</li>
+<li>
+<p><code>subject</code> (from X.509 certificate, a DN map)</p>
+</li>
+<li>
+<p><code>validity.notBefore</code></p>
+</li>
+<li>
+<p><code>validity.notAfter</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An X.509 certificate can contain all sorts of information, and implementations may choose to include additional information in their JSON-LD representation.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>timestampInfo</code> field contains information about the timestamp applied to the signature, such as the time it was created. If present, it shall contain the following fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>timestamp</code> (ISO 8601 formatted)</p>
+</li>
+<li>
+<p><code>certificateInfo</code> (from the time-stamp authority&#8217;s leaf X.509 certificate, same structure as the <code>certificateInfo</code> field described above)</p>
+</li>
+</ul>
+</div>
+<div id="json-ld-x509" class="listingblock">
+<div class="title">An example signature field with X.509 certificate information, with no time-stamp</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"signature": {
+  "algorithm": "ES256",
+  "certificateInfo": {
+    "serialNumber": "1234567890",
+    "subject": {
+      "ST": "CA",
+      "CN": "C2PA Signer",
+      "C": "US",
+      "L": "Somewhere",
+      "OU": "FOR TESTING_ONLY",
+      "O": "C2PA Test Signing Cert"
+    },
+    "issuer": {
+      "ST": "CA",
+      "CN": "Intermediate CA",
+      "C": "US",
+      "L": "Somewhere",
+      "OU": "FOR TESTING_ONLY",
+      "O": "C2PA Test Intermediate Root CA"
+    },
+    "validity": {
+      "notAfter": "2030-08-26T18:46:40Z",
+      "notBefore": "2022-06-10T18:46:40Z"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dates/times (e.g., <code>timestamp</code>, <code>notBefore</code>, <code>notAfter</code>) shall be represented as ISO 8601 strings.</p>
+</div>
+<div class="paragraph">
+<p>Additional certificates following the first certificate provided in <code>x5chain</code> (representing intermediate certification authorities) should not be extracted into the crJSON <code>certificateInfo</code>. An implementation may choose to include them, but their serialisation is implementation dependent.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_manifest_validation_results"><a class="anchor" href="#_manifest_validation_results"></a>3.8. Manifest Validation Results</h3>
+<div class="paragraph">
+<p>Each <code>manifest</code> object shall contain a <code>validationResults</code> field whose value is a <code>statusCodes</code> object along with a <code>validationTime</code> field. The <code>statusCodes</code> object groups validation status entries into <code>success</code>, <code>informational</code>, and <code>failure</code> arrays. These grouped results are the per-manifest assessments produced by the validator.</p>
+</div>
+<div class="paragraph">
+<p>If ingredient-specific deltas are available for a manifest, they shall be represented in the sibling <code>ingredientDeltas</code> array on that same manifest object.</p>
+</div>
+<div class="paragraph">
+<p>Each validation status entry is an object with a <code>code</code> (required), and optionally <code>url</code> and <code>explanation</code> fields.</p>
+</div>
+<div class="paragraph">
+<p>An example of a per-manifest <code>validationResults</code> object is shown in <a href="#results-example">[results-example]</a>.</p>
+</div>
+<div id="results-example" class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">"validationResults": {
+  "success": [
+    {
+      "code": "claimSignature.insideValidity",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.signature",
+      "explanation": "claim signature valid"
+    },
+    {
+      "code": "claimSignature.validated",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.signature",
+      "explanation": "claim signature valid"
+    },
+    {
+      "code": "assertion.hashedURI.match",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.assertions/c2pa.actions.v2",
+      "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.actions.v2"
+    },
+    {
+      "code": "assertion.hashedURI.match",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.assertions/c2pa.hash.data",
+      "explanation": "hashed uri matched: self#jumbf=c2pa.assertions/c2pa.hash.data"
+    },
+    {
+      "code": "assertion.dataHash.match",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.assertions/c2pa.hash.data",
+      "explanation": "data hash valid"
+    }
+  ],
+  "informational": [],
+  "failure": [
+    {
+      "code": "signingCredential.untrusted",
+      "url": "self#jumbf=/c2pa/urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268/c2pa.signature",
+      "explanation": "signing certificate untrusted"
+    },
+    {
+      "code": "assertion.action.malformed",
+      "url": "urn:c2pa:4646c5e4-31e1-4d08-8156-d90a8e323268",
+      "explanation": "first action must be created or opened"
+    }
+  ],
+  "validationTime": "2026-03-10T12:34:56Z"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>validationTime</code> field is the date and time when validation was performed, represented as an RFC 3339 date-time string.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minimal_example"><a class="anchor" href="#_minimal_example"></a>4. Minimal Example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following example conforms to the crJSON schema. In many of the example values, a <code>&#8230;&#8203;</code> placeholder is used for a value that is not relevant to the example.  Also, any values which would be Base64-encoded are represented as <code>b64'&lt;base64&gt;</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "@context": {
+    "@vocab": "https://c2pa.org/crjson",
+    "extras": "https://c2pa.org/crjson/extras"
+  },
+  "jsonGenerator": {
+    "name": "Example Tool",
+    "version": "1.0.0",
+  },
+  "manifests": [
+    {
+      "label": "urn:uuid:...",
+      "claim.v2": {
+        "instanceID": "xmp:iid:...",
+        "claim_generator_info": {"name": "Example Tool", "version": "1.0"},
+        "signature": "self#jumbf=/c2pa/urn:uuid:.../c2pa.signature",
+        "created_assertions": [
+          {"url": "self#jumbf=c2pa.assertions/c2pa.hash.data", "hash": "b64'&lt;base64&gt;"}
+        ],
+        "gathered_assertions": [],
+        "redacted_assertions": []
+      },
+      "assertions": {
+        "c2pa.actions.v2": {"actions": []},
+        "c2pa.hash.data": {"alg": "sha256", "hash": "b64'&lt;base64&gt;"}
+      },
+      "signature": {},
+      "validationResults": {
+        "informational": [],
+        "success": [
+          {"code": "claimSignature.validated"}
+        ],
+        "failure": []
+      },
+      "validationTime": "2026-03-16T18:35:24.012Z"
+    }
+  ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_full_schema"><a class="anchor" href="#_full_schema"></a>5. Full Schema</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">Unresolved include directive in modules/crJSON/pages/crjson-format.adoc - include::../partials/crJSON-schema.json[]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="footer-main">
+    <figure class="footer-brand">
+      <a class="logo" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
+      <figcaption class="footer-brand-name"><a href="https://c2pa.org">C2PA</a></figcaption>
+    </figure>
+    <ul class="footer-brand-links">
+      <li><a href="https://c2pa.org" target="_blank" rel="noopener">Home</a></li>
+      <li><a href="https://c2pa.org/specifications">Docs</a></li>
+      <li><a href="https://github.com/c2pa-org" target="_blank" rel="noopener">Project</a></li>
+    </ul>
+    <p class="footer-brand-follow">
+      <a href="https://twitter.com/c2pa_org" title="Follow us on Twitter" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231d9bf0'%3E%3Cpath d='M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9 0 11-4s1-8.2 0-11c-.5-.55-.5-1-1-1.2z'/%3E%3C/svg%3E" alt="Twitter logo" class="logo" width="24" style="display:inline; margin-right:0.25em;"><span class="handle">@C2PA_org</span></a>
+    </p>
+  </div>
+  <div class="footer-legal">
+    <p>Copyright © 2026 Coalition for Content Provenance and Authenticity (C2PA). Except where noted, the content is licensed under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.</p>
+    <p>The <a href="https://gitlab.com/antora/antora-ui-default" target="_blank" rel="noopener">UI for this site</a> is the Antora default UI, licensed under the MPL-2.0 license.</p>
+  </div>
+  <div class="footer-thanks">
+    <p>Thanks to our <a href="https://c2pa.org/membership/" target="_blank" rel="noopener">membership</a> for helping to make this project possible.</p>
+    <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
+  </div>
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
