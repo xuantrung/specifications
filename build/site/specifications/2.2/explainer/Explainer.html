@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>C2PA and Content Credentials Explainer :: C2PA Specifications</title>
-    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.3/explainer/Explainer.html">
+    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.4/explainer/Explainer.html">
     <meta name="generator" content="Antora 3.1.14">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
@@ -65,13 +65,13 @@
     <span class="nav-text">Technical Specifications</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../specs/C2PA_Specification.html">Content Credentials</a>
+    <a class="nav-link" href="#specs:C2PA_Specification.adoc">Content Credentials</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../softbinding/Decoupled.html">Soft Binding API</a>
+    <a class="nav-link" href="#2.2@softbinding:Decoupled.adoc">Soft Binding API</a>
   </li>
 </ul>
   </li>
@@ -111,9 +111,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../../2.3/index.html">C2PA Specifications</a></div>
+      <div class="title"><a href="../../2.4/index.html">C2PA Specifications</a></div>
       <ul class="versions">
         <li class="version is-latest">
+          <a href="../../2.4/index.html">2.4</a>
+        </li>
+        <li class="version">
           <a href="../../2.3/index.html">2.3</a>
         </li>
         <li class="version is-current">
@@ -160,6 +163,7 @@
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">2.2</button>
   <div class="version-menu">
+    <a class="version" href="../../2.4/explainer/Explainer.html">2.4</a>
     <a class="version" href="../../2.3/explainer/Explainer.html">2.3</a>
     <a class="version is-current" href="Explainer.html">2.2</a>
     <a class="version is-missing" href="../../2.1/index.html">2.1</a>
@@ -557,7 +561,7 @@ The full set of principles may be found in our <a href="https://c2pa.org/princip
 <div class="sect3">
 <h4 id="_is_provenance_always_complete"><a class="anchor" href="#_is_provenance_always_complete"></a>7.2.1. Is provenance always complete?</h4>
 <div class="paragraph">
-<p>No. Provenance is not always complete. It may happen that an asset is modified in a way that the provenance data is not updated. For example, if an asset is cropped using a non-Content Credentials aware tool, the provenance data may not be updated to reflect that action.  However, if the asset is then brought back into a Content Credentials aware tool for additional modification or preparation for publication, the signer of the new Content Credential also implicitly attests to the crop action. So even though there is missing provenance information, the asset can still be trusted based on the signer of the <a href="../specs/C2PA_Specification.html#_active_manifest" class="xref page">active Content Credential</a>.</p>
+<p>No. Provenance is not always complete. It may happen that an asset is modified in a way that the provenance data is not updated. For example, if an asset is cropped using a non-Content Credentials aware tool, the provenance data may not be updated to reflect that action.  However, if the asset is then brought back into a Content Credentials aware tool for additional modification or preparation for publication, the signer of the new Content Credential also implicitly attests to the crop action. So even though there is missing provenance information, the asset can still be trusted based on the signer of the <a href="#2.2@specs:C2PA_Specification.adoc#_active_manifest" class="xref unresolved">active Content Credential</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -569,7 +573,7 @@ The full set of principles may be found in our <a href="https://c2pa.org/princip
 <p>Content Credentials can include assertions about the real-world identity of the provider of those assertions and the digital asset to which they refer. This allows one to determine whether those assertions or the digital asset itself were subsequently altered. This provides consumers the means to make a more informed decision about whether they believe the digital content is true, accurate or factual, based in part on the trust relationship they have with the provider of those assertions.</p>
 </div>
 <div class="paragraph">
-<p>For additional information, see the <a href="../specs/C2PA_Specification.html#_trust_model" class="xref page">Trust Model</a> section of the <a href="../specs/C2PA_Specification.html" class="xref page">Technical Specifications</a>.</p>
+<p>For additional information, see the <a href="#2.2@specs:C2PA_Specification.adoc#_trust_model" class="xref unresolved">Trust Model</a> section of the <a href="#2.2@specs:C2PA_Specification.adoc" class="xref unresolved">Technical Specifications</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -602,13 +606,13 @@ The full set of principles may be found in our <a href="https://c2pa.org/princip
 <div class="sect3">
 <h4 id="_can_content_credentials_help_with_assets_created_from_multiple_sources"><a class="anchor" href="#_can_content_credentials_help_with_assets_created_from_multiple_sources"></a>7.3.1. Can Content Credentials help with assets created from multiple sources?</h4>
 <div class="paragraph">
-<p>Yes it can. When an asset is created from a series of other assets, those additional assets are referred to as its <a href="../specs/C2PA_Specification.html#_ingredient" class="xref page">ingredients</a>. Each ingredient that is used in the (composed) asset is recorded in that asset&#8217;s provenance, including the addition of the provenance of each individual ingredient. This process creates a tree of provenance, much like a family tree, that can stretch all the way back to each ingredient&#8217;s creation.</p>
+<p>Yes it can. When an asset is created from a series of other assets, those additional assets are referred to as its <a href="#2.2@specs:C2PA_Specification.adoc#_ingredient" class="xref unresolved">ingredients</a>. Each ingredient that is used in the (composed) asset is recorded in that asset&#8217;s provenance, including the addition of the provenance of each individual ingredient. This process creates a tree of provenance, much like a family tree, that can stretch all the way back to each ingredient&#8217;s creation.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_do_the_ingredients_of_an_asset_have_verifiable_provenance"><a class="anchor" href="#_do_the_ingredients_of_an_asset_have_verifiable_provenance"></a>7.3.2. Do the ingredients of an asset have verifiable provenance?</h4>
 <div class="paragraph">
-<p>Each <a href="../specs/C2PA_Specification.html#_ingredient" class="xref page">ingredient</a> that is included in a Content Credential can include its own provenance data, specifically the ingredient&#8217;s Content Credential is also included in the asset&#8217;s full set of Content Credentials. However, while the provenance data of each ingredient may be present, the ingredient&#8217;s provenance cannot be verified in the same way as the provenance data of the asset in which it is contained. This is because the actual data of the ingredient is not usually included in the asset&#8217;s Content Credential. Without the actual data, the ingredient&#8217;s hard bindings cannot be verified.  For this reason, the hard bindings of the ingredient, as well as the validity of its Content Credential are validated at the time they are added to the asset and a record of that validation is included in the asset&#8217;s Content Credential. This allows the consumer to see that the ingredient was validated at the time it was added to the asset and use that information to determine their level of trust in the asset.</p>
+<p>Each <a href="#2.2@specs:C2PA_Specification.adoc#_ingredient" class="xref unresolved">ingredient</a> that is included in a Content Credential can include its own provenance data, specifically the ingredient&#8217;s Content Credential is also included in the asset&#8217;s full set of Content Credentials. However, while the provenance data of each ingredient may be present, the ingredient&#8217;s provenance cannot be verified in the same way as the provenance data of the asset in which it is contained. This is because the actual data of the ingredient is not usually included in the asset&#8217;s Content Credential. Without the actual data, the ingredient&#8217;s hard bindings cannot be verified.  For this reason, the hard bindings of the ingredient, as well as the validity of its Content Credential are validated at the time they are added to the asset and a record of that validation is included in the asset&#8217;s Content Credential. This allows the consumer to see that the ingredient was validated at the time it was added to the asset and use that information to determine their level of trust in the asset.</p>
 </div>
 </div>
 </div>
@@ -649,7 +653,7 @@ The full set of principles may be found in our <a href="https://c2pa.org/princip
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>An example of <code>c2pa.created</code> action that might appear in an asset that was produced by a Generative AI system appears in the specification&#8217;s <a href="../specs/C2PA_Specification.html#_parameters" class="xref page">parameters clause of Actions</a>.</p>
+<p>An example of <code>c2pa.created</code> action that might appear in an asset that was produced by a Generative AI system appears in the specification&#8217;s <a href="#2.2@specs:C2PA_Specification.adoc#_parameters" class="xref unresolved">parameters clause of Actions</a>.</p>
 </div>
 </div>
 </div>

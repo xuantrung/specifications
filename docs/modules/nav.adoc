@@ -1,11 +1,14 @@
 * Technical Specifications
-** xref:2.3@specs:C2PA_Specification.adoc[Content Credentials]
+** xref:2.4@specs:C2PA_Specification.adoc[Content Credentials]
+** xref:2.4@crJSON:crjson-format.adoc[Content Credentials JSON (crJSON)]
 ** xref:1.4@attestations:attestation.adoc[Attestations]
-** xref:2.2@softbinding:Decoupled.adoc[Soft Binding API]
+** xref:2.4@softbinding:Decoupled.adoc[Soft Binding API]
 * Informative Documents
 ** xref:2.2@explainer:Explainer.adoc[Explainer]
 ** xref:2.2@guidance:Guidance.adoc[Guidance for Implementers]
 ** xref:2.2@ux:UX_Recommendations.adoc[User Experience Guidance]
-** xref:2.0@security:Security_Considerations.adoc[]
-** xref:2.0@security:Harms_Modelling.adoc[]
+** xref:2.4@security:Security_Considerations.adoc[]
+** xref:2.4@security:Harms_Modelling.adoc[]
 ** xref:2.3@ai-ml:ai_ml.adoc[Guidance for Artificial Intelligence and Machine Learning]
+* Recommendations
+** xref:2.4@identity:identity.adoc[Human and Organizational Identity Recommendation]

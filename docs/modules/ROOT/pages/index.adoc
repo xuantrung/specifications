@@ -2,20 +2,24 @@
 
 The Coalition for Content Provenance and Authenticity (C2PA) addresses the prevalence of misleading information online through the development of technical standards for certifying the source and history (or provenance) of media content. C2PA is a Joint Development Foundation project.
 
-This site contains the various specifications and documents produced by the C2PA.
+This site contains the various specifications and informative documents produced by the C2PA.
 
 == Technical Specifications
-* xref:2.3@specs:C2PA_Specification.adoc[Content Credentials] 
+* xref:2.4@specs:C2PA_Specification.adoc[Content Credentials] 
+* xref:2.4@crJSON:crjson-format.adoc[Content Credentials JSON (crJSON)]
 * xref:1.4@attestations:attestation.adoc[Attestations]
-* xref:2.2@softbinding:Decoupled.adoc[Soft Binding API]
+* xref:2.4@softbinding:Decoupled.adoc[Soft Binding API]
 
 == Guidance & Informative Documents
 * xref:2.2@explainer:Explainer.adoc[Explainer] 
 * xref:2.2@guidance:Guidance.adoc[Guidance for Implementers] 
 * xref:2.2@ux:UX_Recommendations.adoc[User Experience Guidance] 
-* xref:2.0@security:Security_Considerations.adoc[Security Considerations] 
-* xref:2.0@security:Harms_Modelling.adoc[Harms Modelling] 
+* xref:2.4@security:Security_Considerations.adoc[Security Considerations] 
+* xref:2.4@security:Harms_Modelling.adoc[Harms Modelling] 
 * xref:2.3@ai-ml:ai_ml.adoc[Guidance for Artificial Intelligence and Machine Learning]
+
+== Recommendations
+* xref:2.4@identity:identity.adoc[Human and Organizational Identity Recommendation]
 
 
 PDF Versions of these documents are also available via the Download button in the page header.
