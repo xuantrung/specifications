@@ -425,10 +425,6 @@ to make claims about digital assets and their associated metadata.  Attestation 
 <p>An Explicit Attestation is a special sort of signature that conveys evidence about the current security posture of the platform or application that requested the signature. Explicit Attestation-capable platforms contain a special sort of signing key, usually called an attestation key. Attestation keys cannot be used to generate simple signatures; instead they sign a combination of user/application-supplied data, together with measurements (or other sort of description) of the application that requested the signature and information about the environment in which it is running. Most platforms that provide attestation capabilities refer to these specialized signatures as <em>quotes</em> and call the signing operation <em>quoting</em>.</p>
 </div>
 <div class="paragraph">
-<p>Explicit Attestation works slightly differently than Implicit Attestation does.  Attestation-capable platforms provide a special sort of signing key, usually called an attestation key, that can be used by more than one application/operating system.  However, if the attestation key is used to sign data, then the digital signature also conveys measurements of the application that requested the signature.
-Most platforms that provide attestation capabilities refer to these specialized signature as <em>quotes</em> and call the signing operation <em>quoting</em>.</p>
-</div>
-<div class="paragraph">
 <p>For example:</p>
 </div>
 <div class="ulist">
