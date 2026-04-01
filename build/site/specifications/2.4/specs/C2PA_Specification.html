@@ -100,6 +100,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../2.3/ai-ml/ai_ml.html">Guidance for Artificial Intelligence and Machine Learning</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Recommendations</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../identity/identity.html">Human and Organizational Identity Recommendation</a>
   </li>
@@ -1192,7 +1198,7 @@ A <a href="#_c2pa_manifest">C2PA Manifest</a> can reference other <a href="#_c2p
 <div class="ulist">
 <ul>
 <li>
-<p>New Content Credential JSON (CrJSON) Format</p>
+<p>New Content Credential JSON (crJSON) Format</p>
 <div class="ulist">
 <ul>
 <li>
@@ -17020,6 +17026,18 @@ The hash is defined over the byte representation of the document as stored. Any 
 <h4 id="_general_24"><a class="anchor" href="#_general_24"></a>A.8.1. General</h4>
 <div class="paragraph">
 <p>For unstructured text where traditional file-based embedding is not practical, such as content intended for copy-paste operations across different systems, C2PA Manifests may be embedded directly into a Unicode-encoded text stream. This method uses a sequence of Unicode Variation Selectors to encode a C2PA Manifest Store in a way that is not visually rendered, ensuring that Content Credentials persist with the content itself across platforms.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This approach should only be used with unstructured text assets where no other embedding method is feasible. It remains under review and may be subject to change based on implementation feedback and interoperability testing.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
