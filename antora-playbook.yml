@@ -92,6 +92,14 @@ ui:
         font-weight: 600;
         line-height: 1.2;
       }
+      .doc h5 {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      .doc h6 {
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
   - path: img/C2PA-logo.svg
     contents: |
       <?xml version="1.0" encoding="utf-8"?>
