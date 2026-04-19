@@ -455,7 +455,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <div class="sect3">
 <h4 id="_byte_range_bindings"><a class="anchor" href="#_byte_range_bindings"></a>4.1.2. Byte Range Bindings</h4>
 <div class="paragraph">
-<p>The simplest type of hard binding that can be used to detect tampering is a cryptographic hashing algorithm over some or all of the bytes of an asset as described in <a href="#2.2@specs:C2PA_Specification.adoc#_hashing" class="xref unresolved">the core specification</a>. Traditionally, this type of binding is done over an inclusive list of byte ranges of the asset.  However, a number of attacks on an inclusion list-based approach were identified and it was determined that they are prevented by the use of exclusions lists. These vulnerabilities would have allowed content to be added to an asset that altered the digital content without altering the hard bindings.</p>
+<p>The simplest type of hard binding that can be used to detect tampering is a cryptographic hashing algorithm over some or all of the bytes of an asset as described in <a href="../../2.2/specs/C2PA_Specification.html#_hashing" class="xref page">the core specification</a>. Traditionally, this type of binding is done over an inclusive list of byte ranges of the asset.  However, a number of attacks on an inclusion list-based approach were identified and it was determined that they are prevented by the use of exclusions lists. These vulnerabilities would have allowed content to be added to an asset that altered the digital content without altering the hard bindings.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -478,7 +478,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <p>Some file formats, such as JPEG, PNG, TIFF, or GIF, use a general box structure, that can be used to improve the flexibility of the bindings over that of a byte range binding.  Use of a general box binding is strongly recommended over a byte range binding for any file format that supports it.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="#2.2@specs:C2PA_Specification.adoc#_general_boxes_hash" class="xref unresolved">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
+<p>A <a href="../../2.2/specs/C2PA_Specification.html#_general_boxes_hash" class="xref page">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -664,11 +664,11 @@ In this design pattern, the search key is the unique identifier within the invis
 <div class="sect3">
 <h4 id="_watermarks_and_soft_binding_assertions"><a class="anchor" href="#_watermarks_and_soft_binding_assertions"></a>4.2.6. Watermarks and Soft Binding Assertions</h4>
 <div class="paragraph">
-<p>C2PA supports the use of invisible watermarks as one particular kind of soft binding. A <a href="#2.2@specs:C2PA_Specification.adoc#_actions" class="xref unresolved"><code>c2pa.watermarked.bound</code></a>
+<p>C2PA supports the use of invisible watermarks as one particular kind of soft binding. A <a href="../../2.2/specs/C2PA_Specification.html#_actions" class="xref page"><code>c2pa.watermarked.bound</code></a>
 action must be added to the C2PA Manifest to signal that an invisible watermark was inserted into the digital content for the purpose of creating a soft binding. The watermark should reference the asset with a soft binding content identifier that can be queried via a manifest repository.</p>
 </div>
 <div class="paragraph">
-<p>Each <code>c2pa.watermarked.bound</code> action needs a corresponding <a href="#2.2@specs:C2PA_Specification.adoc#_soft_bindings" class="xref unresolved">soft bindings assertion</a> to provide more details about the watermarking algorithm used to insert the invisible watermark into the digital content.</p>
+<p>Each <code>c2pa.watermarked.bound</code> action needs a corresponding <a href="../../2.2/specs/C2PA_Specification.html#_soft_bindings" class="xref page">soft bindings assertion</a> to provide more details about the watermarking algorithm used to insert the invisible watermark into the digital content.</p>
 </div>
 </div>
 <div class="sect3">
