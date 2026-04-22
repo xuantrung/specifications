@@ -1,7 +1,7 @@
 site:
   title: C2PA Specifications
-  url: https://c2pa.org/specifications
-  # start_page: specifications::index.adoc
+  url: https://spec.c2pa.org/specifications
+  start_page: specifications::index.adoc
 content:
   sources:
   - url: ./
@@ -37,6 +37,27 @@ ui:
     contents: |
       static_files: [ .nojekyll ]
   - path: .nojekyll
+  - path: latest/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/index.html">
+      <link rel="canonical" href="../specifications/2.4/index.html">
+      <script>location="../specifications/2.4/index.html"</script>
+  - path: core/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/specs/C2PA_Specification.html">
+      <link rel="canonical" href="../specifications/2.4/specs/C2PA_Specification.html">
+      <script>location="../specifications/2.4/specs/C2PA_Specification.html"</script>
+  - path: crjson/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/crJSON/crjson-format.html">
+      <link rel="canonical" href="../specifications/2.4/crJSON/crjson-format.html">
+      <script>location="../specifications/2.4/crJSON/crjson-format.html"</script>
   - path: css/c2pa-branding.css
     contents: |
       :root {
