@@ -131,7 +131,7 @@ ui:
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
-        color: inherit;
+        color: #000;
         background: #fff;
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-radius: 4px;
