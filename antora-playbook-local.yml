@@ -35,7 +35,7 @@ ui:
   supplemental_files:
   - path: ui.yml
     contents: |
-      static_files: [ .nojekyll ]
+      static_files: [ .nojekyll, latest/index.html, core/index.html, crjson/index.html ]
   - path: .nojekyll
   - path: latest/index.html
     contents: |
