@@ -24,6 +24,11 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs" aria-label="Search">
+          </div>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">Download</div>
           <div class="navbar-dropdown">
@@ -139,7 +144,13 @@ If you typed the URL of this page manually, please double check that you entered
     <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
   </div>
 </footer>
+<script src="/specifications/_/js/vendor/lunr.js"></script>
+<script src="/specifications/_/js/search-ui.js" id="search-ui-script" data-site-root-path="/specifications" data-snippet-length="100" data-stylesheet="/specifications/_/css/search.css"></script>
+<script async src="/specifications/search-index.js"></script>
 <script id="site-script" src="/specifications/_/js/site.js" data-ui-root-path="/specifications/_"></script>
 <script async src="/specifications/_/js/vendor/highlight.js"></script>
+<script src="/specifications/_/js/vendor/lunr.js"></script>
+<script src="/specifications/_/js/search-ui.js" id="search-ui-script" data-site-root-path="/specifications" data-snippet-length="100" data-stylesheet="/specifications/_/css/search.css"></script>
+<script async src="/specifications/search-index.js"></script>
   </body>
 </html>
