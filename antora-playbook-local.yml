@@ -1,7 +1,10 @@
+antora:
+  extensions:
+  - '@antora/lunr-extension'
 site:
   title: C2PA Specifications
-  url: https://c2pa.org/specifications
-  # start_page: specifications::index.adoc
+  url: https://spec.c2pa.org/specifications
+  start_page: specifications::index.adoc
 content:
   sources:
   - url: ./
@@ -35,8 +38,29 @@ ui:
   supplemental_files:
   - path: ui.yml
     contents: |
-      static_files: [ .nojekyll ]
+      static_files: [ .nojekyll, latest/index.html, core/index.html, crjson/index.html ]
   - path: .nojekyll
+  - path: latest/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/index.html">
+      <link rel="canonical" href="../specifications/2.4/index.html">
+      <script>location="../specifications/2.4/index.html"</script>
+  - path: core/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/specs/C2PA_Specification.html">
+      <link rel="canonical" href="../specifications/2.4/specs/C2PA_Specification.html">
+      <script>location="../specifications/2.4/specs/C2PA_Specification.html"</script>
+  - path: crjson/index.html
+    contents: |
+      <!DOCTYPE html>
+      <meta charset="utf-8">
+      <meta http-equiv="refresh" content="0; url=../specifications/2.4/crJSON/crjson-format.html">
+      <link rel="canonical" href="../specifications/2.4/crJSON/crjson-format.html">
+      <script>location="../specifications/2.4/crJSON/crjson-format.html"</script>
   - path: css/c2pa-branding.css
     contents: |
       :root {
@@ -97,6 +121,41 @@ ui:
         font-size: 1.25rem;
         font-weight: 600;
         line-height: 1.2;
+      }
+      /* Search input styling */
+      .navbar-item.search {
+        position: relative;
+      }
+      #search-input {
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        color: #000;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        padding: 0.3em 0.5em;
+        width: 12em;
+        max-width: 100%;
+        transition: width 0.2s ease, border-color 0.2s ease;
+      }
+      #search-input:focus {
+        outline: none;
+        border-color: var(--color-brand-primary);
+        width: 18em;
+        max-width: calc(100vw - 4rem);
+      }
+      #search-input::placeholder {
+        color: rgba(0, 0, 0, 0.4);
+      }
+      @media screen and (max-width: 768px) {
+        #search-input {
+          width: 100%;
+        }
+        #search-input:focus {
+          width: 100%;
+        }
       }
   - path: img/C2PA-logo.svg
     contents: |
@@ -233,6 +292,13 @@ ui:
           </div>
           <div id="topbar-nav" class="navbar-menu">
             <div class="navbar-end">
+              {{#if env.SITE_SEARCH_PROVIDER}}
+              <div class="navbar-item search hide-for-print">
+                <div id="search-field" class="field">
+                  <input id="search-input" type="text" placeholder="Search the docs" aria-label="Search">
+                </div>
+              </div>
+              {{/if}}
               <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">Download</div>
                 <div class="navbar-dropdown">
@@ -283,6 +349,9 @@ ui:
           <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
         </div>
       </footer>
+      {{#if env.SITE_SEARCH_PROVIDER}}
+      {{> search-scripts}}
+      {{/if}}
 asciidoc:
   extensions:
   - asciidoctor-kroki

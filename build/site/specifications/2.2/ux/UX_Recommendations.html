@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>C2PA User Experience Guidance for Implementers :: C2PA Specifications</title>
-    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.2/ux/UX_Recommendations.html">
+    <link rel="canonical" href="https://spec.c2pa.org/specifications/specifications/2.2/ux/UX_Recommendations.html">
     <meta name="generator" content="Antora 3.1.14">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
@@ -16,7 +16,7 @@
   <nav class="navbar">
    <div class="navbar-brand">
     <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
-      <a class="navbar-item title" href="../../..">C2PA Specifications</a>
+      <a class="navbar-item title" href="https://spec.c2pa.org/specifications/specifications/2.4/index.html">C2PA Specifications</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -25,6 +25,11 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs" aria-label="Search">
+          </div>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">Download</div>
           <div class="navbar-dropdown">
@@ -65,13 +70,13 @@
     <span class="nav-text">Technical Specifications</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#specs:C2PA_Specification.adoc">Content Credentials</a>
+    <a class="nav-link" href="../specs/C2PA_Specification.html">Content Credentials</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#2.2@softbinding:Decoupled.adoc">Soft Binding API</a>
+    <a class="nav-link" href="../softbinding/Decoupled.html">Soft Binding API</a>
   </li>
 </ul>
   </li>
@@ -153,6 +158,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="../../2.4/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">C2PA Specifications</a></li>
@@ -249,7 +255,7 @@
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The C2PA intends to provide clear guidance for implementers of Content Credentials user experiences (UX). Developing these recommendations is an ongoing process that involves diverse stakeholders. The results will balance uniformity and familiarity with utility and flexibility for users across contexts, platforms, and devices. Our intent is to present a comprehensive range of conventions for the user experience and evolve them based on feedback. Please reference the Glossary in the <a href="#2.2@specs:C2PA_Specification.adoc#_glossary" class="xref unresolved">C2PA Specifications</a> for clarifications on terminology used within this document. For general guidance on other areas of the specification, please see <a href="../guidance/Guidance.html" class="xref page">Guidance for Implementors</a>.</p>
+<p>The C2PA intends to provide clear guidance for implementers of Content Credentials user experiences (UX). Developing these recommendations is an ongoing process that involves diverse stakeholders. The results will balance uniformity and familiarity with utility and flexibility for users across contexts, platforms, and devices. Our intent is to present a comprehensive range of conventions for the user experience and evolve them based on feedback. Please reference the Glossary in the <a href="../specs/C2PA_Specification.html#_glossary" class="xref page">C2PA Specifications</a> for clarifications on terminology used within this document. For general guidance on other areas of the specification, please see <a href="../guidance/Guidance.html" class="xref page">Guidance for Implementors</a>.</p>
 </div>
 </div>
 </div>
@@ -403,7 +409,7 @@
 <div class="sect3">
 <h4 id="_actions"><a class="anchor" href="#_actions"></a>3.3.1. Actions</h4>
 <div class="paragraph">
-<p>Content Credentials can be used to record changes to content over time. Creative tools and hardware that support the creation or editing of content can record information about the edits or other actions taken that affect the asset’s content. C2PA supports a list of <a href="#2.2@specs:C2PA_Specification.adoc#_actions" class="xref unresolved">pre-defined action</a> categories that the majority of editing software fall into, such as color adjustments, cropping, or filtering actions in addition to media type specific actions such as those for PDF or Audio.</p>
+<p>Content Credentials can be used to record changes to content over time. Creative tools and hardware that support the creation or editing of content can record information about the edits or other actions taken that affect the asset’s content. C2PA supports a list of <a href="../specs/C2PA_Specification.html#_actions" class="xref page">pre-defined action</a> categories that the majority of editing software fall into, such as color adjustments, cropping, or filtering actions in addition to media type specific actions such as those for PDF or Audio.</p>
 </div>
 <div class="paragraph">
 <p>When presented in a UX to the user, action disclosures should have easy-to-understand labels like:</p>
@@ -425,7 +431,7 @@
 <p>Granularity of actions is worth considering. In some cases, grouping actions into high level categories may be more understandable for consumers, versus presenting a list of detailed, creation-specific actions that may be unique to the implementation.</p>
 </div>
 <div class="paragraph">
-<p>Implementers should strike a balance between clarity and information overload based on the intended audience of the implementing platform. For example, C2PA requires the <a href="#2.2@specs:C2PA_Specification.adoc#_mandatory_presence_of_at_least_one_actions_assertion" class="xref unresolved">presence of at least one actions assertion</a> in a standard C2PA Manifest. However, this level of information may be more suitable for an L3 summary, where there is more space for individual manifest details.</p>
+<p>Implementers should strike a balance between clarity and information overload based on the intended audience of the implementing platform. For example, C2PA requires the <a href="../specs/C2PA_Specification.html#_mandatory_presence_of_at_least_one_actions_assertion" class="xref page">presence of at least one actions assertion</a> in a standard C2PA Manifest. However, this level of information may be more suitable for an L3 summary, where there is more space for individual manifest details.</p>
 </div>
 </div>
 <div class="sect3">
@@ -443,7 +449,7 @@
 <div class="sect3">
 <h4 id="_regions_of_interest"><a class="anchor" href="#_regions_of_interest"></a>3.3.3. Regions of Interest</h4>
 <div class="paragraph">
-<p>The display of these actions alone does not necessarily provide enough information about how the content has materially changed. For instance, a cropping action in an image doesn’t relay whether the meaning of the content was changed through that action. By highlighting the <a href="#2.2@specs:C2PA_Specification.adoc#_regions_of_interest" class="xref unresolved">region of interest</a> where the change occurred in the image, or the set of frames in a video, viewers could make more informed decisions about the material change.</p>
+<p>The display of these actions alone does not necessarily provide enough information about how the content has materially changed. For instance, a cropping action in an image doesn’t relay whether the meaning of the content was changed through that action. By highlighting the <a href="../specs/C2PA_Specification.html#_regions_of_interest" class="xref page">region of interest</a> where the change occurred in the image, or the set of frames in a video, viewers could make more informed decisions about the material change.</p>
 </div>
 <div class="paragraph">
 <p>Regions of interest can apply to temporal, spatial, or textural changes. In time-based media, time-coded assertions (e.g., actions or ingredients tied to specific frames) can introduce further opportunities for precise visual overlays and interactive timelines. UI patterns like heatmaps can visually track provenance across a video&#8217;s timeline.</p>
@@ -519,7 +525,7 @@
 <p>There are several ways to bind Content Credentials to assets during the signing process, each of which has direct implications for privacy, persistence, recoverability, and user trust.</p>
 </div>
 <div class="paragraph">
-<p>Content Credentials can be <a href="#2.2@specs:C2PA_Specification.adoc#_embedding_manifests_into_various_file_formats" class="xref unresolved">embedded locally</a> in the asset, <a href="#2.2@specs:C2PA_Specification.adoc#_external_manifests" class="xref unresolved">stored remotely</a> as cloud data, or a combination of both. These options each have tradeoffs that should be communicated clearly in both creator experiences and potentially L3 displays.</p>
+<p>Content Credentials can be <a href="../specs/C2PA_Specification.html#_embedding_manifests_into_various_file_formats" class="xref page">embedded locally</a> in the asset, <a href="../specs/C2PA_Specification.html#_external_manifests" class="xref page">stored remotely</a> as cloud data, or a combination of both. These options each have tradeoffs that should be communicated clearly in both creator experiences and potentially L3 displays.</p>
 </div>
 <div class="sect3">
 <h4 id="_embedded_content_credentials"><a class="anchor" href="#_embedded_content_credentials"></a>3.6.1. Embedded Content Credentials</h4>
@@ -539,7 +545,7 @@
 <div class="sect3">
 <h4 id="_watermarks"><a class="anchor" href="#_watermarks"></a>3.7.1. Watermarks</h4>
 <div class="paragraph">
-<p>An <a href="#2.2@specs:C2PA_Specification.adoc#_invisible_watermark" class="xref unresolved">invisible watermark</a> can be applied to an asset to embed a unique identifier directly within the asset’s digital content. The watermark serves as a <a href="#2.2@specs:C2PA_Specification.adoc#_durable_content_credential" class="xref unresolved">durable</a> reference that enables remote C2PA Manifest recovery when it has been stripped or the file is modified outside a C2PA-enabled workflow. Watermarks may be used across all media types, including images, video, audio, and even scanned or printed materials, to reestablish provenance through soft binding when hard bindings have been lost.</p>
+<p>An <a href="../specs/C2PA_Specification.html#_invisible_watermark" class="xref page">invisible watermark</a> can be applied to an asset to embed a unique identifier directly within the asset’s digital content. The watermark serves as a <a href="../specs/C2PA_Specification.html#_durable_content_credential" class="xref page">durable</a> reference that enables remote C2PA Manifest recovery when it has been stripped or the file is modified outside a C2PA-enabled workflow. Watermarks may be used across all media types, including images, video, audio, and even scanned or printed materials, to reestablish provenance through soft binding when hard bindings have been lost.</p>
 </div>
 <div class="paragraph">
 <p>When a creation or editing tool detects a watermark in imported content, users should be notified that provenance data has been recovered. Implementers should indicate that the recovered provenance was matched through a watermark rather than a standard hard binding lookup to help creators understand that recovered Content Credentials will appear among the content’s ingredients. If the content is later signed and a new manifest generated, it will replace the previous watermark reference, restoring the asset to a hard binding state.</p>
@@ -551,7 +557,7 @@
 <div class="sect3">
 <h4 id="_fingerprinting"><a class="anchor" href="#_fingerprinting"></a>3.7.2. Fingerprinting</h4>
 <div class="paragraph">
-<p>If, instead of a watermark, a validator chooses to use a <a href="#2.2@specs:C2PA_Specification.adoc#_fingerprint" class="xref unresolved">content fingerprint</a> to locate a remote manifest, users should be given control over which recovered manifest they wish to view. To prevent fingerprint recovery from becoming a reverse asset search of remote Content Credentials, matches must be nearly identical to the asset under inspection. When multiple valid matches exist, results should be ordered chronologically, prioritizing the earliest known provenance or the most recently active manifest.</p>
+<p>If, instead of a watermark, a validator chooses to use a <a href="../specs/C2PA_Specification.html#_fingerprint" class="xref page">content fingerprint</a> to locate a remote manifest, users should be given control over which recovered manifest they wish to view. To prevent fingerprint recovery from becoming a reverse asset search of remote Content Credentials, matches must be nearly identical to the asset under inspection. When multiple valid matches exist, results should be ordered chronologically, prioritizing the earliest known provenance or the most recently active manifest.</p>
 </div>
 </div>
 <div class="sect3">
@@ -786,7 +792,7 @@
 <div class="sect2">
 <h3 id="_validation_states"><a class="anchor" href="#_validation_states"></a>4.5. Validation States</h3>
 <div class="paragraph">
-<p>Visual states are critical to helping users interpret the reliability of data. There are several different <a href="#2.2@specs:C2PA_Specification.adoc#_validation_states" class="xref unresolved">C2PA Manifest validation states</a> that implementers should consider communicating. A C2PA Manifest may be one of the following:</p>
+<p>Visual states are critical to helping users interpret the reliability of data. There are several different <a href="../specs/C2PA_Specification.html#_validation_states" class="xref page">C2PA Manifest validation states</a> that implementers should consider communicating. A C2PA Manifest may be one of the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -874,7 +880,7 @@
     </figure>
     <ul class="footer-brand-links">
       <li><a href="https://c2pa.org" target="_blank" rel="noopener">Home</a></li>
-      <li><a href="https://c2pa.org/specifications">Docs</a></li>
+      <li><a href="https://spec.c2pa.org/specifications">Docs</a></li>
       <li><a href="https://github.com/c2pa-org" target="_blank" rel="noopener">Project</a></li>
     </ul>
     <p class="footer-brand-follow">
@@ -890,7 +896,13 @@
     <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
   </div>
 </footer>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>

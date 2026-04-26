@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>C2PA Implementation Guidance :: C2PA Specifications</title>
-    <link rel="canonical" href="https://c2pa.org/specifications/specifications/2.4/guidance/Guidance.html">
+    <link rel="canonical" href="https://spec.c2pa.org/specifications/specifications/2.4/guidance/Guidance.html">
     <meta name="generator" content="Antora 3.1.14">
 <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/c2pa-branding.css">
@@ -16,7 +16,7 @@
   <nav class="navbar">
    <div class="navbar-brand">
     <a class="navbar-item logo" title="C2PA" href="https://c2pa.org"><img src="../../../_/img/C2PA-logo.svg" alt="C2PA" width="96"></a>
-      <a class="navbar-item title" href="../../..">C2PA Specifications</a>
+      <a class="navbar-item title" href="https://spec.c2pa.org/specifications/specifications/2.4/index.html">C2PA Specifications</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -25,6 +25,11 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
+        <div class="navbar-item search hide-for-print">
+          <div id="search-field" class="field">
+            <input id="search-input" type="text" placeholder="Search the docs" aria-label="Search">
+          </div>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">Download</div>
           <div class="navbar-dropdown">
@@ -71,7 +76,7 @@
     <a class="nav-link" href="../../1.4/attestations/attestation.html">Attestations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#2.2@softbinding:Decoupled.adoc">Soft Binding API</a>
+    <a class="nav-link" href="../../2.2/softbinding/Decoupled.html">Soft Binding API</a>
   </li>
 </ul>
   </li>
@@ -153,6 +158,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="../../2.4/index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">C2PA Specifications</a></li>
@@ -466,7 +472,7 @@ Compressed manifests are not compatible with BMFF-based hashing.
 <p>Some file formats, such as JPEG, PNG, TIFF, or GIF, use a general box structure, that can be used to improve the flexibility of the bindings over that of a byte range binding.  Use of a general box binding is strongly recommended over a byte range binding for any file format that supports it.</p>
 </div>
 <div class="paragraph">
-<p>A <a href="#2.2@specs:C2PA_Specification.adoc#_general_box_hash" class="xref unresolved">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
+<p>A <a href="../../2.2/specs/C2PA_Specification.html#_general_box_hash" class="xref page">general box hash assertion</a> consists of an array of structures, each one listing one or more boxes (by their name/identifier) and a hash that covers that data of those boxes, along with the algorithm used for hashing.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -652,11 +658,11 @@ In this design pattern, the search key is the unique identifier within the invis
 <div class="sect3">
 <h4 id="_watermarks_and_soft_binding_assertions"><a class="anchor" href="#_watermarks_and_soft_binding_assertions"></a>4.2.6. Watermarks and Soft Binding Assertions</h4>
 <div class="paragraph">
-<p>C2PA supports the use of invisible watermarks as one particular kind of soft binding. A <a href="#2.2@specs:C2PA_Specification.adoc#_actions" class="xref unresolved"><code>c2pa.watermarked.bound</code></a>
+<p>C2PA supports the use of invisible watermarks as one particular kind of soft binding. A <a href="../../2.2/specs/C2PA_Specification.html#_actions" class="xref page"><code>c2pa.watermarked.bound</code></a>
 action must be added to the C2PA Manifest to signal that an invisible watermark was inserted into the digital content for the purpose of creating a soft binding. The watermark should reference the asset with a soft binding content identifier that can be queried via a manifest repository.</p>
 </div>
 <div class="paragraph">
-<p>Each <code>c2pa.watermarked.bound</code> action needs a corresponding <a href="#2.2@specs:C2PA_Specification.adoc#_soft_bindings" class="xref unresolved">soft bindings assertion</a> to provide more details about the watermarking algorithm used to insert the invisible watermark into the digital content.</p>
+<p>Each <code>c2pa.watermarked.bound</code> action needs a corresponding <a href="../../2.2/specs/C2PA_Specification.html#_soft_bindings" class="xref page">soft bindings assertion</a> to provide more details about the watermarking algorithm used to insert the invisible watermark into the digital content.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1519,7 +1525,7 @@ In order to adhere to the <a href="https://c2pa.org/principles/">C2PA Guiding Pr
 <p>A DLT may be used to store directly a key-value index that maps soft bindings (keys) to the URLs of manifest repositories and/or a unique identifier that may be used to recover the relevant C2PA Manifest.</p>
 </div>
 <div class="paragraph">
-<p>The decentralized resolution process begins with a known smart contract address residing on a known instance of a distributed ledger. This may be expressed, for example, via the <a href="https://chainagnostic.org/CAIPs/caip-2">CAIP-2 Specification</a> as a URI within the softBindingAlgorithmApis field of an entry in the Soft Binding Algorithm List. A specification for decentralized manifest recovery process is provided by the <a href="#2.2@softbinding:Decoupled.adoc#SBR-API" class="xref unresolved">C2PA Decentralized Soft Binding Resolution Process</a>.</p>
+<p>The decentralized resolution process begins with a known smart contract address residing on a known instance of a distributed ledger. This may be expressed, for example, via the <a href="https://chainagnostic.org/CAIPs/caip-2">CAIP-2 Specification</a> as a URI within the softBindingAlgorithmApis field of an entry in the Soft Binding Algorithm List. A specification for decentralized manifest recovery process is provided by the <a href="../../2.2/softbinding/Decoupled.html#SBR-API" class="xref page">C2PA Decentralized Soft Binding Resolution Process</a>.</p>
 </div>
 <div class="paragraph">
 <p>The first step is to identify the protocol for interacting with the key-value store, by calling a specific method on that smart contract (e.g. <code>describe</code> for Ethereum Virtual Machine based ledgers) that returns configuration information in a JSON schema.</p>
@@ -1561,7 +1567,7 @@ In order to adhere to the <a href="https://c2pa.org/principles/">C2PA Guiding Pr
     </figure>
     <ul class="footer-brand-links">
       <li><a href="https://c2pa.org" target="_blank" rel="noopener">Home</a></li>
-      <li><a href="https://c2pa.org/specifications">Docs</a></li>
+      <li><a href="https://spec.c2pa.org/specifications">Docs</a></li>
       <li><a href="https://github.com/c2pa-org" target="_blank" rel="noopener">Project</a></li>
     </ul>
     <p class="footer-brand-follow">
@@ -1577,7 +1583,13 @@ In order to adhere to the <a href="https://c2pa.org/principles/">C2PA Guiding Pr
     <p>Authored in AsciiDoc.<br>Produced by <a href="https://antora.org" target="_blank" rel="noopener">Antora</a> and <a href="https://asciidoctor.org" target="_blank" rel="noopener">Asciidoctor</a>.</p>
   </div>
 </footer>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
 <script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
 <script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
   </body>
 </html>
