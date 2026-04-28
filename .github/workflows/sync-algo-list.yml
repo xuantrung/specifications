@@ -14,13 +14,15 @@ jobs:
 
       - name: Download JSON file
         run: |
-          # The key change is the path: supplemental-ui/
-          mkdir -p supplemental-ui/softbinging-alg-list
-          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o supplemental-ui/softbinging-alg-list/index.json
+          # Create the folder matching your URL path
+          mkdir -p supplemental-ui/softbinding-alg-list
+          
+          # Download and save with the EXACT filename you want in the URL
+          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o supplemental-ui/softbinding-alg-list/softbinding-algorithm-list.json
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add supplemental-ui/softbinging-alg-list/index.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update softbinding algorithm list" && git push)
+          git add supplemental-ui/softbinding-alg-list/softbinding-algorithm-list.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update softbinding algorithm list to latest" && git push)
