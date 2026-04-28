@@ -33,7 +33,7 @@ ui:
   - ./supplemental-ui
   - path: ui.yml
     contents: |
-      static_files: [ .nojekyll, latest/index.html, core/index.html, crjson/index.html ]
+      static_files: [ .nojekyll, latest/index.html, core/index.html, crjson/index.html, softbinging-alg-list/index.json ]
   - path: .nojekyll
   - path: latest/index.html
     contents: |
