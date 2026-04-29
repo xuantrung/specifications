@@ -1,34 +1,28 @@
-name: Sync Softbinding Algorithm List
+name: Sync Algorithm List
 
 on:
   schedule:
-    # This runs at 00:00 UTC every day. 
-    - cron: '0 0 * * *'
-  workflow_dispatch: # Allows you to run it manually for testing
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
   update-json:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Download JSON file
         run: |
-          mkdir -p softbinding-alg-list 
-          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o softbinding-alg-list/softbinding-algorithm-list.json
+          # Create the folder matching your URL path
+          mkdir -p supplemental-ui/softbinding-alg-list
+          
+          # Download and save with the EXACT filename you want in the URL
+          curl -s https://raw.githubusercontent.com/c2pa-org/softbinding-algorithm-list/refs/heads/main/softbinding-algorithm-list.json -o supplemental-ui/softbinding-alg-list/softbinding-algorithm-list.json
 
       - name: Commit and push if changed
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add softbinding-alg-list/softbinding-algorithm-list.json
-          if git diff --cached --quiet; then
-            echo "No changes detected"
-          else
-            git commit -m "chore: update softbinding-algorithm-list.json"
-            git push
-          fi
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add supplemental-ui/softbinding-alg-list/softbinding-algorithm-list.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update softbinding algorithm list to latest" && git push)
